@@ -5,13 +5,17 @@ const sc = require('../module/util/statusCode');
 /**
  * models을 가져오려면 index를 가져와야한다. blogModel를 가져오면 안된다!
  */
-const {Blog, Article, Comment} = require('../models');
+const {
+    Blog,
+    Article,
+    Comment
+} = require('../models');
 
 module.exports = {
     readAll: () => {
         return new Promise(async (resolve, reject) => {
             const blog = await Blog.findAll({});
-            if(blog.length == 0) {
+            if (blog.length == 0) {
                 resolve({
                     json: utils.successFalse(sc.NO_CONTENT, rm.BLOG_EMPTY)
                 });
@@ -28,16 +32,16 @@ module.exports = {
             });
         });
     },
-    readblogId: ({
+    readOne: ({
         id
     }) => {
         return new Promise(async (resolve, reject) => {
             const blog = await Blog.findOne({
                 where: {
-                    id : id,
+                    id: id,
                 }
             });
-            if(blog.length == 0) {
+            if (blog.length == 0) {
                 resolve({
                     json: utils.successFalse(sc.NO_CONTENT, rm.BLOG_READ_BLOGIDX_FAIL)
                 });
@@ -54,32 +58,6 @@ module.exports = {
             });
         });
     },
-    readHost: ({
-        host
-    }) => {
-        return new Promise(async (resolve, reject) => {
-            const blog = await Blog.findAll({
-                where: {
-                    host : host
-                }
-            });
-            if(blog.length == 0) {
-                resolve({
-                    json: utils.successFalse(sc.NO_CONTENT, rm.BLOG_READ_HOST_FAIL)
-                });
-                return;
-            }
-            if (!blog) {
-                resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_READ_HOST_FAIL)
-                });
-                return;
-            }
-            resolve({
-                json: utils.successTrue(sc.CREATED, rm.BLOG_READ_HOST_SUCCESS, blog)
-            });
-        });
-    },
     create: ({
         host,
         introduce
@@ -88,10 +66,10 @@ module.exports = {
             let blog;
             try {
                 blog = await Blog.create({
-                        host: host,
-                        introduce: introduce,
+                    host: host,
+                    introduce: introduce,
                 });
-                
+
             } catch (error) {
                 reject({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_CREATE_FAIL)
@@ -108,9 +86,11 @@ module.exports = {
     }) => {
         return new Promise(async (resolve, reject) => {
             const blog = await Blog.update({
-                introduce : introduce
+                introduce: introduce
             }, {
-                where : { blogIdx : blogIdx },
+                where: {
+                    blogIdx: blogIdx
+                },
             });
             if (!blog) {
                 resolve({
@@ -123,16 +103,18 @@ module.exports = {
             });
         });
     },
-    delete: ({blogIdx}) => {
+    delete: ({
+        blogIdx
+    }) => {
         return new Promise(async (resolve, reject) => {
             let blog;
             try {
                 blog = await Blog.destroy({
-                    where:{
+                    where: {
                         blogIdx: blogIdx
                     }
                 });
-                
+
             } catch (error) {
                 reject({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_DELETE_FAIL)
