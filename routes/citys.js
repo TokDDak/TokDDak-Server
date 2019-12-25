@@ -9,7 +9,7 @@ const snackController = require('../Snack/controller');
 const transportController = require('../Transportation/controller');
 
 /* City */
-router.get('/', cityController.read);
+router.get('/city', cityController.readAll);
 router.get('/country', cityController.countryRead);
 router.post('/',cityController.create);
 router.put('/',cityController.update);
