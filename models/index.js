@@ -9,8 +9,6 @@ const sequelize = new Sequelize(
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-db.Continent = require('./continentModel')(sequelize, Sequelize);
-db.Country = require('./countryModel')(sequelize, Sequelize);
 db.City = require('./cityModel')(sequelize, Sequelize);
 db.Activity = require('./activityModel')(sequelize, Sequelize);
 db.Food = require('./foodModel')(sequelize, Sequelize);
@@ -18,14 +16,6 @@ db.Shopping = require('./shoppingModel')(sequelize, Sequelize);
 db.Snack = require('./snackModel')(sequelize, Sequelize);
 db.Hotel = require('./hotelModel')(sequelize, Sequelize);
 db.Transportation = require('./transportationModel')(sequelize, Sequelize);
-
-/** 1:N Continent : Country */
-db.Continent.hasMany(db.Country);
-db.Country.belongsTo(db.Continent);
-
-/** 1:N Country : City */
-db.Country.hasMany(db.City);
-db.City.belongsTo(db.Country);
 
 /** 1:N City : Activity */
 db.City.hasMany(db.Activity);
