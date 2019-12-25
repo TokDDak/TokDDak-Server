@@ -2,26 +2,19 @@ const rm = require('../module/util/responseMessage');
 const utils = require('../module/util/utils');
 const sc = require('../module/util/statusCode');
 
-/**
- * models을 가져오려면 index를 가져와야한다. blogModel를 가져오면 안된다!
- */
-const {
-    Blog,
-    Article,
-    Comment
-} = require('../models'); // 추후
+const {Snack} = require('../models');
 
 module.exports = {
     readAll: () => {
         return new Promise(async (resolve, reject) => {
-            const blog = await Blog.findAll({});
-            if (blog.length == 0) {
+            const snack = await Snack.findAll({});
+            if (snack.length == 0) {
                 resolve({
                     json: utils.successFalse(sc.NO_CONTENT, rm.BLOG_EMPTY)
                 });
                 return;
             }
-            if (!blog) {
+            if (!snack) {
                 resolve({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_READ_ALL_FAIL)
                 });
@@ -36,18 +29,18 @@ module.exports = {
         id
     }) => {
         return new Promise(async (resolve, reject) => {
-            const blog = await Blog.findOne({
+            const snack = await Snack.findOne({
                 where: {
                     id: id,
                 }
             });
-            if (blog.length == 0) {
+            if (snack.length == 0) {
                 resolve({
                     json: utils.successFalse(sc.NO_CONTENT, rm.BLOG_READ_BLOGIDX_FAIL)
                 });
                 return;
             }
-            if (!blog) {
+            if (!snack) {
                 resolve({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_READ_BLOGIDX_FAIL)
                 });
@@ -59,15 +52,15 @@ module.exports = {
         });
     },
     create: ({
-        host,
-        introduce
+        name,
+        cost
     }) => {
         return new Promise(async (resolve, reject) => {
-            let blog;
+ //           let snack;
             try {
-                blog = await Blog.create({
-                    host: host,
-                    introduce: introduce,
+                snack = await Snack.create({
+                    name: name,
+                    cost: cost
                 });
 
             } catch (error) {
@@ -81,18 +74,18 @@ module.exports = {
         });
     },
     update: ({
-        blogIdx,
-        introduce
+        snackIdx,
+        cost
     }) => {
         return new Promise(async (resolve, reject) => {
-            const blog = await Blog.update({
-                introduce: introduce
+            const snack = await Snack.update({
+                cost : cost
             }, {
                 where: {
-                    blogIdx: blogIdx
+                    snackIdx: snackIdx
                 },
             });
-            if (!blog) {
+            if (!snack) {
                 resolve({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_UPDATE_FAIL)
                 });
@@ -104,14 +97,14 @@ module.exports = {
         });
     },
     delete: ({
-        blogIdx
+        snackIdx
     }) => {
         return new Promise(async (resolve, reject) => {
-            let blog;
+            let snack;
             try {
-                blog = await Blog.destroy({
+                snack = await Snack.destroy({
                     where: {
-                        blogIdx: blogIdx
+                        snackIdx: snackIdx
                     }
                 });
 

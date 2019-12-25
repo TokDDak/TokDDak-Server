@@ -38,16 +38,20 @@ module.exports = {
     },
     create: async (req, res) => {
         const {
-            host,
-            introduce
+            name,
+            cost,
+            content,
+            location
         } = req.body;
-        if (!host) {
+        if (!name || !cost || !content || !location) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
         ActivityService.create({
-                host,
-                introduce
+                name,
+                cost,
+                content,
+                location
             })
             .then(({
                     json
@@ -60,12 +64,16 @@ module.exports = {
     update: async (req, res) => {
         const {
             id,
-            introduce
+            cost,
+            content,
+            location
         } = req.body;
-        if (!id || !introduce) {
+        if (!id || !cost || !content || !location) {
             const missParameters = Object.entries({
                     id,
-                    introduce
+                    cost,
+                    content,
+                    location
                 })
                 .filter(it => it[1] == undefined).map(it => it[0]).join(',');
             res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
@@ -73,7 +81,9 @@ module.exports = {
         }
         ActivityService.update({
                 id,
-                introduce
+                cost,
+                content,
+                location
             })
             .then(({
                     json
@@ -93,7 +103,7 @@ module.exports = {
             return;
         }
         ActivityService.delete({
-                blogId
+                id
             })
             .then(({
                     json

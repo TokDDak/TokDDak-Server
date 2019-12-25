@@ -38,16 +38,16 @@ module.exports = {
     },
     create: async (req, res) => {
         const {
-            host, // 추후 수정
-            introduce // 추후 수정
+           name,
+           cost
         } = req.body;
-        if (!host) {
+        if (!name || !cost) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
         SnackService.create({
-                host,
-                introduce
+               name,
+               cost
             })
             .then(({
                     json
@@ -60,12 +60,12 @@ module.exports = {
     update: async (req, res) => {
         const {
             id,
-            introduce
+            cost
         } = req.body;
-        if (!id || !introduce) {
+        if (!id || !cost) {
             const missParameters = Object.entries({
                     id,
-                    introduce
+                    cost
                 })
                 .filter(it => it[1] == undefined).map(it => it[0]).join(',');
             res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
@@ -73,7 +73,7 @@ module.exports = {
         }
         SnackService.update({
                 id,
-                introduce
+                cost
             })
             .then(({
                     json

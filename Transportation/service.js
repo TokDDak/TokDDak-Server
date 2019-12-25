@@ -3,26 +3,26 @@ const utils = require('../module/util/utils');
 const sc = require('../module/util/statusCode');
 
 
-const {Blog, Article, Comment} = require('../models/transportationModel');
+const {Transportation} = require('../models');
 
 module.exports = {
     readAll: () => {
         return new Promise(async (resolve, reject) => {
-            const blog = await Blog.findAll({});
-            if(blog.length == 0) {
+            const transportation = await Transportation.findAll({});
+            if(transportation.length == 0) {
                 resolve({
                     json: utils.successFalse(sc.NO_CONTENT, rm.BLOG_EMPTY)
                 });
                 return;
             }
-            if (!blog) {
+            if (!transportation) {
                 resolve({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_READ_ALL_FAIL)
                 });
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_READ_ALL_SUCCESS, blog)
+                json: utils.successTrue(sc.SUCCESS, rm.BLOG_READ_ALL_SUCCESS, transportation)
             });
         });
     },
@@ -30,38 +30,40 @@ module.exports = {
         id
     }) => {
         return new Promise(async (resolve, reject) => {
-            const blog = await Blog.findOne({
+            const transportation = await Transportation.findOne({
                 where: {
-                    id : id,
+                    id : id
                 }
             });
-            if(blog.length == 0) {
+            if(transportation.length == 0) {
                 resolve({
                     json: utils.successFalse(sc.NO_CONTENT, rm.BLOG_READ_BLOGIDX_FAIL)
                 });
                 return;
             }
-            if (!blog) {
+            if (!transportation) {
                 resolve({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_READ_BLOGIDX_FAIL)
                 });
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_READ_BLOGIDX_SUCCESS, blog)
+                json: utils.successTrue(sc.SUCCESS, rm.BLOG_READ_BLOGIDX_SUCCESS, transportation)
             });
         });
     },
     create: ({
-        host,
-        introduce
+        name,
+        cost,
+        content
     }) => {
         return new Promise(async (resolve, reject) => {
-            let blog;
+            let transportation;
             try {
-                blog = await Blog.create({
-                        host: host,
-                        introduce: introduce,
+                transportation = await Transportation.create({
+                    name : name,
+                    cost : cost,
+                    content : content
                 });
                 
             } catch (error) {
@@ -75,16 +77,20 @@ module.exports = {
         });
     },
     update: ({
-        blogIdx,
-        introduce
+        transportationIdx,
+        cost,
+        content
     }) => {
         return new Promise(async (resolve, reject) => {
-            const blog = await Blog.update({
-                introduce : introduce
+            const transportation = await Transportation.update({
+                cost : cost,
+                content : content
             }, {
-                where : { blogIdx : blogIdx },
+                where: {
+                    transportationIdx : transportationIdx
+                },
             });
-            if (!blog) {
+            if (!transportation) {
                 resolve({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_UPDATE_FAIL)
                 });
@@ -95,13 +101,13 @@ module.exports = {
             });
         });
     },
-    delete: ({blogIdx}) => {
+    delete: ({transportationIdx}) => {
         return new Promise(async (resolve, reject) => {
-            let blog;
+            let transportation;
             try {
-                blog = await Blog.destroy({
+                transportation = await Transportation.destroy({
                     where:{
-                        blogIdx: blogIdx
+                        transportationIdx : transportationIdx
                     }
                 });
                 

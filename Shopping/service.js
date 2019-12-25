@@ -2,19 +2,19 @@ const rm = require('../module/util/responseMessage');
 const utils = require('../module/util/utils');
 const sc = require('../module/util/statusCode');
 
-const {Blog, Article, Comment} = require('../models/shoppingModel');
+const {Shopping} = require('../models');
 
 module.exports = {
     readAll: () => {
         return new Promise(async (resolve, reject) => {
-            const blog = await Blog.findAll({});
-            if(blog.length == 0) {
+            const shopping = await Shopping.findAll({});
+            if(shopping.length == 0) {
                 resolve({
                     json: utils.successFalse(sc.NO_CONTENT, rm.BLOG_EMPTY)
                 });
                 return;
             }
-            if (!blog) {
+            if (!shopping) {
                 resolve({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_READ_ALL_FAIL)
                 });
@@ -29,18 +29,18 @@ module.exports = {
         id
     }) => {
         return new Promise(async (resolve, reject) => {
-            const blog = await Blog.findOne({
+            const shopping = await Shopping.findOne({
                 where: {
                     id : id,
                 }
             });
-            if(blog.length == 0) {
+            if(shopping.length == 0) {
                 resolve({
                     json: utils.successFalse(sc.NO_CONTENT, rm.BLOG_READ_BLOGIDX_FAIL)
                 });
                 return;
             }
-            if (!blog) {
+            if (!shopping) {
                 resolve({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_READ_BLOGIDX_FAIL)
                 });
@@ -52,15 +52,15 @@ module.exports = {
         });
     },
     create: ({
-        host,
-        introduce
+        name,
+        cost
     }) => {
         return new Promise(async (resolve, reject) => {
-            let blog;
+            let shopping;
             try {
-                blog = await Blog.create({
-                        host: host,
-                        introduce: introduce,
+                shopping = await Shopping.create({
+                        name : name,
+                        cost : cost
                 });
                 
             } catch (error) {
@@ -74,16 +74,16 @@ module.exports = {
         });
     },
     update: ({
-        blogIdx,
-        introduce
+        shoppingIdx,
+        cost
     }) => {
         return new Promise(async (resolve, reject) => {
-            const blog = await Blog.update({
-                introduce : introduce
+            const shopping = await Shopping.update({
+                cost : cost
             }, {
-                where : { blogIdx : blogIdx },
+                where : { shoppingIdx : shoppingIdx },
             });
-            if (!blog) {
+            if (!shopping) {
                 resolve({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_UPDATE_FAIL)
                 });
@@ -94,13 +94,13 @@ module.exports = {
             });
         });
     },
-    delete: ({blogIdx}) => {
+    delete: ({shoppingIdx}) => {
         return new Promise(async (resolve, reject) => {
-            let blog;
+            let shopping;
             try {
-                blog = await Blog.destroy({
+                shopping = await Shopping.destroy({
                     where:{
-                        blogIdx: blogIdx
+                        shoppingIdx: shoppingIdx
                     }
                 });
                 
