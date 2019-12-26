@@ -49,75 +49,32 @@ db.City.hasMany(db.Transport);
 db.Transport.belongsTo(db.City);
 
 /** N:M Trip : Activity */
-db.Trip.belongsToMany(db.Activity, { 
-  through : db.TripActivity,
-  foreignKey : 'activityId',
-  constraints: false,
-});
-db.Activity.belongsToMany(db.Trip, { 
-  through : db.TripActivity,
-  foreignKey : 'tripId',
-  constraints: false,
-});
+db.Trip.belongsToMany(db.Activity, {  through : db.TripActivity});
+db.Activity.belongsToMany(db.Trip, { through : db.TripActivity});
 
 /** N:M Trip : Hotel */
-db.Trip.belongsToMany(db.Hotel, { 
-  through : db.TripHotel,
-  foreignKey : 'hotelId',
-  constraints: false,
-});
-db.Hotel.belongsToMany(db.Trip, { 
-  through : db.TripHotel,
-  foreignKey : 'tripId',
-  constraints: false,
+db.Trip.belongsToMany(db.Hotel, {  through : db.TripHotel});
+db.Hotel.belongsToMany(db.Trip, {  through : db.TripHotel
 });
 
 /** N:M Trip : Food */
-db.Trip.belongsToMany(db.Food, { 
-  through : db.TripFood,
-  foreignKey : 'foodId',
-  constraints: false, 
+db.Trip.belongsToMany(db.Food, { through : db.TripFood,
 });
-db.Food.belongsToMany(db.Trip, { 
-  through : db.TripFood,
-  foreignKey : 'tripId',
-  constraints: false,
+db.Food.belongsToMany(db.Trip, { through : db.TripFood,
 });
 
 /** N:M Trip : Shopping */
-db.Trip.belongsToMany(db.Shopping, { 
-  through : db.TripShopping,
-  foreignKey : 'shoppingId',
-  constraints: false, 
-});
-db.Shopping.belongsToMany(db.Trip, { 
-  through : db.TripShopping,
-  foreignKey : 'tripId',
-  constraints: false,
+db.Trip.belongsToMany(db.Shopping, { through : db.TripShopping,});
+db.Shopping.belongsToMany(db.Trip, { through : db.TripShopping,
 });
 
 /** N:M Trip : Snack */
-db.Trip.belongsToMany(db.Snack, { 
-  through : db.TripSnack,
-  foreignKey : 'snackId',
-  constraints: false, 
-});
-db.Snack.belongsToMany(db.Trip, { 
-  through : db.TripSnack,
-  foreignKey : 'tripId',
-  constraints: false,
+db.Trip.belongsToMany(db.Snack, { through : db.TripSnack});
+db.Snack.belongsToMany(db.Trip, { through : db.TripSnack,
 });
 
 /** N:M Trip : Transport */
-db.Trip.belongsToMany(db.Transport, { 
-  through : db.TripTransport,
-  foreignKey : 'transportId',
-  constraints: false,
-});
-db.Transport.belongsToMany(db.Trip, { 
-  through : db.TripTransport,
-  foreignKey : 'tripId',
-  constraints: false,
-});
+db.Trip.belongsToMany(db.Transport, {  through : db.TripTransport});
+db.Transport.belongsToMany(db.Trip, {  through : db.TripTransport});
 
 module.exports = db;
