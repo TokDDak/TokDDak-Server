@@ -27,7 +27,7 @@ module.exports = {
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_READ_BLOGIDX_SUCCESS, blog)
+                json: utils.successTrue(sc.SUCCESS, rm.BLOG_READ_BLOGIDX_SUCCESS, activity)
             });
         });
     },
@@ -53,7 +53,7 @@ module.exports = {
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_CREATE_SUCCESS, blog)
+                json: utils.successTrue(sc.SUCCESS, rm.BLOG_CREATE_SUCCESS, activity)
             });
         });
     },

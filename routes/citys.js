@@ -1,12 +1,12 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 const cityController = require('../City/controller');
 const activityController = require('../Activity/controller');
 const foodController = require('../Food/controller');
 const hotelController = require('../Hotel/controller');
 const shoppingController = require('../Shopping/controller');
 const snackController = require('../Snack/controller');
-const transportController = require('../Transportation/controller');
+const transportController = require('../Transport/controller');
 
 /* City */
 router.get('/city', cityController.readAll); //ok
@@ -16,39 +16,39 @@ router.put('/',cityController.update);
 router.delete('/',cityController.delete); //ok
 
 /* Activity */
-router.get('/:CityId', activityController.read);
-router.post('/:CityId', activityController.create);
-router.put('/:CityId', activityController.update);
-router.delete('/:CityId', activityController.delete);
+router.get('/:CityId/Activity', activityController.read);
+router.post('/:CityId/Activity', activityController.create);
+router.put('/:CityId/Activity', activityController.update);
+router.delete('/:CityId/Activity', activityController.delete);
 
 /* Shopping */
-router.get('/:CityId', shoppingController.read);
-router.post('/:CityId', shoppingController.create);
-router.put('/:CityId', shoppingController.update);
-router.delete('/:CityId', shoppingController.delete);
+router.get('/:CityId/Shopping', shoppingController.read);
+router.post('/:CityId/Shopping', shoppingController.create);
+router.put('/:CityId/Shopping', shoppingController.update);
+router.delete('/:CityId/Shopping', shoppingController.delete);
 
 /* Snack */
-router.get('/:CityId', snackController.read);
-router.post('/:CityId', snackController.create);
-router.put('/:CityId', snackController.update);
-router.delete('/:CityId', snackController.delete);
+router.get('/:CityId/Snack', snackController.read);
+router.post('/:CityId/Snack', snackController.create);
+router.put('/:CityId/Snack', snackController.update);
+router.delete('/:CityId/Snack', snackController.delete);
 
-/* Transportation */
-router.get('/:CityId', transportController.read);
-router.post('/:CityId', transportController.create);
-router.put('/:CityId', transportController.update);
-router.delete('/:CityId', transportController.delete);
+/* Transport */
+router.get('/:CityId/Transport', transportController.read);
+router.post('/:CityId/Transport', transportController.create);
+router.put('/:CityId/Transport', transportController.update);
+router.delete('/:CityId/Transport', transportController.delete);
 
 /* Food */
-router.get('/:CityId', foodController.read);
-router.post('/:CityId', foodController.create);
-router.put('/:CityId', foodController.update);
-router.delete('/:CityId', foodController.delete);
+router.get('/:CityId/Food', foodController.read);
+router.post('/:CityId/Food', foodController.create);
+router.put('/:CityId/Food', foodController.update);
+router.delete('/:CityId/Food', foodController.delete);
 
 /* Hotel */
-router.get('/:CityId', hotelController.read);
-router.post('/:CityId', hotelController.create);
-router.put('/:CityId', hotelController.update);
-router.delete('/:CityId', hotelController.delete);
+router.get('/:CityId/Hotel', hotelController.read);
+router.post('/:CityId/Hotel', hotelController.create);
+router.put('/:CityId/Hotel', hotelController.update);
+router.delete('/:CityId/Hotel', hotelController.delete);
 
 module.exports = router;

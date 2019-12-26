@@ -8,7 +8,8 @@ module.exports = {
     read: async (req, res) => {
         const {
             CityId
-        } = req.params.CityId; //*
+        } = req.params; //*
+        console.log(CityId);
         if (!CityId) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
@@ -32,16 +33,19 @@ module.exports = {
             content,
             location
         } = req.body;
+        const {
+            CityId
+        } = req.params; //*
         if (!name || !cost || !content || !location) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
         ActivityService.create({
-
                 name,
                 cost,
                 content,
-                location
+                location,
+                CityId
             })
             .then(({
                     json
@@ -58,17 +62,22 @@ module.exports = {
             content,
             location
         } = req.body;
+        const {
+            CityId
+        } = req.params; //*
         if (!id || !cost || !content || !location) {
             const missParameters = Object.entries({
-                    cost,
-                    content,
-                    location
+                id,
+                cost,
+                content,
+                location
                 })
                 .filter(it => it[1] == undefined).map(it => it[0]).join(',');
             res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
             return;
         }
         ActivityService.update({
+                id,
                 cost,
                 content,
                 location
