@@ -15,7 +15,7 @@ module.exports = {
                 res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             });
     },
-    countryRead: async (req, res) => {
+    countryRead: async (req, res) => { //* countryRead라는게 어디 나라에 속하는지만 보여주는거야?
         const {
             country
         } = req.body;
@@ -37,13 +37,17 @@ module.exports = {
     },
     create: async (req, res) => {
         const {
+            continent,
+            country,
             name
         } = req.body;
-        if (!name) {
+        if (!continent||!country||!name) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
         CityService.create({
+                continent,
+                country,
                 name
             })
             .then(({
@@ -54,7 +58,39 @@ module.exports = {
                 res.send(err);
             })
     },
-   // country update 없어도되지? *
+    update: async (req, res) => {
+        const {
+            id,
+            continent,
+            country,
+            name
+        } = req.body;
+        if (!id || !continent || !country || !name) {
+            const missParameters = Object.entries({
+                    id,
+                    continent,
+                    country,
+                    name
+                })
+                .filter(it => it[1] == undefined).map(it => it[0]).join(',');
+            res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
+            return;
+        }
+        CityService.update({ 
+            id,
+            continent,
+            country,
+            name
+        })
+        .then(({
+            json
+        }) => 
+            res.send(json)
+        ).catch(err => {
+            console.log(err);
+            res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+        })
+    },
     delete: async (req, res) => {
         const {
             id

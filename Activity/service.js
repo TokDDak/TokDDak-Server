@@ -2,37 +2,16 @@ const rm = require('../module/util/responseMessage');
 const utils = require('../module/util/utils');
 const sc = require('../module/util/statusCode');
 
-
 const {Activity} = require('../models');
-
+// 이름, 가격, 설명, url 
 module.exports = {
-    readAll: () => {
-        return new Promise(async (resolve, reject) => {
-            const activity = await Activity.findAll({});
-            if (activity.length == 0) {
-                resolve({
-                    json: utils.successFalse(sc.NO_CONTENT, rm.BLOG_EMPTY)
-                });
-                return;
-            }
-            if (!activity) {
-                resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_READ_ALL_FAIL)
-                });
-                return;
-            }
-            resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_READ_ALL_SUCCESS, blog)
-            });
-        });
-    },
-    readOne: ({
-        id
+    read: ({
+        CityId
     }) => {
         return new Promise(async (resolve, reject) => {
-            const activity = await Activity.findOne({
+            const activity = await Activity.findAll({
                 where: {
-                    id: id,
+                    CityId: CityId,
                 }
             });
             if (activity.length == 0) {

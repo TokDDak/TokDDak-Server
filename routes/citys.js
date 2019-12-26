@@ -9,11 +9,11 @@ const snackController = require('../Snack/controller');
 const transportController = require('../Transportation/controller');
 
 /* City */
-router.get('/city', cityController.readAll);
-router.get('/country', cityController.countryRead);
-router.post('/',cityController.create);
+router.get('/city', cityController.readAll); //ok
+router.get('/country', cityController.countryRead); //ok
+router.post('/',cityController.create); //ok
 router.put('/',cityController.update);
-router.delete('/',cityController.delete);
+router.delete('/',cityController.delete); //ok
 
 /* Activity */
 router.get('/:CityId', activityController.read);
