@@ -23,6 +23,8 @@ db.TripShopping = require('./tripShoppingModel')(sequelize, Sequelize);
 db.TripSnack = require('./tripSnackModel')(sequelize, Sequelize);
 db.TripHotel = require('./tripHotelModel')(sequelize, Sequelize);
 db.TripTransport = require('./tripTransportModel')(sequelize, Sequelize);
+db.Schedule = require('./scheduleModel')(sequelize, Sequelize);
+db.Plan = require('./planModel')(sequelize, Sequelize);
 
 /** 1:N City : Activity */
 db.City.hasMany(db.Activity);
@@ -76,5 +78,13 @@ db.Snack.belongsToMany(db.Trip, { through : db.TripSnack,
 /** N:M Trip : Transport */
 db.Trip.belongsToMany(db.Transport, {  through : db.TripTransport});
 db.Transport.belongsToMany(db.Trip, {  through : db.TripTransport});
+
+/** 1:N Trip : Schedule */
+db.Trip.hasMany(db.Schedule);
+db.Schedule.belongsTo(db.Trip);
+
+/** 1:N Trip : Plan */
+db.Trip.hasMany(db.Plan);
+db.Plan.belongsTo(db.Trip);
 
 module.exports = db;
