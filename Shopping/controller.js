@@ -4,26 +4,15 @@ const utils = require('../module/util/utils');
 const sc = require('../module/util/statusCode');
 
 module.exports = {
-    readAll: async (req, res) => {
-        ShopService.readAll()
-        .then(({
-            json
-        }) => 
-            res.send(json)
-        ).catch(err => {
-            console.log(err);
-            res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
-        });
-    },
-    readOne: async (req, res) => {
+    read: async (req, res) => {
         const {
-            id
-        } = req.body;
-        if(!id) {
+            CityId
+        } = req.parans.CityId;
+        if(!CityId) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
-        ShopService.readOne({id})
+        ShopService.readOne({CityId})
         .then(({
             json
         }) => 

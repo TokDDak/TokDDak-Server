@@ -6,33 +6,14 @@ const sc = require('../module/util/statusCode');
 const {Food} = require('../models');
 
 module.exports = {
-    readAll: () => {
-        return new Promise(async (resolve, reject) => {
-            const food = await Food.findAll({});
-            if(food.length == 0) {
-                resolve({
-                    json: utils.successFalse(sc.NO_CONTENT, rm.BLOG_EMPTY)
-                });
-                return;
-            }
-            if (!food) {
-                resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_READ_ALL_FAIL)
-                });
-                return;
-            }
-            resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_READ_ALL_SUCCESS, transportation)
-            });
-        });
-    },
-    readOne: ({
-        id
+
+    read: ({
+        CityId
     }) => {
         return new Promise(async (resolve, reject) => {
-            const food = await Food.findOne({
+            const food = await Food.findAll({
                 where: {
-                    id : id
+                    CityId : CityId
                 }
             });
             if(food.length == 0) {

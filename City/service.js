@@ -53,12 +53,16 @@ module.exports = {
         });
     },
     create: ({
+        continent,
+        country,
         name
     }) => {
         return new Promise(async (resolve, reject) => {
             let city;
             try {
                 city = await City.create({
+                    continent : continent,
+                    country : country,
                     name : name
                 });
                 
@@ -72,12 +76,39 @@ module.exports = {
             });
         });
     },
-    delete: ({CityId}) => {
+    update: ({
+        cityIdx,
+        continent,
+        country,
+        name
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            const city = await City.update({
+                continent : continent,
+                country : country,
+                name : name
+            }, {
+                where: {
+                    cityIdx: cityIdx
+                },
+            });
+            if (!city) {
+                resolve({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_UPDATE_FAIL)
+                });
+                return;
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, rm.BLOG_UPDATE_SUCCESS) // 성공했을때가 안돼,,, 실패는 됏
+            });
+        });
+    },
+    delete: ({id}) => {
         return new Promise(async (resolve, reject) => {
             try {
                 city = await City.destroy({
                     where:{
-                        CityId : CityId
+                        id:id
                     }
                 });
                 

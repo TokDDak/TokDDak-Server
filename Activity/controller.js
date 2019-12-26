@@ -5,27 +5,16 @@ const utils = require('../module/util/utils');
 const sc = require('../module/util/statusCode');
 
 module.exports = {
-    readAll: async (req, res) => {
-        ActivityService.readAll()
-            .then(({
-                    json
-                }) =>
-                res.send(json)
-            ).catch(err => {
-                console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
-            });
-    },
-    readOne: async (req, res) => {
+    read: async (req, res) => {
         const {
-            id
-        } = req.body;
-        if (!id) {
+            CityId
+        } = req.params.CityId; //*
+        if (!CityId) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
-        ActivityService.readOne({
-                id
+        ActivityService.read({
+                CityId
             })
             .then(({
                     json
@@ -48,6 +37,7 @@ module.exports = {
             return;
         }
         ActivityService.create({
+
                 name,
                 cost,
                 content,
@@ -70,7 +60,6 @@ module.exports = {
         } = req.body;
         if (!id || !cost || !content || !location) {
             const missParameters = Object.entries({
-                    id,
                     cost,
                     content,
                     location
@@ -80,7 +69,6 @@ module.exports = {
             return;
         }
         ActivityService.update({
-                id,
                 cost,
                 content,
                 location
@@ -103,7 +91,7 @@ module.exports = {
             return;
         }
         ActivityService.delete({
-                id
+            id
             })
             .then(({
                     json
