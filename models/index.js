@@ -15,8 +15,14 @@ db.Food = require('./foodModel')(sequelize, Sequelize);
 db.Shopping = require('./shoppingModel')(sequelize, Sequelize);
 db.Snack = require('./snackModel')(sequelize, Sequelize);
 db.Hotel = require('./hotelModel')(sequelize, Sequelize);
-db.Transportation = require('./transportationModel')(sequelize, Sequelize);
+db.Transport = require('./transportModel')(sequelize, Sequelize);
 db.Trip = require('./tripModel')(sequelize, Sequelize);
+db.TripActivity = require('./tripActivityModel')(sequelize, Sequelize);
+db.TripFood = require('./tripFoodModel')(sequelize, Sequelize);
+db.TripShopping = require('./tripShoppingModel')(sequelize, Sequelize);
+db.TripSnack = require('./tripSnackModel')(sequelize, Sequelize);
+db.TripHotel = require('./tripHotelModel')(sequelize, Sequelize);
+db.TripTransport = require('./tripTransportModel')(sequelize, Sequelize);
 
 /** 1:N City : Activity */
 db.City.hasMany(db.Activity);
@@ -38,32 +44,80 @@ db.Snack.belongsTo(db.City);
 db.City.hasMany(db.Hotel);
 db.Hotel.belongsTo(db.City);
 
-/** 1:N City : Transportation */
-db.City.hasMany(db.Transportation);
-db.Transportation.belongsTo(db.City);
+/** 1:N City : Transport */
+db.City.hasMany(db.Transport);
+db.Transport.belongsTo(db.City);
 
 /** N:M Trip : Activity */
-db.Trip.belongsToMany(db.Activity, { through : 'TripActivity' });
-db.Activity.belongsToMany(db.Trip, { through : 'TripActivity' });
-
-/** N:M Trip : Food */
-db.Trip.belongsToMany(db.Food, { through : 'TripFood' });
-db.Food.belongsToMany(db.Trip, { through : 'TripFood' });
-
-/** N:M Trip : Shopping */
-db.Trip.belongsToMany(db.Shopping, { through : 'TripShopping' });
-db.Shopping.belongsToMany(db.Trip, { through : 'TripShopping' });
-
-/** N:M Trip : Snack */
-db.Trip.belongsToMany(db.Snack, { through : 'TripSnack' });
-db.Snack.belongsToMany(db.Trip, { through : 'TripSnack' });
-
-/** N:M Trip : Transportation */
-db.Trip.belongsToMany(db.Food, { through : 'TripTransportation' });
-db.Transportation.belongsToMany(db.Trip, { through : 'TripTransportation' });
+db.Trip.belongsToMany(db.Activity, { 
+  through : db.TripActivity,
+  foreignKey : 'activityId',
+  constraints: false,
+});
+db.Activity.belongsToMany(db.Trip, { 
+  through : db.TripActivity,
+  foreignKey : 'tripId',
+  constraints: false,
+});
 
 /** N:M Trip : Hotel */
-db.Trip.belongsToMany(db.Hotel, { through : 'TripHotel' });
-db.Hotel.belongsToMany(db.Trip, { through : 'TripHotel' });
+db.Trip.belongsToMany(db.Hotel, { 
+  through : db.TripHotel,
+  foreignKey : 'hotelId',
+  constraints: false,
+});
+db.Hotel.belongsToMany(db.Trip, { 
+  through : db.TripHotel,
+  foreignKey : 'tripId',
+  constraints: false,
+});
+
+/** N:M Trip : Food */
+db.Trip.belongsToMany(db.Food, { 
+  through : db.TripFood,
+  foreignKey : 'foodId',
+  constraints: false, 
+});
+db.Food.belongsToMany(db.Trip, { 
+  through : db.TripFood,
+  foreignKey : 'tripId',
+  constraints: false,
+});
+
+/** N:M Trip : Shopping */
+db.Trip.belongsToMany(db.Shopping, { 
+  through : db.TripShopping,
+  foreignKey : 'shoppingId',
+  constraints: false, 
+});
+db.Shopping.belongsToMany(db.Trip, { 
+  through : db.TripShopping,
+  foreignKey : 'tripId',
+  constraints: false,
+});
+
+/** N:M Trip : Snack */
+db.Trip.belongsToMany(db.Snack, { 
+  through : db.TripSnack,
+  foreignKey : 'snackId',
+  constraints: false, 
+});
+db.Snack.belongsToMany(db.Trip, { 
+  through : db.TripSnack,
+  foreignKey : 'tripId',
+  constraints: false,
+});
+
+/** N:M Trip : Transport */
+db.Trip.belongsToMany(db.Transport, { 
+  through : db.TripTransport,
+  foreignKey : 'transportId',
+  constraints: false,
+});
+db.Transport.belongsToMany(db.Trip, { 
+  through : db.TripTransport,
+  foreignKey : 'tripId',
+  constraints: false,
+});
 
 module.exports = db;
