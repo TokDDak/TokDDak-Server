@@ -77,7 +77,7 @@ module.exports = {
         });
     },
     update: ({
-        cityIdx,
+        id,
         continent,
         country,
         name
@@ -89,7 +89,7 @@ module.exports = {
                 name : name
             }, {
                 where: {
-                    cityIdx: cityIdx
+                    id : id
                 },
             });
             if (!city) {

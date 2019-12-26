@@ -7,7 +7,7 @@ module.exports = {
     read: async (req, res) => {
         const {
             CityId
-        } = req.params.CityId;
+        } = req.params;
         if (!CityId) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
@@ -30,6 +30,9 @@ module.exports = {
             grade,
             cost
         } = req.body;
+        const {
+            CityId
+        } = req.params;
         if (!name||!grade||!cost) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
@@ -37,7 +40,8 @@ module.exports = {
         FoodService.create({
                 name,
                 grade,
-                cost
+                cost,
+                CityId
             })
             .then(({
                     json
@@ -53,10 +57,14 @@ module.exports = {
             grade,
             cost
         } = req.body;
+        const {
+            CityId
+        } = req.params; 
         if (!id||!cost ||!grade) {
             const missParameters = Object.entries({
                     grade,
-                    cost
+                    cost,
+                    CityId
                 })
                 .filter(it => it[1] == undefined).map(it => it[0]).join(',');
             res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
@@ -64,7 +72,8 @@ module.exports = {
         }
         FoodService.update({
             grade,
-            cost
+            cost,
+            CityId
             })
             .then(({
                     json

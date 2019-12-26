@@ -7,7 +7,7 @@ module.exports = {
     read: async (req, res) => {
         const {
             CityId
-        } = req.params.CityId;
+        } = req.params;
         if (!CityId) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;

@@ -2,7 +2,9 @@ const rm = require('../module/util/responseMessage');
 const utils = require('../module/util/utils');
 const sc = require('../module/util/statusCode');
 
-const {Activity} = require('../models');
+const {
+    Activity
+} = require('../models');
 // 이름, 가격, 설명, url 
 module.exports = {
     read: ({
@@ -35,18 +37,26 @@ module.exports = {
         name,
         cost,
         content,
-        location
+        location,
+        CityId
     }) => {
         return new Promise(async (resolve, reject) => {
             let activity;
+            console.log({
+                name,
+                cost,
+                content,
+                location,
+                CityId
+            });
             try {
-                activity = await activity.create({
-                    name : name,
-                    cost : cost,
-                    content : content,
-                    location : location
+                activity = await Activity.create({
+                    name: name,
+                    cost: cost,
+                    content: content,
+                    location: location,
+                    CityId: CityId
                 });
-
             } catch (error) {
                 reject({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_CREATE_FAIL)
@@ -57,20 +67,22 @@ module.exports = {
             });
         });
     },
-    update: ({
-        activityIdx,
+    update: ({ //@@ 
+        id,
         cost,
         content,
-        location
+        location,
+        CityId
     }) => {
         return new Promise(async (resolve, reject) => {
             const activity = await Activity.update({
-                cost : cost,
-                content : content,
-                location : location
+                cost: cost,
+                content: content,
+                location: location,
+                CityId: CityId
             }, {
                 where: {
-                    activityIdx: activityIdx
+                    id : id
                 },
             });
             if (!activity) {
@@ -85,14 +97,16 @@ module.exports = {
         });
     },
     delete: ({
-        activityIdx
+        id,
+       
     }) => {
         return new Promise(async (resolve, reject) => {
             let activity;
             try {
-                activity = await activity.destroy({
+                activity = await Activity.destroy({ //@@
+                    
                     where: {
-                        activityIdx: activityIdx
+                        id : id,
                     }
                 });
 

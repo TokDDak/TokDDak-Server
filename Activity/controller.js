@@ -9,7 +9,7 @@ module.exports = {
         const {
             CityId
         } = req.params; //*
-        console.log(CityId);
+      
         if (!CityId) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
@@ -36,10 +36,11 @@ module.exports = {
         const {
             CityId
         } = req.params; //*
-        if (!name || !cost || !content || !location) {
+        if (!name || !cost || !content || !location || !CityId) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
+        
         ActivityService.create({
                 name,
                 cost,
@@ -70,17 +71,19 @@ module.exports = {
                 id,
                 cost,
                 content,
-                location
+                location,
+                CityId
                 })
                 .filter(it => it[1] == undefined).map(it => it[0]).join(',');
             res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
             return;
         }
-        ActivityService.update({
+        ActivityService.update({ //@@
                 id,
                 cost,
                 content,
-                location
+                location,
+                CityId
             })
             .then(({
                     json
@@ -95,6 +98,7 @@ module.exports = {
         const {
             id
         } = req.body;
+       
         if (!id) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
