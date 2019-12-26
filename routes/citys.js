@@ -12,14 +12,14 @@ const transportController = require('../Transport/controller');
 router.get('/city', cityController.readAll); //ok
 router.get('/country', cityController.countryRead); //ok
 router.post('/',cityController.create); //ok
-router.put('/',cityController.update);
+router.put('/',cityController.update); //@@
 router.delete('/',cityController.delete); //ok
 
 /* Activity */
-router.get('/:CityId/Activity', activityController.read);
-router.post('/:CityId/Activity', activityController.create);
-router.put('/:CityId/Activity', activityController.update);
-router.delete('/:CityId/Activity', activityController.delete);
+router.get('/:CityId/Activity', activityController.read); //ok
+router.post('/:CityId/Activity', activityController.create);//ok
+router.put('/:CityId/Activity', activityController.update); //@@
+router.delete('/:CityId/Activity', activityController.delete); //@@
 
 /* Shopping */
 router.get('/:CityId/Shopping', shoppingController.read);
