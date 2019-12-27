@@ -1,4 +1,5 @@
 const express = require('express');
+const upload = require('../config/multer');
 const router = express.Router({mergeParams: true});
 const cityController = require('../City/controller');
 const activityController = require('../Activity/controller');
@@ -11,15 +12,15 @@ const transportController = require('../Transport/controller');
 /* City */
 router.get('/city', cityController.readAll); //ok
 router.get('/country', cityController.countryRead); //ok
-router.post('/',cityController.create); //ok
-router.put('/',cityController.update); //@@
+router.post('/',upload.single('img'),cityController.create); //ok
+router.put('/',cityController.update); //ok
 router.delete('/',cityController.delete); //ok
 
 /* Activity */
 router.get('/:CityId/Activity', activityController.read); //ok
-router.post('/:CityId/Activity', activityController.create);//ok
-router.put('/:CityId/Activity', activityController.update); //@@
-router.delete('/:CityId/Activity', activityController.delete); //@@
+router.post('/:CityId/Activity',upload.single('img'), activityController.create);//ok
+router.put('/:CityId/Activity', activityController.update); //ok
+router.delete('/:CityId/Activity', activityController.delete); //ok
 
 /* Shopping */
 router.get('/:CityId/Shopping', shoppingController.read);
