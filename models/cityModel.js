@@ -12,6 +12,19 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(40),
             allowNull: false,
         },
+        /**
+         * popular, recommend flag field로
+         */
+        popular: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: '0',
+        },
+        recommend: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: '0',
+        },
     }, {
         freezeTableName: true,
         timestamps: false,
