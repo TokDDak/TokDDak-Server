@@ -5,11 +5,11 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        totalCost: {
+        totalCost: { // 총 경비
             type: DataTypes.INTEGER,
             allowNull : false,
         },
-        number : {
+        number : { // 횟수
             type: DataTypes.INTEGER,
             allowNull : false,
         },

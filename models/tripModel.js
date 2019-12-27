@@ -44,10 +44,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-
-
-
-
+        totalDay: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
         /**
          * status가 1이면 여행 후보
          * status가 2이면 여행 중

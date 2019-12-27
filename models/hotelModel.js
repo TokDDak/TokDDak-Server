@@ -4,7 +4,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(40),
             allowNull: false,
         },
-        grade: {
+        category: {
+            type: DataTypes.STRING(100),
+            allowNull: false,
+        },
+        subCategory: {
             type: DataTypes.STRING(100),
             allowNull: false,
         },
