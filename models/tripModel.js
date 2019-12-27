@@ -23,26 +23,32 @@ module.exports = (sequelize, DataTypes) => {
         activityBudget: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            defaultValue: 0,
         },
         hotelBudget: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            defaultValue: 0,
         },
         foodBudget: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            defaultValue: 0,
         },
         shoppingBudget: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            defaultValue: 0,
         },
         snackBudget: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            defaultValue: 0,
         },
         transportBudget: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            defaultValue: 0,
         },
         totalDay: {
             type: DataTypes.INTEGER,
@@ -57,6 +63,10 @@ module.exports = (sequelize, DataTypes) => {
             type:DataTypes.INTEGER,
             allowNull: false,
             defaultValue: 1,
+        },
+        img: {
+            type: DataTypes.STRING(200),
+            allowNull: false,
         }
     }, {
         freezeTableName: true,
