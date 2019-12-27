@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         useCost : {
             type: DataTypes.INTEGER,
             allowNull: false,
+            defaultValue: 0,
         },
         activityBudget: {
             type: DataTypes.INTEGER,
