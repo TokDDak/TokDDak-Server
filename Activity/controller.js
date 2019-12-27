@@ -9,7 +9,7 @@ module.exports = {
         const {
             CityId
         } = req.params; //*
-      
+
         if (!CityId) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
@@ -31,22 +31,26 @@ module.exports = {
             name,
             cost,
             content,
-            location
+            url_mrt,
+            url_kl
         } = req.body;
+        const img = req.file.location; //*
         const {
             CityId
         } = req.params; //*
-        if (!name || !cost || !content || !location || !CityId) {
+        if (!name || !cost || !content || !url_mrt||!url_kl || !CityId) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
-        
+
         ActivityService.create({
                 name,
                 cost,
                 content,
-                location,
-                CityId
+                url_kl,
+                url_mrt,
+                CityId,
+                img
             })
             .then(({
                     json
@@ -61,18 +65,18 @@ module.exports = {
             id,
             cost,
             content,
-            location
+            url
         } = req.body;
         const {
             CityId
         } = req.params; //*
-        if (!id || !cost || !content || !location) {
+        if (!id || !cost || !content || !url) {
             const missParameters = Object.entries({
-                id,
-                cost,
-                content,
-                location,
-                CityId
+                    id,
+                    cost,
+                    content,
+                    url,
+                    CityId
                 })
                 .filter(it => it[1] == undefined).map(it => it[0]).join(',');
             res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
@@ -82,7 +86,7 @@ module.exports = {
                 id,
                 cost,
                 content,
-                location,
+                url,
                 CityId
             })
             .then(({
@@ -98,13 +102,13 @@ module.exports = {
         const {
             id
         } = req.body;
-       
+
         if (!id) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
         ActivityService.delete({
-            id
+                id
             })
             .then(({
                     json
