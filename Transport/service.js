@@ -3,7 +3,7 @@ const utils = require('../module/util/utils');
 const sc = require('../module/util/statusCode');
 
 
-const {Transportation} = require('../models');
+const {Transport} = require('../models');
 
 module.exports = {
 
@@ -11,7 +11,7 @@ module.exports = {
         CityId
     }) => {
         return new Promise(async (resolve, reject) => {
-            const transportation = await Transportation.findAll({
+            const transportation = await Transport.findAll({
                 where: {
                     CityId : CityId
                 }
@@ -40,9 +40,9 @@ module.exports = {
         CityId
     }) => {
         return new Promise(async (resolve, reject) => {
-            let transportation;
+            let transport;
             try {
-                transportation = await Transportation.create({
+                transport = await Transport.create({
                     name : name,
                     cost : cost,
                     content : content,
@@ -55,7 +55,7 @@ module.exports = {
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_CREATE_SUCCESS, transportation)
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_CREATE_SUCCESS, transport)
             });
         });
     },
@@ -66,16 +66,17 @@ module.exports = {
         CityId
     }) => {
         return new Promise(async (resolve, reject) => {
-            const transportation = await Transportation.update({
+            const transportation = await Transport.update({
                 cost : cost,
-                content : content
+                content : content,
+                CityId : CityId
             }, {
                 where: {
                     id : id
                 },
             });
             if (!transportation) {
-                resolve({
+                reject({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.SPORT_UPDATE_FAIL)
                 });
                 return;
@@ -89,7 +90,7 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             let transportation;
             try {
-                transportation = await Transportation.destroy({
+                transportation = await Transport.destroy({
                     where:{
                         id : id
                     }

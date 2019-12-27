@@ -33,17 +33,7 @@ module.exports = {
         const {
             CityId
         } = req.params;
-        if (!name||!cost||!content) {
-            const missParameters = Object.entries({
-                name,
-                cost,
-                content
-            })
-            .filter(it => it[1] == undefined).map(it => it[0]).join(',');
-            res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
-            return;
-        }
-        FoodService.create({
+        TransService.create({
                 name,
                 cost,
                 content,
