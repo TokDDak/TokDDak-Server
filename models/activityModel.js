@@ -12,8 +12,12 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(100),
             allowNull: true,
         },
-        url: {
+        url_mrt: { 
             type : DataTypes.STRING(100),
+            allowNull: true,
+        },
+        url_kl: {
+            type: DataTypes.STRING(100),
             allowNull: true,
         },
         img: {
