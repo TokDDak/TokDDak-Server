@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define('Food', {
         name: {
-            type: DataTypes.STRING(40),
+            type: DataTypes.STRING(200),
             allowNull: false,
         },
         grade: {
