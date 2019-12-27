@@ -35,7 +35,8 @@ module.exports = {
     },
     create: ({
         name,
-        grade,
+        category,
+        subCategory,
         cost,
         CityId
     }) => {
@@ -44,7 +45,8 @@ module.exports = {
             try {
                 hotel = await Hotel.create({
                     name : name,
-                    grade : grade,
+                    category : category,
+                    subCategory : subCategory,
                     cost : cost,
                     CityId : CityId
                 });
@@ -61,13 +63,15 @@ module.exports = {
     },
     update: ({
         id,
-        grade,
+        category,
+        subCategory,
         cost,
         CityId
     }) => {
         return new Promise(async (resolve, reject) => {
             const hotel = await Hotel.update({
-                grade : grade,
+                category : category,
+                subCategory : subCategory,
                 cost : cost,
                 CityId : CityId
             }, {

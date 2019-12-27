@@ -28,20 +28,23 @@ module.exports = {
     create: async (req, res) => {
         const {
             name,
-            grade,
+            category,
+            subCategory,
             cost
         } = req.body;
         const {
             CityId
+
         } = req.params; //*
       
-        if (!name||!grade||!cost) {
+        if (!name||!category||!subCategory||!cost) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
         HotelService.create({
                 name,
-                grade,
+                category,
+                subCategory,
                 cost,
                 CityId
             })
@@ -56,16 +59,18 @@ module.exports = {
     update: async (req, res) => { //name 수정안되게 제외 
         const { //*
             id,
-            grade,
+            category,
+            subCategory,
             cost
         } = req.body;
         const {
             CityId
         } = req.params; //*
-        if (!id||!grade||!cost ) {
+        if (!id||!category || !subCategory ||!cost ) {
             const missParameters = Object.entries({
                     id,
-                    grade,
+                    category,
+                    subCategory,
                     cost,
                     CityId
                 })
@@ -75,7 +80,8 @@ module.exports = {
         }
         HotelService.update({
                 id,
-                grade,
+                category,
+                subCategory,
                 cost,
                 CityId
             })
