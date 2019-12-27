@@ -18,25 +18,26 @@ module.exports = {
             });
             if(transportation.length == 0) {
                 resolve({
-                    json: utils.successFalse(sc.NO_CONTENT, rm.BLOG_READ_BLOGIDX_FAIL)
+                    json: utils.successFalse(sc.NO_CONTENT, rm.TRANSPORT_EMPTY)
                 });
                 return;
             }
             if (!transportation) {
                 resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_READ_BLOGIDX_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_READ_BLOGIDX_FAIL)
                 });
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_READ_BLOGIDX_SUCCESS, transportation)
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_READ_BLOGIDX_SUCCESS, transportation)
             });
         });
     },
     create: ({
         name,
         cost,
-        content
+        content,
+        CityId
     }) => {
         return new Promise(async (resolve, reject) => {
             let transportation;
@@ -44,23 +45,25 @@ module.exports = {
                 transportation = await Transportation.create({
                     name : name,
                     cost : cost,
-                    content : content
+                    content : content,
+                    CityId : CityId
                 });
                 
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_CREATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_CREATE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_CREATE_SUCCESS, blog)
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_CREATE_SUCCESS, transportation)
             });
         });
     },
     update: ({
-        transportationIdx,
+        id,
         cost,
-        content
+        content,
+        CityId
     }) => {
         return new Promise(async (resolve, reject) => {
             const transportation = await Transportation.update({
@@ -68,37 +71,37 @@ module.exports = {
                 content : content
             }, {
                 where: {
-                    transportationIdx : transportationIdx
+                    id : id
                 },
             });
             if (!transportation) {
                 resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_UPDATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.SPORT_UPDATE_FAIL)
                 });
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_UPDATE_SUCCESS)
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_UPDATE_SUCCESS)
             });
         });
     },
-    delete: ({transportationIdx}) => {
+    delete: ({id}) => {
         return new Promise(async (resolve, reject) => {
             let transportation;
             try {
                 transportation = await Transportation.destroy({
                     where:{
-                        transportationIdx : transportationIdx
+                        id : id
                     }
                 });
                 
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_DELETE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_DELETE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_DELETE_SUCCESS)
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_DELETE_SUCCESS)
             });
         });
     },

@@ -71,6 +71,7 @@ module.exports = {
             return;
         }
         FoodService.update({
+            id,
             grade,
             cost,
             CityId

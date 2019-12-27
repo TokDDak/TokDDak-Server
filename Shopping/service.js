@@ -16,81 +16,85 @@ module.exports = {
             });
             if(shopping.length == 0) {
                 resolve({
-                    json: utils.successFalse(sc.NO_CONTENT, rm.BLOG_READ_BLOGIDX_FAIL)
+                    json: utils.successFalse(sc.NO_CONTENT, rm.SHOPPING_EMPTY)
                 });
                 return;
             }
             if (!shopping) {
                 resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_READ_BLOGIDX_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.SHOPPING_READ_CITYID_FAIL)
                 });
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_READ_BLOGIDX_SUCCESS, blog)
+                json: utils.successTrue(sc.SUCCESS, rm.SHOPPING_READ_CITYID_SUCCESS, shopping)
             });
         });
     },
     create: ({
         name,
-        cost
+        cost,
+        CityId
     }) => {
         return new Promise(async (resolve, reject) => {
             let shopping;
             try {
                 shopping = await Shopping.create({
                         name : name,
-                        cost : cost
+                        cost : cost,
+                        CityId : CityId
                 });
                 
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_CREATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.SHOPPING_CREATE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_CREATE_SUCCESS, blog)
+                json: utils.successTrue(sc.SUCCESS, rm.SHOPPING_CREATE_SUCCESS, shopping)
             });
         });
     },
     update: ({
-        shoppingIdx,
-        cost
+        id,
+        cost,
+        CityId
     }) => {
         return new Promise(async (resolve, reject) => {
             const shopping = await Shopping.update({
-                cost : cost
+                cost : cost,
+                CityId : CityId
             }, {
-                where : { shoppingIdx : shoppingIdx },
+                where : { id : id },
             });
             if (!shopping) {
                 resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_UPDATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.SHOPPING_UPDATE_FAIL)
                 });
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_UPDATE_SUCCESS)
+                json: utils.successTrue(sc.SUCCESS, rm.SHOPPING_UPDATE_SUCCESS)
             });
         });
     },
-    delete: ({shoppingIdx}) => {
+    delete: ({id}) => {
         return new Promise(async (resolve, reject) => {
             let shopping;
             try {
                 shopping = await Shopping.destroy({
                     where:{
-                        shoppingIdx: shoppingIdx
+                        id: id
                     }
                 });
                 
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_DELETE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.SHOPPING_DELETE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_DELETE_SUCCESS)
+                json: utils.successTrue(sc.SUCCESS, rm.SHOPPING_DELETE_SUCCESS)
             });
         });
     },

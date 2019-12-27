@@ -18,18 +18,18 @@ module.exports = {
             });
             if (activity.length == 0) {
                 resolve({
-                    json: utils.successFalse(sc.NO_CONTENT, rm.BLOG_READ_BLOGIDX_FAIL)
+                    json: utils.successFalse(sc.NO_CONTENT, rm.ACTIVITY_EMPTY)
                 });
                 return;
             }
             if (!activity) {
                 resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_READ_BLOGIDX_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.ACTIVITY_READ_CITYID_FAIL)
                 });
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_READ_BLOGIDX_SUCCESS, activity)
+                json: utils.successTrue(sc.SUCCESS, rm.ACTIVITY_READ_CITYID_SUCCESS, activity)
             });
         });
     },
@@ -37,8 +37,10 @@ module.exports = {
         name,
         cost,
         content,
-        location,
-        CityId
+        url_mrt,
+        url_kl,
+        CityId,
+        img
     }) => {
         return new Promise(async (resolve, reject) => {
             let activity;
@@ -46,24 +48,28 @@ module.exports = {
                 name,
                 cost,
                 content,
-                location,
-                CityId
+                url_mrt,
+                url_kl,
+                CityId,
+                img
             });
             try {
                 activity = await Activity.create({
                     name: name,
                     cost: cost,
                     content: content,
-                    location: location,
-                    CityId: CityId
+                    url_mrt,
+                    url_kl,
+                    CityId: CityId,
+                    img : img
                 });
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_CREATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.ACTIVITY_CREATE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_CREATE_SUCCESS, activity)
+                json: utils.successTrue(sc.SUCCESS, rm.ACTIVITY_CREATE_SUCCESS, activity)
             });
         });
     },
@@ -71,14 +77,14 @@ module.exports = {
         id,
         cost,
         content,
-        location,
+        url,
         CityId
     }) => {
         return new Promise(async (resolve, reject) => {
             const activity = await Activity.update({
                 cost: cost,
                 content: content,
-                location: location,
+                url:url,
                 CityId: CityId
             }, {
                 where: {
@@ -87,12 +93,12 @@ module.exports = {
             });
             if (!activity) {
                 resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_UPDATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.ACTIVITY_UPDATE_FAIL)
                 });
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_UPDATE_SUCCESS)
+                json: utils.successTrue(sc.SUCCESS, rm.ACTIVITY_UPDATE_SUCCESS)
             });
         });
     },
@@ -112,11 +118,11 @@ module.exports = {
 
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_DELETE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.ACTIVITY_DELETE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_DELETE_SUCCESS)
+                json: utils.successTrue(sc.SUCCESS, rm.ACTIVITY_DELETE_SUCCESS)
             });
         });
     },

@@ -11,18 +11,18 @@ module.exports = {
             const city = await City.findAll({});
             if(city.length == 0) {
                 resolve({
-                    json: utils.successFalse(sc.NO_CONTENT, rm.BLOG_EMPTY)
+                    json: utils.successFalse(sc.NO_CONTENT, rm.CITY_EMPTY)
                 });
                 return;
             }
             if (!city) {
                 resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_READ_ALL_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.CITY_READ_ALL_FAIL)
                 });
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_READ_ALL_SUCCESS, city)
+                json: utils.successTrue(sc.SUCCESS, rm.CITY_READ_ALL_SUCCESS, city)
             });
         });
     },
@@ -37,25 +37,28 @@ module.exports = {
             });
             if(city.length == 0) {
                 resolve({
-                    json: utils.successFalse(sc.NO_CONTENT, rm.BLOG_READ_BLOGIDX_FAIL)
+                    json: utils.successFalse(sc.NO_CONTENT, rm.CITY_EMPTY)
                 });
                 return;
             }
             if (!city) {
                 resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_READ_BLOGIDX_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.CITY_READ_COUNTRY_FAIL)
                 });
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_READ_BLOGIDX_SUCCESS, transportation)
+                json: utils.successTrue(sc.SUCCESS, rm.CITY_READ_COUNTRY_SUCCESS, transportation)
             });
         });
     },
     create: ({
         continent,
         country,
-        name
+        name,
+        popular,
+        recommend,
+        img
     }) => {
         return new Promise(async (resolve, reject) => {
             let city;
@@ -63,16 +66,19 @@ module.exports = {
                 city = await City.create({
                     continent : continent,
                     country : country,
-                    name : name
+                    name : name,
+                    popular : popular,
+                    recommend : recommend,
+                    img : img
                 });
                 
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_CREATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.CITY_CREATE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_CREATE_SUCCESS, city)
+                json: utils.successTrue(sc.SUCCESS, rm.CITY_CREATE_SUCCESS, city)
             });
         });
     },
@@ -94,12 +100,12 @@ module.exports = {
             });
             if (!city) {
                 resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_UPDATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.CITY_UPDATE_FAIL)
                 });
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_UPDATE_SUCCESS) // 성공했을때가 안돼,,, 실패는 됏
+                json: utils.successTrue(sc.SUCCESS, rm.CITY_UPDATE_SUCCESS) // 성공했을때가 안돼,,, 실패는 됏
             });
         });
     },
@@ -114,11 +120,11 @@ module.exports = {
                 
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_DELETE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.CITY_DELETE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_DELETE_SUCCESS)
+                json: utils.successTrue(sc.SUCCESS, rm.CITY_DELETE_SUCCESS)
             });
         });
     },

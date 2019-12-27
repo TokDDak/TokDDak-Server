@@ -2,6 +2,8 @@ const CityService = require('./service');
 const rm = require('../module/util/responseMessage');
 const utils = require('../module/util/utils');
 const sc = require('../module/util/statusCode');
+const upload = require('../config/multer');
+//const multer = require('multer');
 
 module.exports = {
     readAll: async (req, res) => {
@@ -39,16 +41,23 @@ module.exports = {
         const {
             continent,
             country,
-            name
+            name,
+            popular,
+            recommend
         } = req.body;
-        if (!continent||!country||!name) {
+        const img = req.file.location; //*
+    
+        if (!continent||!country||!name||!popular||!recommend||!img) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
         CityService.create({
                 continent,
                 country,
-                name
+                name,
+                popular,
+                recommend,
+                img
             })
             .then(({
                     json

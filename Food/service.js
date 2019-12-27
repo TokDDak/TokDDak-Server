@@ -13,30 +13,31 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             const food = await Food.findAll({
                 where: {
-                    CityId : CityId
+                    CityId: CityId,
                 }
             });
-            if(food.length == 0) {
+            if (food.length == 0) {
                 resolve({
-                    json: utils.successFalse(sc.NO_CONTENT, rm.BLOG_READ_BLOGIDX_FAIL)
+                    json: utils.successFalse(sc.NO_CONTENT, rm.FOOD_EMPTY)
                 });
                 return;
             }
             if (!food) {
                 resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_READ_BLOGIDX_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.FOOD_READ_CITYID_FAIL)
                 });
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_READ_BLOGIDX_SUCCESS, transportation)
+                json: utils.successTrue(sc.SUCCESS, rm.FOOD_READ_CITYID_SUCCESS, food)
             });
         });
     },
     create: ({
         name,
         grade,
-        cost
+        cost,
+        CityId
     }) => {
         return new Promise(async (resolve, reject) => {
             let food;
@@ -44,61 +45,64 @@ module.exports = {
                 food = await Food.create({
                     name : name,
                     grade : grade,
-                    cost : cost
+                    cost : cost,
+                    CityId: CityId
                 });
                 
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_CREATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.FOOD_CREATE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_CREATE_SUCCESS, blog)
+                json: utils.successTrue(sc.SUCCESS, rm.FOOD_CREATE_SUCCESS, food)
             });
         });
     },
     update: ({
-        foodIdx,
+        id,
         grade,
-        cost
+        cost,
+        CityId
     }) => {
         return new Promise(async (resolve, reject) => {
             const food = await Food.update({
                 grade : grade,
-                cost : cost
+                cost : cost,
+                CityId : CityId
             }, {
                 where: {
-                    foodIdx : foodIdx
+                    id : id
                 },
             });
             if (!food) {
                 resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_UPDATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.FOOD_UPDATE_FAIL)
                 });
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_UPDATE_SUCCESS)
+                json: utils.successTrue(sc.SUCCESS, rm.FOOD_UPDATE_SUCCESS)
             });
         });
     },
-    delete: ({foodIdx}) => {
+    delete: ({id}) => {
         return new Promise(async (resolve, reject) => {
             let food;
             try {
                 food = await Food.destroy({
                     where:{
-                        foodIdx : foodIdx
+                        id : id,
                     }
                 });
                 
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_DELETE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.FOOD_DELETE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_DELETE_SUCCESS)
+                json: utils.successTrue(sc.SUCCESS, rm.FOOD_DELETE_SUCCESS)
             });
         });
     },

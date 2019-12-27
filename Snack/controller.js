@@ -13,7 +13,7 @@ module.exports = {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
-        SnackService.readOne({
+        SnackService.read({
                 CityId
             })
             .then(({
@@ -30,13 +30,17 @@ module.exports = {
            name,
            cost
         } = req.body;
+        const {
+            CityId 
+        }=req.params;
         if (!name || !cost) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
         SnackService.create({
                name,
-               cost
+               cost,
+               CityId
             })
             .then(({
                     json
@@ -51,10 +55,14 @@ module.exports = {
             id,
             cost
         } = req.body;
+        const {
+            CityId
+        }= req.params;
         if (!id || !cost) {
             const missParameters = Object.entries({
                     id,
-                    cost
+                    cost,
+                    CityId
                 })
                 .filter(it => it[1] == undefined).map(it => it[0]).join(',');
             res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
@@ -62,7 +70,8 @@ module.exports = {
         }
         SnackService.update({
                 id,
-                cost
+                cost,
+                CityId
             })
             .then(({
                     json

@@ -12,7 +12,7 @@ module.exports = {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
-        ShopService.readOne({CityId})
+        ShopService.read({CityId})
         .then(({
             json
         }) => 
@@ -27,11 +27,18 @@ module.exports = {
             name,
             cost
         } = req.body;
+        const {
+            CityId
+        } = req.params;
         if(!name||!cost) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
-        ShopService.create({host, introduce})
+        ShopService.create({
+            name,
+            cost,
+            CityId
+        })
         .then(({
             json
         }) => 
@@ -45,16 +52,20 @@ module.exports = {
             id,
             cost
         } = req.body;
+        const {
+            CityId
+        } = req.params;
         if (!id || !cost) {
             const missParameters = Object.entries({
                     id,
-                    cost
+                    cost,
+                    CityId
                 })
                 .filter(it => it[1] == undefined).map(it => it[0]).join(',');
             res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
             return;
         }
-        ShopService.update({id, cost})
+        ShopService.update({id, cost, CityId})
         .then(({
             json
         }) => 
@@ -72,7 +83,7 @@ module.exports = {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
-        ShopService.delete({blogId})
+        ShopService.delete({id})
         .then(({
             json
         }) => 

@@ -18,25 +18,26 @@ module.exports = {
             });
             if(hotel.length == 0) {
                 resolve({
-                    json: utils.successFalse(sc.NO_CONTENT, rm.BLOG_READ_BLOGIDX_FAIL)
+                    json: utils.successFalse(sc.NO_CONTENT, rm.HOTEL_EMPTY)
                 });
                 return;
             }
             if (!hotel) {
                 resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_READ_BLOGIDX_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.HOTEL_READ_CITYID_FAIL)
                 });
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_READ_BLOGIDX_SUCCESS, transportation)
+                json: utils.successTrue(sc.SUCCESS, rm.HOTEL_READ_CITYID_SUCCESS, hotel)
             });
         });
     },
     create: ({
         name,
         grade,
-        cost
+        cost,
+        CityId
     }) => {
         return new Promise(async (resolve, reject) => {
             let hotel;
@@ -44,61 +45,64 @@ module.exports = {
                 hotel = await Hotel.create({
                     name : name,
                     grade : grade,
-                    cost : cost
+                    cost : cost,
+                    CityId : CityId
                 });
                 
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_CREATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.HOTEL_CREATE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_CREATE_SUCCESS, blog)
+                json: utils.successTrue(sc.SUCCESS, rm.HOTEL_CREATE_SUCCESS, hotel)
             });
         });
     },
     update: ({
-        hotelIdx,
+        id,
         grade,
-        cost
+        cost,
+        CityId
     }) => {
         return new Promise(async (resolve, reject) => {
             const hotel = await Hotel.update({
                 grade : grade,
-                cost : cost
+                cost : cost,
+                CityId : CityId
             }, {
                 where: {
-                    hotelIdx : hotelIdx
+                    id : id
                 },
             });
             if (!hotel) {
                 resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_UPDATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.HOTEL_UPDATE_FAIL)
                 });
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_UPDATE_SUCCESS)
+                json: utils.successTrue(sc.SUCCESS, rm.HOTEL_UPDATE_SUCCESS)
             });
         });
     },
-    delete: ({hotelIdx}) => {
+    delete: ({id}) => {
         return new Promise(async (resolve, reject) => {
             let hotel;
             try {
                 hotel = await Hotel.destroy({
                     where:{
-                        hotelIdx : hotelIdx
+                        id : id 
                     }
                 });
                 
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_DELETE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.HOTEL_DELETE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_DELETE_SUCCESS)
+                json: utils.successTrue(sc.SUCCESS, rm.HOTEL_DELETE_SUCCESS)
             });
         });
     },

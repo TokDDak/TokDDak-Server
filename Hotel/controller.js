@@ -8,6 +8,7 @@ module.exports = {
         const {
             CityId
         } = req.params;
+
         if (!CityId) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
@@ -30,6 +31,10 @@ module.exports = {
             grade,
             cost
         } = req.body;
+        const {
+            CityId
+        } = req.params; //*
+      
         if (!name||!grade||!cost) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
@@ -37,7 +42,8 @@ module.exports = {
         HotelService.create({
                 name,
                 grade,
-                cost
+                cost,
+                CityId
             })
             .then(({
                     json
@@ -47,25 +53,31 @@ module.exports = {
                 res.send(err);
             })
     },
-    update: async (req, res) => {
+    update: async (req, res) => { //name 수정안되게 제외 
         const { //*
             id,
             grade,
             cost
         } = req.body;
+        const {
+            CityId
+        } = req.params; //*
         if (!id||!grade||!cost ) {
             const missParameters = Object.entries({
+                    id,
                     grade,
-                    cost
+                    cost,
+                    CityId
                 })
                 .filter(it => it[1] == undefined).map(it => it[0]).join(',');
             res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
             return;
         }
         HotelService.update({
-            grade,
-            cost
-            
+                id,
+                grade,
+                cost,
+                CityId
             })
             .then(({
                     json
@@ -75,11 +87,12 @@ module.exports = {
                 console.log(err);
                 res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
-    },
+        },
     delete: async (req, res) => {
         const {
             id
         } = req.body;
+        
         if (!id) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;

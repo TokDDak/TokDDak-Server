@@ -29,16 +29,25 @@ module.exports = {
             name,
             cost,
             content
-
         } = req.body;
+        const {
+            CityId
+        } = req.params;
         if (!name||!cost||!content) {
-            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
-            return;
-        }
-        TransService.create({
+            const missParameters = Object.entries({
                 name,
                 cost,
                 content
+            })
+            .filter(it => it[1] == undefined).map(it => it[0]).join(',');
+            res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
+            return;
+        }
+        FoodService.create({
+                name,
+                cost,
+                content,
+                CityId
             })
             .then(({
                     json
@@ -54,18 +63,25 @@ module.exports = {
             cost,
             content
         } = req.body;
+        const {
+            CityId
+        } = req.params;
+      
         if (!id||!cost ||!content) {
             const missParameters = Object.entries({
                     cost,
-                    content
+                    content,
+                    CityId
                 })
                 .filter(it => it[1] == undefined).map(it => it[0]).join(',');
             res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
             return;
         }
         TransService.update({
+            id,
             cost,
-            content
+            content,
+            CityId
             })
             .then(({
                     json
