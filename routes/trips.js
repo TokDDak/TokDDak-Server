@@ -4,6 +4,10 @@ const tripController = require('../Trip/controller');
 
 /* City */
 /**
+ * 특정 id Trip 정보를 가져온다.
+ * */
+router.get('/id',tripController.read);
+/**
  * 여행 후보인 trip
  * status가 1이면 여행 후보
  * */
