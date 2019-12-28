@@ -2,8 +2,7 @@ const rm = require('../module/util/responseMessage');
 const utils = require('../module/util/utils');
 const sc = require('../module/util/statusCode');
 
-
-const {Transportation} = require('../models');
+const {Trip} = require('../models');
 
 module.exports = {
 
@@ -11,94 +10,461 @@ module.exports = {
         CityId
     }) => {
         return new Promise(async (resolve, reject) => {
-            const transportation = await Transportation.findAll({
+            const trip = await Trip.findAll({
                 where: {
                     CityId : CityId
                 }
             });
-            if(transportation.length == 0) {
+            if(trip.length == 0) {
                 resolve({
-                    json: utils.successFalse(sc.NO_CONTENT, rm.BLOG_READ_BLOGIDX_FAIL)
+                    json: utils.successFalse(sc.NO_CONTENT, rm.TRANSPORT_EMPTY)
                 });
                 return;
             }
-            if (!transportation) {
+            if (!trip) {
                 resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_READ_BLOGIDX_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_READ_BLOGIDX_FAIL)
                 });
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_READ_BLOGIDX_SUCCESS, transportation)
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_READ_BLOGIDX_SUCCESS, trip)
             });
         });
     },
-    create: ({
-        name,
-        cost,
-        content
+    scheduleRead: ({
+        CityId
     }) => {
         return new Promise(async (resolve, reject) => {
-            let transportation;
+            const trip = await Trip.findAll({
+                where: {
+                    CityId : CityId
+                }
+            });
+            if(trip.length == 0) {
+                resolve({
+                    json: utils.successFalse(sc.NO_CONTENT, rm.TRANSPORT_EMPTY)
+                });
+                return;
+            }
+            if (!trip) {
+                resolve({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_READ_BLOGIDX_FAIL)
+                });
+                return;
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_READ_BLOGIDX_SUCCESS, trip)
+            });
+        });
+    },
+    trippingRead: ({
+        CityId
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            const trip = await Trip.findAll({
+                where: {
+                    CityId : CityId
+                }
+            });
+            if(trip.length == 0) {
+                resolve({
+                    json: utils.successFalse(sc.NO_CONTENT, rm.TRANSPORT_EMPTY)
+                });
+                return;
+            }
+            if (!trip) {
+                resolve({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_READ_BLOGIDX_FAIL)
+                });
+                return;
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_READ_BLOGIDX_SUCCESS, trip)
+            });
+        });
+    },
+    trippedRead: ({
+        CityId
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            const trip = await Trip.findAll({
+                where: {
+                    CityId : CityId
+                }
+            });
+            if(trip.length == 0) {
+                resolve({
+                    json: utils.successFalse(sc.NO_CONTENT, rm.TRANSPORT_EMPTY)
+                });
+                return;
+            }
+            if (!trip) {
+                resolve({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_READ_BLOGIDX_FAIL)
+                });
+                return;
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_READ_BLOGIDX_SUCCESS, trip)
+            });
+        });
+    },
+    initCreate: ({
+        name,
+        cost,
+        content,
+        CityId
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            let trip;
             try {
-                transportation = await Transportation.create({
+                trip = await Trip.create({
                     name : name,
                     cost : cost,
-                    content : content
+                    content : content,
+                    CityId : CityId
                 });
                 
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_CREATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_CREATE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_CREATE_SUCCESS, blog)
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_CREATE_SUCCESS, trip)
             });
         });
     },
-    update: ({
-        transportationIdx,
+    hotelUpdate: ({
+        name,
         cost,
-        content
+        content,
+        CityId
     }) => {
         return new Promise(async (resolve, reject) => {
-            const transportation = await Transportation.update({
-                cost : cost,
-                content : content
-            }, {
-                where: {
-                    transportationIdx : transportationIdx
-                },
-            });
-            if (!transportation) {
-                resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_UPDATE_FAIL)
+            let trip;
+            try {
+                trip = await Trip.create({
+                    name : name,
+                    cost : cost,
+                    content : content,
+                    CityId : CityId
                 });
-                return;
+                
+            } catch (error) {
+                reject({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_CREATE_FAIL)
+                });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_UPDATE_SUCCESS)
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_CREATE_SUCCESS, trip)
             });
         });
     },
-    delete: ({transportationIdx}) => {
+    foodUpdate: ({
+        name,
+        cost,
+        content,
+        CityId
+    }) => {
         return new Promise(async (resolve, reject) => {
-            let transportation;
+            let trip;
             try {
-                transportation = await Transportation.destroy({
+                trip = await Trip.create({
+                    name : name,
+                    cost : cost,
+                    content : content,
+                    CityId : CityId
+                });
+                
+            } catch (error) {
+                reject({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_CREATE_FAIL)
+                });
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_CREATE_SUCCESS, trip)
+            });
+        });
+    },
+    activityUpdate: ({
+        name,
+        cost,
+        content,
+        CityId
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            let trip;
+            try {
+                trip = await Trip.create({
+                    name : name,
+                    cost : cost,
+                    content : content,
+                    CityId : CityId
+                });
+                
+            } catch (error) {
+                reject({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_CREATE_FAIL)
+                });
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_CREATE_SUCCESS, trip)
+            });
+        });
+    },
+    transportUpdate: ({
+        name,
+        cost,
+        content,
+        CityId
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            let trip;
+            try {
+                trip = await Trip.create({
+                    name : name,
+                    cost : cost,
+                    content : content,
+                    CityId : CityId
+                });
+                
+            } catch (error) {
+                reject({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_CREATE_FAIL)
+                });
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_CREATE_SUCCESS, trip)
+            });
+        });
+    },
+    shoppingUpdate: ({
+        name,
+        cost,
+        content,
+        CityId
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            let trip;
+            try {
+                trip = await Trip.create({
+                    name : name,
+                    cost : cost,
+                    content : content,
+                    CityId : CityId
+                });
+                
+            } catch (error) {
+                reject({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_CREATE_FAIL)
+                });
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_CREATE_SUCCESS, trip)
+            });
+        });
+    },
+    snackUpdate: ({
+        name,
+        cost,
+        content,
+        CityId
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            let trip;
+            try {
+                trip = await Trip.create({
+                    name : name,
+                    cost : cost,
+                    content : content,
+                    CityId : CityId
+                });
+                
+            } catch (error) {
+                reject({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_CREATE_FAIL)
+                });
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_CREATE_SUCCESS, trip)
+            });
+        });
+    },
+    allDelete: ({id}) => {
+        return new Promise(async (resolve, reject) => {
+            let trip;
+            try {
+                trip = await Trip.destroy({
                     where:{
-                        transportationIdx : transportationIdx
+                        id : id
                     }
                 });
                 
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.BLOG_DELETE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_DELETE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.BLOG_DELETE_SUCCESS)
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_DELETE_SUCCESS)
+            });
+        });
+    },
+    hotelDelete: ({
+        name,
+        cost,
+        content,
+        CityId
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            let trip;
+            try {
+                trip = await Trip.create({
+                    name : name,
+                    cost : cost,
+                    content : content,
+                    CityId : CityId
+                });
+                
+            } catch (error) {
+                reject({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_CREATE_FAIL)
+                });
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_CREATE_SUCCESS, trip)
+            });
+        });
+    },
+    foodDelete: ({
+        name,
+        cost,
+        content,
+        CityId
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            let trip;
+            try {
+                trip = await Trip.create({
+                    name : name,
+                    cost : cost,
+                    content : content,
+                    CityId : CityId
+                });
+                
+            } catch (error) {
+                reject({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_CREATE_FAIL)
+                });
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_CREATE_SUCCESS, trip)
+            });
+        });
+    },
+    activityDelete: ({
+        name,
+        cost,
+        content,
+        CityId
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            let trip;
+            try {
+                trip = await Trip.create({
+                    name : name,
+                    cost : cost,
+                    content : content,
+                    CityId : CityId
+                });
+                
+            } catch (error) {
+                reject({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_CREATE_FAIL)
+                });
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_CREATE_SUCCESS, trip)
+            });
+        });
+    },
+    transportDelete: ({
+        name,
+        cost,
+        content,
+        CityId
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            let trip;
+            try {
+                trip = await Trip.create({
+                    name : name,
+                    cost : cost,
+                    content : content,
+                    CityId : CityId
+                });
+                
+            } catch (error) {
+                reject({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_CREATE_FAIL)
+                });
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_CREATE_SUCCESS, trip)
+            });
+        });
+    },
+    shoppingDelete: ({
+        name,
+        cost,
+        content,
+        CityId
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            let trip;
+            try {
+                trip = await Trip.create({
+                    name : name,
+                    cost : cost,
+                    content : content,
+                    CityId : CityId
+                });
+                
+            } catch (error) {
+                reject({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_CREATE_FAIL)
+                });
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_CREATE_SUCCESS, trip)
+            });
+        });
+    },
+    snackDelete: ({
+        name,
+        cost,
+        content,
+        CityId
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            let trip;
+            try {
+                trip = await Trip.create({
+                    name : name,
+                    cost : cost,
+                    content : content,
+                    CityId : CityId
+                });
+                
+            } catch (error) {
+                reject({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_CREATE_FAIL)
+                });
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_CREATE_SUCCESS, trip)
             });
         });
     },
