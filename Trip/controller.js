@@ -92,7 +92,7 @@ module.exports = {
                 res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
     },
-    hotelUpate: async (req, res) => {
+    hotelUpdate: async (req, res) => {
         const {
             array
         } = req.body;
@@ -126,7 +126,7 @@ module.exports = {
                 res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
     },
-    foodUpate: async (req, res) => {
+    foodUpdate: async (req, res) => {
         const {
             CityId
         } = req.params;
@@ -146,7 +146,7 @@ module.exports = {
                 res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
     },
-    activityUpate: async (req, res) => {
+    activityUpdate: async (req, res) => {
         const {
             CityId
         } = req.params;
@@ -166,7 +166,7 @@ module.exports = {
                 res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
     },
-    transportUpate: async (req, res) => {
+    transportUpdate: async (req, res) => {
         const {
             CityId
         } = req.params;
@@ -186,7 +186,7 @@ module.exports = {
                 res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
     },
-    shoppingUpate: async (req, res) => {
+    shoppingUpdate: async (req, res) => {
         const {
             CityId
         } = req.params;
@@ -206,7 +206,7 @@ module.exports = {
                 res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
     },
-    snackUpate: async (req, res) => {
+    snackUpdate: async (req, res) => {
         const {
             CityId
         } = req.params;
