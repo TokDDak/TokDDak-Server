@@ -7,106 +7,101 @@ const {Trip} = require('../models');
 module.exports = {
 
     read: ({
-        CityId
+        id
     }) => {
         return new Promise(async (resolve, reject) => {
-            const trip = await Trip.findAll({
+            const trip = await Trip.findOne({
                 where: {
-                    CityId : CityId
+                    id: id,
                 }
             });
             if(trip.length == 0) {
                 resolve({
-                    json: utils.successFalse(sc.NO_CONTENT, rm.TRANSPORT_EMPTY)
+                    json: utils.successFalse(sc.NO_CONTENT, rm.TRIP_EMPTY)
                 });
                 return;
             }
             if (!trip) {
                 resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_READ_BLOGIDX_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_READ_FAIL)
                 });
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_READ_BLOGIDX_SUCCESS, trip)
+                json: utils.successTrue(sc.SUCCESS, rm.TRIP_READ_SUCCESS, trip)
             });
         });
     },
-    scheduleRead: ({
-        CityId
-    }) => {
+    // 여행 후보 read
+    scheduleRead: () => {
         return new Promise(async (resolve, reject) => {
             const trip = await Trip.findAll({
                 where: {
-                    CityId : CityId
+                    status: 1,
                 }
             });
             if(trip.length == 0) {
                 resolve({
-                    json: utils.successFalse(sc.NO_CONTENT, rm.TRANSPORT_EMPTY)
+                    json: utils.successFalse(sc.NO_CONTENT, rm.TRIP_EMPTY)
                 });
                 return;
             }
             if (!trip) {
                 resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_READ_BLOGIDX_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_SCHEDULE_READ_FAIL)
                 });
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_READ_BLOGIDX_SUCCESS, trip)
+                json: utils.successTrue(sc.SUCCESS, rm.TRIP_SCHEDULE_READ_SUCCESS, trip)
             });
         });
     },
-    trippingRead: ({
-        CityId
-    }) => {
+    trippingRead: () => {
         return new Promise(async (resolve, reject) => {
             const trip = await Trip.findAll({
                 where: {
-                    CityId : CityId
+                    status: 2,
                 }
             });
             if(trip.length == 0) {
                 resolve({
-                    json: utils.successFalse(sc.NO_CONTENT, rm.TRANSPORT_EMPTY)
+                    json: utils.successFalse(sc.NO_CONTENT, rm.TRIP_EMPTY)
                 });
                 return;
             }
             if (!trip) {
                 resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_READ_BLOGIDX_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_TRIPPING_READ_FAIL)
                 });
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_READ_BLOGIDX_SUCCESS, trip)
+                json: utils.successTrue(sc.SUCCESS, rm.TRIP_TRIPPING_READ_SUCCESS, trip)
             });
         });
     },
-    trippedRead: ({
-        CityId
-    }) => {
+    trippedRead: () => {
         return new Promise(async (resolve, reject) => {
             const trip = await Trip.findAll({
                 where: {
-                    CityId : CityId
+                    status: 3,
                 }
             });
             if(trip.length == 0) {
                 resolve({
-                    json: utils.successFalse(sc.NO_CONTENT, rm.TRANSPORT_EMPTY)
+                    json: utils.successFalse(sc.NO_CONTENT, rm.TRIP_EMPTY)
                 });
                 return;
             }
             if (!trip) {
                 resolve({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_READ_BLOGIDX_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_TRIPPED_READ_FAIL)
                 });
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_READ_BLOGIDX_SUCCESS, trip)
+                json: utils.successTrue(sc.SUCCESS, rm.TRIP_TRIPPED_READ_SUCCESS, trip)
             });
         });
     },
