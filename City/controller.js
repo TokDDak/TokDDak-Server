@@ -72,14 +72,20 @@ module.exports = {
             id,
             continent,
             country,
-            name
+            name,
+            popular,
+            recommend,
+            img
         } = req.body;
-        if (!id || !continent || !country || !name) {
+        if (!id || !continent || !country || !name || !popular || !recommend || !img) {
             const missParameters = Object.entries({
                     id,
                     continent,
                     country,
-                    name
+                    name,
+                    popular,
+                    recommend,
+                    img
                 })
                 .filter(it => it[1] == undefined).map(it => it[0]).join(',');
             res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
@@ -89,7 +95,10 @@ module.exports = {
             id,
             continent,
             country,
-            name
+            name,
+            popular,
+            recommend,
+            img
         })
         .then(({
             json

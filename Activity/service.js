@@ -77,15 +77,19 @@ module.exports = {
         id,
         cost,
         content,
-        url,
-        CityId
+        url_mrt,
+        url_kl,
+        CityId,
+        img
     }) => {
         return new Promise(async (resolve, reject) => {
             const activity = await Activity.update({
                 cost: cost,
                 content: content,
-                url:url,
-                CityId: CityId
+                url_mrt:url_mrt,
+                url_kl :url_kl,
+                CityId: CityId,
+                img : img
             }, {
                 where: {
                     id : id
@@ -103,7 +107,7 @@ module.exports = {
         });
     },
     delete: ({
-        id,
+        id
        
     }) => {
         return new Promise(async (resolve, reject) => {

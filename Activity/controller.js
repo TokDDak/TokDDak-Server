@@ -31,12 +31,14 @@ module.exports = {
             name,
             cost,
             content,
-            location
+            url_mrt,
+            url_kl,
+            img
         } = req.body;
         const {
             CityId
         } = req.params; //*
-        if (!name || !cost || !content || !location || !CityId) {
+        if (!name || !cost || !content || !url_mrt || !url_kl || !img) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
@@ -45,7 +47,9 @@ module.exports = {
                 name,
                 cost,
                 content,
-                location,
+                url_mrt,
+                url_kl,
+                img,
                 CityId
             })
             .then(({
@@ -61,17 +65,21 @@ module.exports = {
             id,
             cost,
             content,
-            location
+            url_mrt,
+            url_kl,
+            img
         } = req.body;
         const {
             CityId
         } = req.params; //*
-        if (!id || !cost || !content || !location) {
+        if (!id || !cost || !content || !url_mrt || !url_kl || !img) {
             const missParameters = Object.entries({
                 id,
                 cost,
                 content,
-                location,
+                url_mrt,
+                url_kl,
+                img,
                 CityId
                 })
                 .filter(it => it[1] == undefined).map(it => it[0]).join(',');
@@ -82,7 +90,9 @@ module.exports = {
                 id,
                 cost,
                 content,
-                location,
+                url_mrt,
+                url_kl,
+                img,
                 CityId
             })
             .then(({

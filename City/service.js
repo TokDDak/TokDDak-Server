@@ -48,7 +48,7 @@ module.exports = {
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.CITY_READ_COUNTRY_SUCCESS, transportation)
+                json: utils.successTrue(sc.SUCCESS, rm.CITY_READ_COUNTRY_SUCCESS, city)
             });
         });
     },
@@ -86,13 +86,19 @@ module.exports = {
         id,
         continent,
         country,
-        name
+        name,
+        popular,
+        recommend,
+        img
     }) => {
         return new Promise(async (resolve, reject) => {
             const city = await City.update({
                 continent : continent,
                 country : country,
-                name : name
+                name : name,
+                popular : popular,
+                recommend : recommend,
+                img : img
             }, {
                 where: {
                     id : id
