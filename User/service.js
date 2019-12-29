@@ -53,7 +53,7 @@ module.exports = {
                 const {
                     hashed
                 } = await encrypt.encryptWithSalt(password, user.salt);
-
+                let result;
                 try{
                     if (user.length == 0) {
                         reject({
@@ -68,8 +68,8 @@ module.exports = {
                         });
                         return;
                     }
-                     const result = jwt.sign(dummy); //토큰발급 
-                     console.log(result);
+                     result = await jwt.sign(dummy); //토큰발급 
+                     
 
 
                 }
@@ -81,9 +81,10 @@ module.exports = {
                     });
                 }
                
-                //console.log(result);
+                console.log(result);
                 resolve({
-                    json: utils.successTrue(sc.SUCCESS, rm.HOTEL_READ_CITYID_SUCCESS, user)
+                    json: utils.successTrue(sc.SUCCESS, rm.LOGIN_SUCCESS,result)
+                    
                 });
             })
 
