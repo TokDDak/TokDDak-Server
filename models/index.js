@@ -48,33 +48,28 @@ db.Hotel.belongsTo(db.City);
 db.City.hasMany(db.Transport);
 db.Transport.belongsTo(db.City);
 
-/** N:M Trip : Activity */
-db.Trip.belongsToMany(db.Activity, {  through : db.TripActivity});
-db.Activity.belongsToMany(db.Trip, { through : db.TripActivity});
+/** 1:N Trip : TripActivity */
+db.Trip.hasMany(db.TripActivity);
+db.TripActivity.belongsToMany(db.Trip);
 
-/** N:M Trip : Hotel */
-db.Trip.belongsToMany(db.Hotel, {  through : db.TripHotel});
-db.Hotel.belongsToMany(db.Trip, {  through : db.TripHotel
-});
+/** 1:N Trip : TripHotel */
+db.Trip.hasMany(db.TripHotel);
+db.TripHotel.belongsToMany(db.Trip);
 
-/** N:M Trip : Food */
-db.Trip.belongsToMany(db.Food, { through : db.TripFood,
-});
-db.Food.belongsToMany(db.Trip, { through : db.TripFood,
-});
+/** 1:N Trip : TripFood */
+db.Trip.hasMany(db.TripFood);
+db.TripFood.belongsToMany(db.Trip);
 
-/** N:M Trip : Shopping */
-db.Trip.belongsToMany(db.Shopping, { through : db.TripShopping,});
-db.Shopping.belongsToMany(db.Trip, { through : db.TripShopping,
-});
+/** 1:N Trip : TripShopping */
+db.Trip.hasMany(db.TripShopping);
+db.TripShopping.belongsToMany(db.Trip);
 
-/** N:M Trip : Snack */
-db.Trip.belongsToMany(db.Snack, { through : db.TripSnack});
-db.Snack.belongsToMany(db.Trip, { through : db.TripSnack,
-});
+/** 1:N Trip : TripSnack */
+db.Trip.hasMany(db.TripSnack);
+db.TripSnack.belongsToMany(db.Trip);
 
-/** N:M Trip : Transport */
-db.Trip.belongsToMany(db.Transport, {  through : db.TripTransport});
-db.Transport.belongsToMany(db.Trip, {  through : db.TripTransport});
+/** 1:N Trip : TripTransport */
+db.Trip.hasMany(db.TripTransport);
+db.TripTransport.belongsToMany(db.Trip);
 
 module.exports = db;
