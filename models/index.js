@@ -19,10 +19,8 @@ db.Transport = require('./transportModel')(sequelize, Sequelize);
 db.Trip = require('./tripModel')(sequelize, Sequelize);
 db.TripActivity = require('./tripActivityModel')(sequelize, Sequelize);
 db.TripFood = require('./tripFoodModel')(sequelize, Sequelize);
-db.TripShopping = require('./tripShoppingModel')(sequelize, Sequelize);
 db.TripSnack = require('./tripSnackModel')(sequelize, Sequelize);
 db.TripHotel = require('./tripHotelModel')(sequelize, Sequelize);
-db.TripTransport = require('./tripTransportModel')(sequelize, Sequelize);
 db.Schedule = require('./scheduleModel')(sequelize, Sequelize);
 db.Plan = require('./planModel')(sequelize, Sequelize);
 db.Median = require('./medianModel')(sequelize,Sequelize);
@@ -53,27 +51,21 @@ db.Transport.belongsTo(db.City);
 
 /** 1:N Trip : TripActivity */
 db.Trip.hasMany(db.TripActivity);
-db.TripActivity.belongsToMany(db.Trip);
+db.TripActivity.belongsTo(db.Trip);
 
 /** 1:N Trip : TripHotel */
 db.Trip.hasMany(db.TripHotel);
-db.TripHotel.belongsToMany(db.Trip);
+db.TripHotel.belongsTo(db.Trip);
 
 /** 1:N Trip : TripFood */
 db.Trip.hasMany(db.TripFood);
-db.TripFood.belongsToMany(db.Trip);
-
-/** 1:N Trip : TripShopping */
-db.Trip.hasMany(db.TripShopping);
-db.TripShopping.belongsToMany(db.Trip);
+db.TripFood.belongsTo(db.Trip);
 
 /** 1:N Trip : TripSnack */
 db.Trip.hasMany(db.TripSnack);
-db.TripSnack.belongsToMany(db.Trip);
+db.TripSnack.belongsTo(db.Trip);
 
-/** 1:N Trip : TripTransport */
-db.Trip.hasMany(db.TripTransport);
-db.TripTransport.belongsToMany(db.Trip);
+// Shopping이랑 Transport는 사용자가 금액을 입력하므로 따로 1:N 테이블을 만들지 않는다.
 
 /** 1:N Trip : Schedule */
 db.Trip.hasMany(db.Schedule);
