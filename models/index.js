@@ -25,7 +25,7 @@ db.TripHotel = require('./tripHotelModel')(sequelize, Sequelize);
 db.TripTransport = require('./tripTransportModel')(sequelize, Sequelize);
 db.Schedule = require('./scheduleModel')(sequelize, Sequelize);
 db.Plan = require('./planModel')(sequelize, Sequelize);
-
+db.User = require('./userModel')(sequelize, Sequelize);
 /** 1:N City : Activity */
 db.City.hasMany(db.Activity);
 db.Activity.belongsTo(db.City);
