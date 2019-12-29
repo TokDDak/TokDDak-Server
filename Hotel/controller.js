@@ -94,25 +94,26 @@ module.exports = {
                 res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
         },
-    delete: async (req, res) => {
-        const {
-            id
-        } = req.body;
-        
-        if (!id) {
-            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
-            return;
-        }
-        HotelService.delete({
+        delete: async (req, res) => {
+            const {
                 id
-            })
-            .then(({
-                    json
-                }) =>
-                res.send(json)
-            ).catch(err => {
-                console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
-            })
-    },
+            } = req.body;
+            console.log(req.body);
+            if (!id) {
+                res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
+                return;
+            }
+            
+            HotelService.delete({
+                    id
+                })
+                .then(({
+                        json
+                    }) =>
+                    res.send(json)
+                ).catch(err => {
+                    console.log(err);
+                    res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+                })
+        },
 }

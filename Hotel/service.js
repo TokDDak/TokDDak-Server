@@ -90,16 +90,19 @@ module.exports = {
             });
         });
     },
-    delete: ({id}) => {
+    delete: ({
+        id
+    }) => {
         return new Promise(async (resolve, reject) => {
             let hotel;
             try {
-                hotel = await Hotel.destroy({
-                    where:{
-                        id : id 
+                hotel = await Hotel.destroy({ //@@
+                    
+                    where: {
+                        id : id,
                     }
                 });
-                
+
             } catch (error) {
                 reject({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.HOTEL_DELETE_FAIL)

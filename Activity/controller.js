@@ -32,14 +32,25 @@ module.exports = {
             cost,
             content,
             url_mrt,
-            url_kl,
-            img
+            url_kl
         } = req.body;
+        const img = req.file.location; //*
+    
         const {
             CityId
         } = req.params; //*
         if (!name || !cost || !content || !url_mrt || !url_kl || !img) {
-            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
+            const missParameters = Object.entries({
+                name,
+                cost,
+                content,
+                url_mrt,
+                url_kl,
+                img,
+                CityId
+                })
+                .filter(it => it[1] == undefined).map(it => it[0]).join(',');
+            res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
             return;
         }
         
@@ -66,9 +77,10 @@ module.exports = {
             cost,
             content,
             url_mrt,
-            url_kl,
-            img
+            url_kl
         } = req.body;
+        const img = req.file.location; //*
+    
         const {
             CityId
         } = req.params; //*

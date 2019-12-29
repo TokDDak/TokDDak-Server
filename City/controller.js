@@ -3,7 +3,7 @@ const rm = require('../module/util/responseMessage');
 const utils = require('../module/util/utils');
 const sc = require('../module/util/statusCode');
 const upload = require('../config/multer');
-//const multer = require('multer');
+const multer = require('multer');
 
 module.exports = {
     readAll: async (req, res) => {
@@ -74,9 +74,10 @@ module.exports = {
             country,
             name,
             popular,
-            recommend,
-            img
+            recommend
         } = req.body;
+        const img = req.file.location; //*
+    
         if (!id || !continent || !country || !name || !popular || !recommend || !img) {
             const missParameters = Object.entries({
                     id,
