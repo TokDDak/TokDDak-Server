@@ -1,6 +1,6 @@
 const randToken = require('rand-token');
 const jwt = require('jsonwebtoken');
-const {secretOrPrivateKey} = require('../config/jwtSecretKeyKey');
+const {secretOrPrivateKey} = require('../config/jwtSecretKey');
 
 const options = {
     algorithm: "HS256", //H256(algorithm)에 해당하는 header, payload, signiture가 있음(내정)
