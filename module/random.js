@@ -34,12 +34,12 @@ module.exports = {
             }
         })
     },
-    // Hotel을 어떻게할까..? subcategory 선기준 ?
-    randomHotel : async(subCategory,CityId)=> { //grade 1,2,3은 내가 넣는대로 
+    
+    randomHotel : async(subCategory,CityId)=> { //subCategory
         return new Promise(async(resolve, reject)=>{
             const data = [];
             try{
-                cate = await Food.findAll({
+                cate = await Hotel.findAll({
                     where : {
                         subCategory : subCategory,
                         CityId : CityId
