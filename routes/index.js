@@ -5,4 +5,5 @@ router.use('/citys', require('./citys'));
 router.use('/users', require('./users'));
 router.use('/trips', require('./trips'));
 router.use('/median', require('./median'))
-module.exports = router;
+router.use('/tripHotel',require('./tripHotel'));
+module.exports = router;    
