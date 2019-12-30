@@ -6,4 +6,7 @@ router.use('/users', require('./users'));
 router.use('/trips', require('./trips'));
 router.use('/median', require('./median'))
 router.use('/tripHotel',require('./tripHotel'));
+router.use('/tripFood',require('./tripFood'));
+router.use('/tripSnack',require('./tripSnack'));
+
 module.exports = router;    
