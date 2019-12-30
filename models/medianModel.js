@@ -1,9 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define('Median', {
-        CityId: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
         bestHotel: { 
             type: DataTypes.INTEGER,
             allowNull: true,
@@ -46,6 +42,14 @@ module.exports = (sequelize, DataTypes) => {
         },
         cheapFood: { // 금액
             type: DataTypes.INTEGER,
+            allowNull: true,
+        },
+        urlHotel: {
+            type: DataTypes.STRING(200),
+            allowNull: true,
+        },
+        urlFood: {
+            type: DataTypes.STRING(200),
             allowNull: true,
         },
     }, {

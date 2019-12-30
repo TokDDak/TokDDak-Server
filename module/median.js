@@ -3,43 +3,17 @@ const {
 } = require('../models');
 
 module.exports = {
-    hotelRead: async ({
+    read: async ({
         CityId,
-        grade
     }) => {
         return new Promise(async (resolve, reject) => {
             try {
                 const median = await Median.findOne({
                     where: {
-                        CityId: CityId,
-                        category: grade,
-                    }
+                        id: CityId,
+                    },
                 })
-//                console.log(median.dataValues.category, median.dataValues.hotel);
-                const result = median.dataValues.hotel;
-                resolve({
-                    result
-                });
-            } catch (err) {
-                console.log(err);
-                reject(err);
-            }
-        });
-    },
-    foodRead: async ({
-        CityId,
-        grade
-    }) => {
-        return new Promise(async (resolve, reject) => {
-            try {
-                const median = await Median.findOne({
-                    where: {
-                        CityId: CityId,
-                        category: grade,
-                    }
-                })
-//                console.log(median.dataValues.category, median.dataValues.food);
-                const result = median.dataValues.food;
+                const result = median.dataValues;
                 resolve({
                     result
                 });
