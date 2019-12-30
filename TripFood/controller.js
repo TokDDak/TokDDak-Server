@@ -15,7 +15,7 @@ module.exports = {
         TFService.read({
                 TripId
             })
-            .TFen(({
+            .then(({
                     json
                 }) =>
                 res.send(json)
@@ -24,38 +24,33 @@ module.exports = {
                 res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
     },
-    create: async (req, res) => {
-        const {
-            grade,
-            cost
-        } = req.body;
-        const {
-            TripId // Trip Id를 가지는 모든 정보 가져온다.
-        } = req.params;
-        if (!TripId || !grade || !cost) {
-            const missParameters = Object.entries({
-                    grade,
-                    cost,
-                    TripId
-                })
-                .filter(it => it[1] == undefined).map(it => it[0]).join(',');
-            res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
-            return;
-        }
-        TFService.create({
-                grade,
-                cost,
-                TripId
-            })
-            .TFen(({
-                    json
-                }) =>
-                res.send(json)
-            ).catch(err => {
-                console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
-            })
-    },
+    create: ({
+        array,
+        TripId
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            let TF;
+            const CityId = 1;
+            try {
+                for(let [key, value] of Object.entries(array)) {
+                    for(let [key2, value2] of Object.entries(value)){
+                        console.log(key2, value2);
+                    TH = await TripFood.create({
+                        grade: key2,
+                        cost: value2, // 미디엄에서 가져오자.
+                        TripId: TripId
+                    });
+                }
+            };
+            } catch (error) {
+                reject({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, "rm.TRIPFOOD_CREATE_FAIL")
+                });
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, "rm.TRIPFOOD_CREATE_SUCCESS", TH)
+            });
+        });
     update: async (req, res) => {
         const {
             id, // Trip Id를 가지는 모든 정보 가져온다.
@@ -77,7 +72,7 @@ module.exports = {
             grade,
             cost
             })
-            .TFen(({
+            .then(({
                     json
                 }) =>
                 res.send(json)
@@ -97,7 +92,7 @@ module.exports = {
         TFService.delete({
                 id
             })
-            .TFen(({
+            .then(({
                     json
                 }) =>
                 res.send(json)

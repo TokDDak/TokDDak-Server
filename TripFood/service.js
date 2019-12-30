@@ -34,26 +34,29 @@ module.exports = {
         });
     },
     create: ({
-        grade,
-        TripId,
-        cost
+        array,
+        TripId
     }) => {
         return new Promise(async (resolve, reject) => {
             let TF;
             try {
-                TF = await TripFood.create({
-                    grade: grade,
-                    cost: cost, // 미디엄에서 가져오자.
-                    TripId: TripId
-                });
-                
+                for(let [key, value] of Object.entries(array)) {
+                    for(let [key2, value2] of Object.entries(value)){
+                        console.log(key2, value2);
+                    TF = await TripFood.create({
+                        grade: key2,
+                        cost: value2, // 미디엄에서 가져오자.
+                        TripId: TripId
+                    });
+                }
+            };
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIPFOOD_CREATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, "rm.TRIPFOOD_CREATE_FAIL")
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIPFOOD_CREATE_SUCCESS, TF)
+                json: utils.successTrue(sc.SUCCESS, "rm.TRIPFOOD_CREATE_SUCCESS", TF)
             });
         });
     },

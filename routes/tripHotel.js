@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
-const THController = require('../TripHotel');
+const THController = require('../TripHotel/controller');
 
 router.get('/:TripId', THController.read);
-router.get('/:TripId', THController.create);
-router.get('/', THController.update);
-router.get('/', THController.delete);
+router.post('/:TripId', THController.create);
+router.put('/', THController.update);
+router.delete('/', THController.delete);
 
 
  module.exports = router;

@@ -3,7 +3,7 @@ const utils = require('../module/util/utils');
 const sc = require('../module/util/statusCode');
 
 const {TripHotel} = require('../models');
-
+const md = require('../module/median');
 module.exports = {
 
     read: ({
@@ -39,20 +39,23 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             let TH;
             try {
-                array.map(grade => {
+                for(let [key, value] of Object.entries(array)) {
+                    for(let [key2, value2] of Object.entries(value)){
+                        console.log(key2, value2);
                     TH = await TripHotel.create({
-                        grade: grade,
-                        cost: cost, // 미디엄에서 가져오자.
+                        grade: key2,
+                        cost: value2, // 미디엄에서 가져오자.
                         TripId: TripId
-                    });    
-                });
+                    });
+                }
+            };
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIPHOTEL_CREATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, "rm.TRIPHOTEL_CREATE_FAIL")
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIPHOTEL_CREATE_SUCCESS, TH)
+                json: utils.successTrue(sc.SUCCESS, "rm.TRIPHOTEL_CREATE_SUCCESS", TH)
             });
         });
     },

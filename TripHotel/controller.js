@@ -33,7 +33,7 @@ module.exports = {
         } = req.params;
         if (!TripId) {
             const missParameters = Object.entries({
-                    grade,
+                    TripId,
                 })
                 .filter(it => it[1] == undefined).map(it => it[0]).join(',');
             res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));

@@ -34,26 +34,29 @@ module.exports = {
         });
     },
     create: ({
-        grade,
-        TripId,
-        cost
+        array,
+        TripId
     }) => {
         return new Promise(async (resolve, reject) => {
             let TS;
             try {
-                TS = await TripSnack.create({
-                    grade: grade,
-                    cost: cost, // 미디엄에서 가져오자.
-                    TripId: TripId
-                });
-                
+                for(let [key, value] of Object.entries(array)) {
+                    for(let [key2, value2] of Object.entries(value)){
+                        console.log(key2, value2);
+                    TF = await TripSnack.create({
+                        grade: key2,
+                        cost: value2, // 미디엄에서 가져오자.
+                        TripId: TripId
+                    });
+                }
+            };
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIPSNACK_CREATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, "rm.TRIPSNACK_CREATE_FAIL")
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIPSNACK_CREATE_SUCCESS, TS)
+                json: utils.successTrue(sc.SUCCESS, "rm.TRIPSNACK_CREATE_SUCCESS", TS)
             });
         });
     },
