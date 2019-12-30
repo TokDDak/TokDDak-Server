@@ -4,17 +4,22 @@ const medianController = require('../Median/controller');
 
 // 
 /**
+ * 모두 보내기
+ */
+router.get('/:CityId', medianController.read);
+
+/**
  * 한 번에 무작위 3개 + 모든 카테고리 별 중간값 전송 (호텔)
  */
 router.get('/:CityId/hotel', medianController.hotelRead);
 /**
  * 한 번에 무작위 3개 + 모든 카테고리 별 중간값 전송 (음식)
  */
-router.get('/:CityId/hotel', medianController.foodRead);
+router.get('/:CityId/food', medianController.foodRead);
 /**
  * 한 번에 무작위 3개 + 모든 카테고리 별 중간값 전송 (간식)
  */
-router.get('/:CityId/hotel', medianController.snackRead);
+router.get('/:CityId/snack', medianController.snackRead);
 
 // 따로따로 라우터로 보내주기
 // /**
