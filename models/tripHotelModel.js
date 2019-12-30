@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define('TripHotel', {
-        level: {
+        grade: {
             type: DataTypes.STRING(30),
             allowNull : false,
         },

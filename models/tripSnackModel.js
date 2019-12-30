@@ -1,15 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define('TripSnack', {
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
-        },
-        totalCost: { // 총 경비
-            type: DataTypes.INTEGER,
+        grade: {
+            type: DataTypes.STRING(30),
             allowNull : false,
         },
-        number : { // 횟수
+        cost : { // 비용
             type: DataTypes.INTEGER,
             allowNull : false,
         },
