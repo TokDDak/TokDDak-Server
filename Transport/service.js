@@ -11,25 +11,25 @@ module.exports = {
         CityId
     }) => {
         return new Promise(async (resolve, reject) => {
-            const transportation = await Transport.findAll({
+            const transport = await Transport.findAll({
                 where: {
                     CityId : CityId
                 }
             });
-            if(transportation.length == 0) {
+            if(transport.length == 0) {
                 resolve({
                     json: utils.successFalse(sc.NO_CONTENT, rm.TRANSPORT_EMPTY)
                 });
                 return;
             }
-            if (!transportation) {
+            if (!transport) {
                 resolve({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_READ_BLOGIDX_FAIL)
                 });
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_READ_BLOGIDX_SUCCESS, transportation)
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_READ_BLOGIDX_SUCCESS, transport)
             });
         });
     },
@@ -66,7 +66,7 @@ module.exports = {
         CityId
     }) => {
         return new Promise(async (resolve, reject) => {
-            const transportation = await Transport.update({
+            const transport = await Transport.update({
                 cost : cost,
                 content : content,
                 CityId : CityId
@@ -75,9 +75,9 @@ module.exports = {
                     id : id
                 },
             });
-            if (!transportation) {
+            if (!transport) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.SPORT_UPDATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_UPDATE_FAIL)
                 });
                 return;
             }
@@ -88,14 +88,25 @@ module.exports = {
     },
     delete: ({id}) => {
         return new Promise(async (resolve, reject) => {
-            let transportation;
-            try {
-                transportation = await Transport.destroy({
+            try{
+                transport = await Transport.findAll({
+                    where:{
+                        id:id
+                    }
+                })
+                if(transport.length == 0)
+                {
+                    resolve({
+                        json : utils.successFalse(sc.NO_CONTENT, rm.TRANSPORT_EMPTY)
+                    });
+                    return;
+                }
+                console.log(transport.length);
+                transport = await Transport.destroy({
                     where:{
                         id : id
                     }
                 });
-                
             } catch (error) {
                 reject({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_DELETE_FAIL)

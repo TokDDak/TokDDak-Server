@@ -88,15 +88,27 @@ module.exports = {
     },
     delete: ({id}) => {
         return new Promise(async (resolve, reject) => {
-            let food;
-            try {
-                food = await Food.destroy({
+            try{
+                food = await Food.findAll({
                     where:{
-                        id : id,
+                        id:id
+                    }
+                })
+                if(food.length == 0)
+                {
+                    resolve({
+                        json : utils.successFalse(sc.NO_CONTENT, rm.FOOD_EMPTY)
+                    });
+                    return;
+                }
+                console.log(food.length);
+                food = await food.destroy({
+                    where:{
+                        id : id
                     }
                 });
-                
-            } catch (error) {
+            } 
+            catch (error) {
                 reject({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.FOOD_DELETE_FAIL)
                 });

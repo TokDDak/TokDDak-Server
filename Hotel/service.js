@@ -94,16 +94,27 @@ module.exports = {
         id
     }) => {
         return new Promise(async (resolve, reject) => {
-            let hotel;
-            try {
-                hotel = await Hotel.destroy({ //@@
-                    
-                    where: {
-                        id : id,
+            try{
+                hotel = await Hotel.findAll({
+                    where:{
+                        id:id
+                    }
+                })
+                if(hote.length == 0)
+                {
+                    resolve({
+                        json : utils.successFalse(sc.NO_CONTENT, rm.HOTEL_EMPTY)
+                    });
+                    return;
+                }
+                console.log(hotel.length);
+                hotel = await Hotel.destroy({
+                    where:{
+                        id : id
                     }
                 });
-
-            } catch (error) {
+            } 
+            catch (error) {
                 reject({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.HOTEL_DELETE_FAIL)
                 });

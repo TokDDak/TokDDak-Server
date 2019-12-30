@@ -108,19 +108,29 @@ module.exports = {
     },
     delete: ({
         id
-       
     }) => {
         return new Promise(async (resolve, reject) => {
-            let activity;
-            try {
-                activity = await Activity.destroy({ //@@
-                    
-                    where: {
-                        id : id,
+            try{
+                activity = await Activity.findAll({
+                    where:{
+                        id:id
+                    }
+                })
+                if(activity.length == 0)
+                {
+                    resolve({
+                        json : utils.successFalse(sc.NO_CONTENT, rm.ACTIVITY_EMPTY)
+                    });
+                    return;
+                }
+                console.log(activity.length);
+                activity = await Activity.destroy({
+                    where:{
+                        id : id
                     }
                 });
-
-            } catch (error) {
+            }
+            catch (error) {
                 reject({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.ACTIVITY_DELETE_FAIL)
                 });
