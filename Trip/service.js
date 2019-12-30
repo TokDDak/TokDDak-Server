@@ -132,158 +132,152 @@ module.exports = {
         });
     },
     hotelUpdate: ({
-        name,
-        cost,
-        content,
-        CityId
+        TripId,
+        totalCost
     }) => {
         return new Promise(async (resolve, reject) => {
             let trip;
             try {
-                trip = await Trip.create({
-                    name : name,
-                    cost : cost,
-                    content : content,
-                    CityId : CityId
+                trip = await Trip.update({
+                    hotelBudget: totalCost
+                }, {
+                    where: {
+                    id: TripId,
+                    },
                 });
                 
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_CREATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_HOTELBUDGET_UPDATE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIP_CREATE_SUCCESS, trip)
+                json: utils.successTrue(sc.SUCCESS, rm.TRIP_HOTELBUDGET_UPDATE_SUCCESS, trip)
             });
         });
     },
     foodUpdate: ({
-        name,
-        cost,
-        content,
-        CityId
+        TripId,
+        totalCost
     }) => {
         return new Promise(async (resolve, reject) => {
             let trip;
             try {
-                trip = await Trip.create({
-                    name : name,
-                    cost : cost,
-                    content : content,
-                    CityId : CityId
+                trip = await Trip.update({
+                    foodBudget: totalCost
+                }, {
+                    where: {
+                        id: TripId,
+                    }
                 });
                 
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_CREATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_FOODBUDGET_UPDATE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIP_CREATE_SUCCESS, trip)
+                json: utils.successTrue(sc.SUCCESS, rm.TRIP_FOODBUDGET_UPDATE_SUCCESS, trip)
             });
         });
     },
     activityUpdate: ({
-        name,
-        cost,
-        content,
-        CityId
+        TripId,
+        totalCost
     }) => {
         return new Promise(async (resolve, reject) => {
             let trip;
             try {
-                trip = await Trip.create({
-                    name : name,
-                    cost : cost,
-                    content : content,
-                    CityId : CityId
+                trip = await Trip.update({
+                    activityBudget: totalCost
+                }, {
+                    where: {
+                        id: TripId,
+                    }
                 });
                 
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_CREATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_ACTIVITYBUDGET_UPDATE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIP_CREATE_SUCCESS, trip)
+                json: utils.successTrue(sc.SUCCESS, rm.TRIP_ACTIVITYBUDGET_UPDATE_SUCCESS, trip)
             });
         });
     },
     transportUpdate: ({
-        name,
-        cost,
-        content,
-        CityId
+        TripId,
+        totalCost
     }) => {
         return new Promise(async (resolve, reject) => {
             let trip;
             try {
-                trip = await Trip.create({
-                    name : name,
-                    cost : cost,
-                    content : content,
-                    CityId : CityId
+                trip = await Trip.update({
+                    tansportBudget: totalCost
+                }, {
+                    where: {
+                        id: TripId,
+                    }
                 });
                 
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_CREATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_TRANSPORTBUDGET_UPDATE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIP_CREATE_SUCCESS, trip)
+                json: utils.successTrue(sc.SUCCESS, rm.TRIP_TRANSPORTBUDGET_UPDATE_SUCCESS, trip)
             });
         });
     },
     shoppingUpdate: ({
-        name,
-        cost,
-        content,
-        CityId
+        TripId,
+        totalCost
     }) => {
         return new Promise(async (resolve, reject) => {
             let trip;
             try {
-                trip = await Trip.create({
-                    name : name,
-                    cost : cost,
-                    content : content,
-                    CityId : CityId
+                trip = await Trip.update({
+                    shoppingBudget: totalCost
+                }, {
+                    where: {
+                        id: TripId,
+                    }
                 });
                 
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_CREATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_SHOPPINGBUDGET_UPDATE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIP_CREATE_SUCCESS, trip)
+                json: utils.successTrue(sc.SUCCESS, rm.TRIP_SHOPPINGBUDGET_UPDATE_SUCCESS, trip)
             });
         });
     },
     snackUpdate: ({
-        name,
-        cost,
-        content,
-        CityId
+        TripId,
+        totalCost
     }) => {
         return new Promise(async (resolve, reject) => {
             let trip;
             try {
-                trip = await Trip.create({
-                    name : name,
-                    cost : cost,
-                    content : content,
-                    CityId : CityId
+                trip = await Trip.update({
+                    snackBudget: totalCost
+                }, {
+                    where: {
+                        id: TripId,
+                    }
                 });
                 
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_CREATE_FAIL)
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_SNACKBUDGET_UPDATE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIP_CREATE_SUCCESS, trip)
+                json: utils.successTrue(sc.SUCCESS, rm.TRIP_SNACKBUDGET_UPDATE_SUCCESS, trip)
             });
         });
     },

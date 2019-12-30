@@ -3,7 +3,6 @@ const utils = require('../module/util/utils');
 const sc = require('../module/util/statusCode');
 
 const {TripHotel} = require('../models');
-const md = require('../module/median');
 module.exports = {
 
     read: ({

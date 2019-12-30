@@ -2,7 +2,6 @@ const rm = require('../module/util/responseMessage');
 const utils = require('../module/util/utils');
 const sc = require('../module/util/statusCode');
 
-
 const {TripSnack} = require('../models');
 
 module.exports = {

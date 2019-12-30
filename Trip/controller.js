@@ -94,28 +94,23 @@ module.exports = {
     },
     hotelUpdate: async (req, res) => {
         const {
-            array
+            totalCost // Trip - hotelBudget에 저장
         } = req.body;
         const {
-            CityId
+            TripId
         } = req.params;
-        if (!CityId) {
-            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
-            return;
-        }
-        if (!CityId || !title || !start || !end) {
+        if (!TripId || !totalCost) {
             const missParameters = Object.entries({
-                    title,
-                    start,
-                    end,
-                    CityId
-                })
-                .filter(it => it[1] == undefined).map(it => it[0]).join(',');
-            res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
-            return;
+                totalCost,
+                TripId
+            })
+            .filter(it => it[1] == undefined).map(it => it[0]).join(',');
+        res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
+        return;
         }
         TripService.hotelUpdate({
-                CityId
+                TripId,
+                totalCost
             })
             .then(({
                     json
@@ -128,14 +123,18 @@ module.exports = {
     },
     foodUpdate: async (req, res) => {
         const {
-            CityId
+            totalCost // Trip - foodBudget에 저장
+        } = req.body;
+        const {
+            TripId
         } = req.params;
         if (!CityId) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
-        TripService.read({
-                CityId
+        TripService.foodUpdate({
+                TripId,
+                totalCost
             })
             .then(({
                     json
@@ -226,7 +225,7 @@ module.exports = {
                 res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
     },
-    allDelete: async (req, res) => {
+    delete: async (req, res) => {
         const {
             id
         } = req.body;
@@ -234,128 +233,8 @@ module.exports = {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
-        TripService.delete({
+        TripService.allDelete({
                 id
-            })
-            .then(({
-                    json
-                }) =>
-                res.send(json)
-            ).catch(err => {
-                console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
-            })
-    },
-    hotelDelete: async (req, res) => {
-        const {
-            CityId
-        } = req.params;
-        if (!CityId) {
-            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
-            return;
-        }
-        TripService.read({
-                CityId
-            })
-            .then(({
-                    json
-                }) =>
-                res.send(json)
-            ).catch(err => {
-                console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
-            })
-    },
-    foodDelete: async (req, res) => {
-        const {
-            CityId
-        } = req.params;
-        if (!CityId) {
-            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
-            return;
-        }
-        TripService.read({
-                CityId
-            })
-            .then(({
-                    json
-                }) =>
-                res.send(json)
-            ).catch(err => {
-                console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
-            })
-    },
-    activityDelete: async (req, res) => {
-        const {
-            CityId
-        } = req.params;
-        if (!CityId) {
-            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
-            return;
-        }
-        TripService.read({
-                CityId
-            })
-            .then(({
-                    json
-                }) =>
-                res.send(json)
-            ).catch(err => {
-                console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
-            })
-    },
-    transportDelete: async (req, res) => {
-        const {
-            CityId
-        } = req.params;
-        if (!CityId) {
-            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
-            return;
-        }
-        TripService.read({
-                CityId
-            })
-            .then(({
-                    json
-                }) =>
-                res.send(json)
-            ).catch(err => {
-                console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
-            })
-    },
-    shoppingDelete: async (req, res) => {
-        const {
-            CityId
-        } = req.params;
-        if (!CityId) {
-            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
-            return;
-        }
-        TripService.read({
-                CityId
-            })
-            .then(({
-                    json
-                }) =>
-                res.send(json)
-            ).catch(err => {
-                console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
-            })
-    },
-    snackDelete: async (req, res) => {
-        const {
-            CityId
-        } = req.params;
-        if (!CityId) {
-            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
-            return;
-        }
-        TripService.read({
-                CityId
             })
             .then(({
                     json

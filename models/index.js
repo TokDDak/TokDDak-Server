@@ -50,29 +50,41 @@ db.City.hasMany(db.Transport);
 db.Transport.belongsTo(db.City);
 
 /** 1:N Trip : TripActivity */
-db.Trip.hasMany(db.TripActivity);
+db.Trip.hasMany(db.TripActivity, {
+  onDelete: 'cascade'
+});
 db.TripActivity.belongsTo(db.Trip);
 
 /** 1:N Trip : TripHotel */
-db.Trip.hasMany(db.TripHotel);
+db.Trip.hasMany(db.TripHotel, {
+  onDelete: 'cascade'
+});
 db.TripHotel.belongsTo(db.Trip);
 
 /** 1:N Trip : TripFood */
-db.Trip.hasMany(db.TripFood);
+db.Trip.hasMany(db.TripFood, {
+  onDelete: 'cascade'
+});
 db.TripFood.belongsTo(db.Trip);
 
 /** 1:N Trip : TripSnack */
-db.Trip.hasMany(db.TripSnack);
+db.Trip.hasMany(db.TripSnack, {
+  onDelete: 'cascade'
+});
 db.TripSnack.belongsTo(db.Trip);
 
 // Shopping이랑 Transport는 사용자가 금액을 입력하므로 따로 1:N 테이블을 만들지 않는다.
 
 /** 1:N Trip : Schedule */
-db.Trip.hasMany(db.Schedule);
+db.Trip.hasMany(db.Schedule, {
+  onDelete: 'cascade'
+});
 db.Schedule.belongsTo(db.Trip);
 
 /** 1:N Trip : Plan */
-db.Trip.hasMany(db.Plan);
+db.Trip.hasMany(db.Plan, {
+  onDelete: 'cascade'
+});
 db.Plan.belongsTo(db.Trip);
 
 module.exports = db;
