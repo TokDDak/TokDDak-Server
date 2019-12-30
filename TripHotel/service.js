@@ -2,7 +2,6 @@ const rm = require('../module/util/responseMessage');
 const utils = require('../module/util/utils');
 const sc = require('../module/util/statusCode');
 
-
 const {TripHotel} = require('../models');
 
 module.exports = {
@@ -34,26 +33,26 @@ module.exports = {
         });
     },
     create: ({
-        grade,
-        TripId,
-        cost
+        array,
+        TripId
     }) => {
         return new Promise(async (resolve, reject) => {
             let TH;
             try {
-                TH = await TripHotel.create({
-                    grade: grade,
-                    cost: cost, // 미디엄에서 가져오자.
-                    TripId: TripId
+                array.map(grade => {
+                    TH = await TripHotel.create({
+                        grade: grade,
+                        cost: cost, // 미디엄에서 가져오자.
+                        TripId: TripId
+                    });    
                 });
-                
             } catch (error) {
                 reject({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIPHOTEL_CREATE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIPHOTEL_CREATE_SUCCESS, transport)
+                json: utils.successTrue(sc.SUCCESS, rm.TRIPHOTEL_CREATE_SUCCESS, TH)
             });
         });
     },

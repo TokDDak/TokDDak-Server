@@ -1,4 +1,4 @@
-const THService = require('./service');
+const TSService = require('./service');
 const rm = require('../module/util/responseMessage');
 const utils = require('../module/util/utils');
 const sc = require('../module/util/statusCode');
@@ -12,7 +12,7 @@ module.exports = {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
-        THService.read({
+        TSService.read({
                 TripId
             })
             .then(({
@@ -42,7 +42,7 @@ module.exports = {
             res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
             return;
         }
-        THService.create({
+        TSService.create({
                 grade,
                 cost,
                 TripId
@@ -72,7 +72,7 @@ module.exports = {
             res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
             return;
         }
-        THService.update({
+        TSService.update({
             id, 
             grade,
             cost
@@ -94,7 +94,7 @@ module.exports = {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
-        THService.delete({
+        TSService.delete({
                 id
             })
             .then(({
