@@ -32,6 +32,11 @@ router.put('/activity', tripController.activityUpdate);
 router.put('/transport', tripController.transportUpdate);
 router.put('/shopping', tripController.shoppingUpdate);
 router.put('/snack', tripController.snackUpdate);
+/**
+ * status 값 바꾸기
+ */
+router.put('/ing',tripController.trippingUpdate);
+router.put('/ed',tripController.trippedUpdate);
 
 router.delete('/', tripController.allDelete);
 router.delete('/hotel', tripController.hotelDelete);

@@ -225,6 +225,60 @@ module.exports = {
                 res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
     },
+    trippingUpdate: async (req, res) => {
+        const {
+            id,
+            flag
+        } = req.body;
+        if (!id || !flag) {
+            const missParameters = Object.entries({
+                id,
+                flag
+            })
+            .filter(it => it[1] == undefined).map(it => it[0]).join(',');
+        res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
+        return;
+    }
+        TripService.trippingUpdate({
+                id,
+                flag
+            })
+            .then(({
+                    json
+                }) =>
+                res.send(json)
+            ).catch(err => {
+                console.log(err);
+                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+            })
+    },
+    trippedUpdate: async (req, res) => {
+        const {
+            id,
+            flag
+        } = req.body;
+        if (!id || !flag) {
+            const missParameters = Object.entries({
+                id,
+                flag
+            })
+            .filter(it => it[1] == undefined).map(it => it[0]).join(',');
+        res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
+        return;
+    }
+        TripService.trippedUpdate({
+                id,
+                flag
+            })
+            .then(({
+                    json
+                }) =>
+                res.send(json)
+            ).catch(err => {
+                console.log(err);
+                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+            })
+    },
     delete: async (req, res) => {
         const {
             id
@@ -233,7 +287,7 @@ module.exports = {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
-        TripService.allDelete({
+        TripService.delete({
                 id
             })
             .then(({

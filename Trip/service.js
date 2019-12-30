@@ -281,7 +281,57 @@ module.exports = {
             });
         });
     },
-    allDelete: ({id}) => {
+    trippingUpdate: ({
+        id,
+        flag
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            let trip;
+            try {
+                trip = await Trip.update({
+                    status: 2
+                }, {
+                    where: {
+                        id: id,
+                    }
+                });
+                
+            } catch (error) {
+                reject({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIPPING_UPDATE_FAIL)
+                });
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, rm.TRIPPING_UPDATE_SUCCESS, trip)
+            });
+        });
+    },
+    trippedUpdate: ({
+        id,
+        flag
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            let trip;
+            try {
+                trip = await Trip.update({
+                    status: 3
+                }, {
+                    where: {
+                        id: id,
+                    }
+                });
+                
+            } catch (error) {
+                reject({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIPPED_UPDATE_FAIL)
+                });
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, rm.TRIPPED_UPDATE_SUCCESS, trip)
+            });
+        });
+    },
+    delete: ({id}) => {
         return new Promise(async (resolve, reject) => {
             let trip;
             try {
@@ -300,161 +350,5 @@ module.exports = {
                 json: utils.successTrue(sc.SUCCESS, rm.TRIP_DELETE_SUCCESS)
             });
         });
-    },
-    hotelDelete: ({
-        name,
-        cost,
-        content,
-        CityId
-    }) => {
-        return new Promise(async (resolve, reject) => {
-            let trip;
-            try {
-                trip = await Trip.create({
-                    name : name,
-                    cost : cost,
-                    content : content,
-                    CityId : CityId
-                });
-                
-            } catch (error) {
-                reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_CREATE_FAIL)
-                });
-            }
-            resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIP_CREATE_SUCCESS, trip)
-            });
-        });
-    },
-    foodDelete: ({
-        name,
-        cost,
-        content,
-        CityId
-    }) => {
-        return new Promise(async (resolve, reject) => {
-            let trip;
-            try {
-                trip = await Trip.create({
-                    name : name,
-                    cost : cost,
-                    content : content,
-                    CityId : CityId
-                });
-                
-            } catch (error) {
-                reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_CREATE_FAIL)
-                });
-            }
-            resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIP_CREATE_SUCCESS, trip)
-            });
-        });
-    },
-    activityDelete: ({
-        name,
-        cost,
-        content,
-        CityId
-    }) => {
-        return new Promise(async (resolve, reject) => {
-            let trip;
-            try {
-                trip = await Trip.create({
-                    name : name,
-                    cost : cost,
-                    content : content,
-                    CityId : CityId
-                });
-                
-            } catch (error) {
-                reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_CREATE_FAIL)
-                });
-            }
-            resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIP_CREATE_SUCCESS, trip)
-            });
-        });
-    },
-    transportDelete: ({
-        name,
-        cost,
-        content,
-        CityId
-    }) => {
-        return new Promise(async (resolve, reject) => {
-            let trip;
-            try {
-                trip = await Trip.create({
-                    name : name,
-                    cost : cost,
-                    content : content,
-                    CityId : CityId
-                });
-                
-            } catch (error) {
-                reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_CREATE_FAIL)
-                });
-            }
-            resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIP_CREATE_SUCCESS, trip)
-            });
-        });
-    },
-    shoppingDelete: ({
-        name,
-        cost,
-        content,
-        CityId
-    }) => {
-        return new Promise(async (resolve, reject) => {
-            let trip;
-            try {
-                trip = await Trip.create({
-                    name : name,
-                    cost : cost,
-                    content : content,
-                    CityId : CityId
-                });
-                
-            } catch (error) {
-                reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_CREATE_FAIL)
-                });
-            }
-            resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIP_CREATE_SUCCESS, trip)
-            });
-        });
-    },
-    snackDelete: ({
-        name,
-        cost,
-        content,
-        CityId
-    }) => {
-        return new Promise(async (resolve, reject) => {
-            let trip;
-            try {
-                trip = await Trip.create({
-                    name : name,
-                    cost : cost,
-                    content : content,
-                    CityId : CityId
-                });
-                
-            } catch (error) {
-                reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_CREATE_FAIL)
-                });
-            }
-            resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIP_CREATE_SUCCESS, trip)
-            });
-        });
-    },
+    }
 };
