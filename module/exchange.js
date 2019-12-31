@@ -2,9 +2,16 @@ const request = require('request');
 const utils = require('./util/utils');
 
 module.exports = {
-    exchange: async (from, cost, to) => {
+    exchange: async (base, cost, to) => {
         return new Promise(async (resolve, reject) => {
-            request(`https://api.exchangerate-api.com/v4/latest/${from}`, function (error, response) {
+            try {
+                request(`https://api.exchangerate-api.com/v4/latest/${base}`, function (error, response) {
+                if(!response)
+                {
+                    resolve({
+                        json : utils.successFalse("api응답")
+                    })
+                }
                 console.log(response.body);
                 body = response.body;
                 const jsonBody = JSON.parse(body);
@@ -14,14 +21,13 @@ module.exports = {
                 const result = cost * h[to];
                 console.log("result : ", result);
             })
-            .catch(err=>
-                reject({
-                    json : utils.succussFalse(err)
-                })
-                )
             resolve({
-                json: utils.successTrue(result)
-            })
+                json : utils.successTrue(result) // 왜전달을 못할까??
+            }) 
+            } catch (error) {
+                console.log(error);
+                reject(error)
+            }
 
         })
     }
