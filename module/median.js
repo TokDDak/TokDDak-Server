@@ -1,21 +1,48 @@
 const {
     Median
 } = require('../models');
-
+const Random = require('../module/random');
+const Op = require('sequelize').Op;
 module.exports = {
-    read: async ({
+    hotelRead: async ({
         cityId,
-        grade
     }) => {
         return new Promise(async (resolve, reject) => {
+            const result = [];
+            let subCategory = 2;
+            const obj = new Object();
+            //            const categoryArr = ['저가호텔', '일반호텔', '고급호텔', '최고급호텔'];
             try {
-                const median = await Median.findOne({
+                const test = await Median.findAll({
                     where: {
+                        category: {
+                            [Op.like]: "%호텔%"
+                        },
                         cityId: cityId,
-                        category: grade,
                     },
+                    attributes: ['cityId', 'category', 'cost', 'urlHotel'],
+                });
+                
+                await test.forEach(async (buffer) => {
+                    
+                    const bmp = buffer.dataValues;
+                    const CityId = bmp.cityId;
+                    obj.category = bmp.category;
+                    obj.cost = bmp.cost;
+                    await Random.randomHotel({
+                            CityId,
+                            subCategory
+                        })
+                        .then(({
+                            json
+                        }) => {
+                            obj.info = json;
+                            subCategory += 1;
+                            obj.url = bmp.urlHotel
+                            result.push(obj);
+                        }).catch(err =>
+                            console.log(err))
                 })
-                const result = median.dataValues.cost;
                 resolve({
                     result
                 });
@@ -23,6 +50,6 @@ module.exports = {
                 console.log(err);
                 reject(err);
             }
-        });
+        })
     },
 }

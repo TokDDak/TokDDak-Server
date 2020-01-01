@@ -12,7 +12,8 @@ module.exports = {
                     },
                     attributes: ['id', 'name', 'grade', 'cost'],
                 });
-                const len = foodbyGrade.length;              
+                const len = foodbyGrade.length; 
+                console.log("len : ", len);             
                 for(let i=0; i<3 ; i++)
                 {
                     random = Math.floor(Math.random()*(len - 0));
@@ -37,12 +38,8 @@ module.exports = {
                         subCategory : subCategory,
                         CityId : CityId
                     },
-                    attributes: ['name', 'subCategory', 'cost'],
+                    attributes: ['name', 'cost'],
                 });
-                let arrId = new Array();
-                for(let i=0; i<cate.length; i++) {
-                    arrId[i] = cate[i].id;
-                }
               
                 for(let i=0; i<3 ; i++)
                 {
