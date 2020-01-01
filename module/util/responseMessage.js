@@ -29,6 +29,16 @@ module.exports = {
   CITY_DELETE_FAIL : "CITY DELETE 실패",
   CITY_DELETE_SUCCESS : "CITY DELETE 성공",
 
+  /* Timeline */
+  TIMELINE_EMPTY : "지출내역이 없습니다.",
+  TIMELINE_READ_SUCCESS : "지출내역 조회 성공", 
+  TIMELINE_READ_FAIL : "지출내역 조회 실패", 
+  TIMELINE_CREATE_SUCCESS : "지출내역 추가 성공",
+  TIMELINE_CREATE_FAIL : "지출내역 추가 실패",
+  TIMELINE_UPDATE_SUCCESS : "지출내역 수정 성공",
+  TIMELINE_UPDATE_FAIL : "지출내역 수정 실패",
+  TIMELINE_DELETE_SUCCESS : "지출내역 삭제 성공",
+  TIMELINE_DELETE_FAIL : "지출내역 삭제 실패",
 
   /* Activity */
   ACTIVITY_READ_CITYID_FAIL : "CityId에 해당하는 Activity 조회 실패",
