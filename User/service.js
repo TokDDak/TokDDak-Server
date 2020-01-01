@@ -25,8 +25,8 @@ module.exports = {
                         email: email,
                         nickname: nickname,
                         salt : encrypta.salt,
-                        password: encrypta.hashed
-
+                        password: encrypta.hashed,
+                        img : NaN
                     });
                 } catch (error) {
                     reject({
@@ -69,13 +69,9 @@ module.exports = {
                         return;
                     }
                      result = await jwt.sign(dummy); //토큰발급 
-                     
-
-
                 }
                 catch(err)
                 {
-                    
                     reject({
                         json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR)
                     });
@@ -87,6 +83,42 @@ module.exports = {
                     
                 });
             })
-
+        },
+        update: ({
+            email,
+            nickname,
+            password,
+            img,
+        })=>{
+            return new Promise(async(resolve, reject)=>{
+                const encryptu = await encrypt.encrypt(password);
+                let user;
+                try{
+                    user = await User.update({
+                        email : email,
+                        nickname : nickname,
+                        salt : encryptu.salt,
+                        password : encryptu.hashed,
+                        img : img,
+                        
+                    },
+                    {
+                       where : {email : email} ,
+                    });
+                    
+                } catch(error)
+                {
+                    console.log("err:",error)
+                    reject({
+                        json : utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR)
+                    });
+                }
+                resolve({
+                    json : utils.successTrue(sc.SUCCESS, "프로필수정 성공", user)
+                })
+                
+                console.log("user: ", user)
+            })
         }
+        
     }

@@ -1,8 +1,10 @@
 const express = require('express');
 const userController = require('../User/controller');
 const router = express.Router({mergeParams: true});
-
+const upload = require('../config/multer');
+const middleware = require('../module/middleware');
 router.post('/signup', userController.signup); 
 router.post('/signin', userController.signin); 
-
+router.put('/',upload.single('img'), middleware.checkToken, userController.update);
+//router.put('/',upload.single('img'),userController.update);
 module.exports = router;

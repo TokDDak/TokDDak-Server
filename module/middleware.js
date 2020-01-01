@@ -6,19 +6,25 @@ const util = require('./util/utils');
 const middleware = {
     
     checkToken: async (req, res, next) => {
-        var token = req.headers.jwt
+        var token = req.headers.token
+        console.log("token: ", token)
         if (!token) {
-            return res.json(util.successFalse(statusCode.BAD_REQUEST, resMessage.EMPTY_TOKEN))
+            return res.json(util.successFalse(statusCode.BAD_REQUEST, "EMPTY_TOKEN"))
         }
+        
         const user = jwt.verify(token)
-        if (user == this.TOKEN_EXPIRED) {
-            return res.json(util.successFalse(statusCode.UNAUTHORIZED, resMessage.EXPIRED_TOKEN))
+        
+        if (user == -3) {
+            console.log(1);
+            return res.json(util.successFalse(statusCode.UNAUTHORIZED, "EXPIRED_TOKEN"))
         }
-        if (user == this.TOKEN_INVALID) {
-            return res.json(util.successFalse(statusCode.UNAUTHORIZED, resMessage.INVALID_TOKEN))
+        if (user == -2) {
+            console.log(2);
+            return res.json(util.successFalse(statusCode.UNAUTHORIZED, "INVALID_TOKEN"))
         }
-        if (user.idx == undefined) {
-            return res.json(util.successFalse(statusCode.UNAUTHORIZED, resMessage.INVALID_TOKEN))
+        if (user.email== undefined) {
+            console.log(3);
+            return res.json(util.successFalse(statusCode.UNAUTHORIZED, "INVALID_TOKEN"))
         }
         req.decoded = user
         next()

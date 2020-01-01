@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         nickname:{
             type: DataTypes.STRING(50),
             allowNull: false,
+            unique : true,
         },
         password:{
             type: DataTypes.STRING(200),
@@ -17,7 +18,11 @@ module.exports = (sequelize, DataTypes) => {
         salt:{
             type: DataTypes.STRING(200),
             allowNull: false,
-        }
+        },
+        img: {
+            type: DataTypes.STRING(200),
+            allowNull: true,
+        },
     }, {
         freezeTableName: true,
         timestamps: false,
