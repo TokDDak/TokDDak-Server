@@ -1,4 +1,5 @@
 const express = require('express');
+const upload = require('../config/multer');
 const router = express.Router({mergeParams: true});
 const cityController = require('../City/controller');
 const activityController = require('../Activity/controller');
