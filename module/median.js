@@ -9,15 +9,55 @@ const promise = async (json, start, result) => {
 }
 
 module.exports = {
+    foodRead: async ({
+        cityId,
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            const result = [];
+            const CityId = cityId;
+            try {
+                const test = await Median.findAll({
+                    where: {
+                        category: {
+                            [Op.notLike]: "%호텔%"
+                        },
+                        cityId: cityId,
+                    },
+                    attributes: ['cityId', 'category', 'cost', 'urlFood'],
+                });
+                for (let i = 0; i < 3; i++) {
+                    const bmp = test[i].dataValues;
+                    const obj = new Object();
+                    obj.category = bmp.category;
+                    obj.cost = bmp.cost;
+                    obj.url = bmp.urlFood
+                    obj.info = [];
+                    result.push(obj);
+                }
+                await Random.randomFood({CityId})
+                    .then(async ({
+                        json
+                    }) => {
+                        Promise.all([promise(json, 0, result), promise(json, 3, result), promise(json, 6, result)]).then(function () {
+                            resolve({
+                                result
+                            })
+                        })
+
+                    }).catch(err =>
+                        console.log(err))
+            } catch (err) {
+                console.log(err);
+                reject(err);
+            }
+        })
+    },
     hotelRead: async ({
         cityId,
     }) => {
         return new Promise(async (resolve, reject) => {
             const result = [];
-            const infoArr = [];
-            let subCategory = 2;
             const CityId = cityId;
-            //            const categoryArr = ['저가호텔', '일반호텔', '고급호텔', '최고급호텔'];
             try {
                 const test = await Median.findAll({
                     where: {
@@ -37,7 +77,7 @@ module.exports = {
                     obj.info = [];
                     result.push(obj);
                 }
-                await Random.randomHotel()
+                await Random.randomHotel({CityId})
                     .then(async ({
                         json
                     }) => {

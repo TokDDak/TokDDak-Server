@@ -5,27 +5,35 @@ const {
 
 module.exports = {
     randomFood: async ({
-        grade,
         CityId
-    }) => { //grade 1,2,3은 내가 넣는대로 
+    }) => { //subCategory
         return new Promise(async (resolve, reject) => {
             const data = [];
+            let i = 0;
             try {
-                foodbyGrade = await Food.findAll({
-                    where: {
-                        grade: grade,
-                        CityId: CityId
-                    },
-                    attributes: ['name', 'cost'],
-                });
-                const len = foodbyGrade.length;
-                for (let i = 0; i < 3; i++) {
-                    random = Math.floor(Math.random() * (len - 0));
-                    data[i] = foodbyGrade[random].dataValues;
+                const promise = async (
+                    grade,
+                    CityId
+                ) => {
+                    cate = await Food.findAll({
+                        where: {
+                            grade: grade,
+                            CityId: CityId
+                        },
+                        attributes: ['name', 'cost'],
+                    });
+                    const start = (grade - 1) * 3;
+                    for (i = start; i < start + 3; i++) {
+                        random = Math.floor(Math.random() * (cate.length - 0));
+                        data[i] = cate[random].dataValues;;
+                    }
                 }
-                resolve({
-                    json: data
+                Promise.all([promise(1, CityId), promise(2, CityId), promise(3, CityId)]).then(function () {
+                    resolve({
+                        json: data
+                    })
                 })
+
             } catch (err) {
                 console.log(err);
                 reject(err);
@@ -33,11 +41,12 @@ module.exports = {
         })
     },
 
-    randomHotel: async () => { //subCategory
+    randomHotel: async ({
+        CityId
+    }) => { //subCategory
         return new Promise(async (resolve, reject) => {
             const data = [];
             let i = 0;
-            let j
             try {
                 const promise = async (
                     subCategory,
@@ -56,7 +65,7 @@ module.exports = {
                         data[i] = cate[random].dataValues;;
                     }
                 }
-                Promise.all([promise(2, 1), promise(3, 1), promise(4, 1), promise(5, 1)]).then(function () {
+                Promise.all([promise(2, CityId), promise(3, CityId), promise(4, CityId), promise(5, CityId)]).then(function () {
                     resolve({
                         json: data
                     })

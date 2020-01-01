@@ -1,7 +1,7 @@
 const Median = require('../module/median');
 
 const cityId = 1;
-Median.hotelRead({
+Median.foodRead({
     cityId,
     })
     .then(({
