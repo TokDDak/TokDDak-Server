@@ -69,13 +69,9 @@ module.exports = {
                         return;
                     }
                      result = await jwt.sign(dummy); //토큰발급 
-                     
-
-
                 }
                 catch(err)
                 {
-                    
                     reject({
                         json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR)
                     });
@@ -87,6 +83,32 @@ module.exports = {
                     
                 });
             })
-
+        },
+        update: ({
+            email,
+            nickname,
+            img,
+            password
+        })=>{
+            return new Promise(async(resolve, reject)=>{
+                let user;
+                try{
+                    user = await User.update({
+                        email : email,
+                        nickname : nickname,
+                        img : img,
+                        password : password
+                    });
+                } catch(error)
+                {
+                    reject({
+                        json : utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR)
+                    });
+                }
+                resolve({
+                    json : utils.successTrue(sc.SUCCESS, "프로필수정 성공", user)
+                })
+            })
         }
+        
     }

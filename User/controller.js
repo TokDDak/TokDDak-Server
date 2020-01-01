@@ -67,6 +67,26 @@ module.exports = {
             res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
         })
 
+    },
+    // token 확인 
+    update : async(req,res)=>{
+        const {
+            email,
+            nickname,
+            password
+        } = req.body;
+        const img = req.file.location;
+        if(!email || !nickname || !password || !img){
+            const missParameters = Object.entries({
+                email,
+                nickname,
+                password,
+                img
+            })
+            .filter(it => it[1] == undefined).map(it => it[0]).join(',');
+        res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
+        return;
+        }
     }
 
 

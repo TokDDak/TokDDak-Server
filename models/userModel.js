@@ -17,7 +17,11 @@ module.exports = (sequelize, DataTypes) => {
         salt:{
             type: DataTypes.STRING(200),
             allowNull: false,
-        }
+        },
+        img: {
+            type: DataTypes.STRING(200),
+            allowNull: true,
+        },
     }, {
         freezeTableName: true,
         timestamps: false,
