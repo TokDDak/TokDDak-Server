@@ -1,6 +1,7 @@
 const rm = require('../module/util/responseMessage');
 const utils = require('../module/util/utils');
 const sc = require('../module/util/statusCode');
+const moment = require('moment');
 
 const {Trip} = require('../models');
 
@@ -105,20 +106,34 @@ module.exports = {
             });
         });
     },
-    initCreate: ({
+    create: ({
         title,
         start,
         end,
+        activityBudget,
+        hotelBudget,
+        foodBudget,
+        shoppingBudget,
+        snackBudget,
+        transportBudget,
         CityId
     }) => {
         return new Promise(async (resolve, reject) => {
             let trip;
+            console.log(typeof moment(start));
             try {
                 trip = await Trip.create({
                     title : title,
-                    start : start,
-                    end : end,
-                    CityId : CityId
+                    start : moment(start),
+                    end : moment(end),
+                    destination: CityId,
+                    activityBudget: activityBudget,
+                    hotelBudget: hotelBudget,
+                    foodBudget: foodBudget,
+                    shoppingBudget: shoppingBudget,
+                    snackBudget: snackBudget,
+                    transportBudget: transportBudget,
+                    totalDay: moment(end).diff(moment(start), 'days'),
                 });
                 
             } catch (error) {
@@ -128,156 +143,6 @@ module.exports = {
             }
             resolve({
                 json: utils.successTrue(sc.SUCCESS, rm.TRIP_CREATE_SUCCESS, trip)
-            });
-        });
-    },
-    hotelUpdate: ({
-        TripId,
-        totalCost
-    }) => {
-        return new Promise(async (resolve, reject) => {
-            let trip;
-            try {
-                trip = await Trip.update({
-                    hotelBudget: totalCost
-                }, {
-                    where: {
-                    id: TripId,
-                    },
-                });
-                
-            } catch (error) {
-                reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_HOTELBUDGET_UPDATE_FAIL)
-                });
-            }
-            resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIP_HOTELBUDGET_UPDATE_SUCCESS, trip)
-            });
-        });
-    },
-    foodUpdate: ({
-        TripId,
-        totalCost
-    }) => {
-        return new Promise(async (resolve, reject) => {
-            let trip;
-            try {
-                trip = await Trip.update({
-                    foodBudget: totalCost
-                }, {
-                    where: {
-                        id: TripId,
-                    }
-                });
-                
-            } catch (error) {
-                reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_FOODBUDGET_UPDATE_FAIL)
-                });
-            }
-            resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIP_FOODBUDGET_UPDATE_SUCCESS, trip)
-            });
-        });
-    },
-    activityUpdate: ({
-        TripId,
-        totalCost
-    }) => {
-        return new Promise(async (resolve, reject) => {
-            let trip;
-            try {
-                trip = await Trip.update({
-                    activityBudget: totalCost
-                }, {
-                    where: {
-                        id: TripId,
-                    }
-                });
-                
-            } catch (error) {
-                reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_ACTIVITYBUDGET_UPDATE_FAIL)
-                });
-            }
-            resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIP_ACTIVITYBUDGET_UPDATE_SUCCESS, trip)
-            });
-        });
-    },
-    transportUpdate: ({
-        TripId,
-        totalCost
-    }) => {
-        return new Promise(async (resolve, reject) => {
-            let trip;
-            try {
-                trip = await Trip.update({
-                    tansportBudget: totalCost
-                }, {
-                    where: {
-                        id: TripId,
-                    }
-                });
-                
-            } catch (error) {
-                reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_TRANSPORTBUDGET_UPDATE_FAIL)
-                });
-            }
-            resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIP_TRANSPORTBUDGET_UPDATE_SUCCESS, trip)
-            });
-        });
-    },
-    shoppingUpdate: ({
-        TripId,
-        totalCost
-    }) => {
-        return new Promise(async (resolve, reject) => {
-            let trip;
-            try {
-                trip = await Trip.update({
-                    shoppingBudget: totalCost
-                }, {
-                    where: {
-                        id: TripId,
-                    }
-                });
-                
-            } catch (error) {
-                reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_SHOPPINGBUDGET_UPDATE_FAIL)
-                });
-            }
-            resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIP_SHOPPINGBUDGET_UPDATE_SUCCESS, trip)
-            });
-        });
-    },
-    snackUpdate: ({
-        TripId,
-        totalCost
-    }) => {
-        return new Promise(async (resolve, reject) => {
-            let trip;
-            try {
-                trip = await Trip.update({
-                    snackBudget: totalCost
-                }, {
-                    where: {
-                        id: TripId,
-                    }
-                });
-                
-            } catch (error) {
-                reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_SNACKBUDGET_UPDATE_FAIL)
-                });
-            }
-            resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIP_SNACKBUDGET_UPDATE_SUCCESS, trip)
             });
         });
     },

@@ -57,163 +57,43 @@ module.exports = {
                 res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
     },
-    initCreate: async (req, res) => {
+    create: async (req, res) => {
         const {
             title,
             start,
-            end
+            end,
+            activityBudget,
+            hotelBudget,
+            foodBudget,
+            shoppingBudget,
+            snackBudget,
+            transportBudget,
         } = req.body;
         const {
             CityId
         } = req.params;
+        console.log(CityId, title, start, end);
         if (!CityId || !title || !start || !end) {
             const missParameters = Object.entries({
                     title,
                     start,
                     end,
-                    CityId
+                    CityId,
                 })
                 .filter(it => it[1] == undefined).map(it => it[0]).join(',');
             res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
             return;
         }
-        TripService.initCreate({
+        TripService.create({
                 title,
                 start,
                 end,
-                CityId
-            })
-            .then(({
-                    json
-                }) =>
-                res.send(json)
-            ).catch(err => {
-                console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
-            })
-    },
-    hotelUpdate: async (req, res) => {
-        const {
-            totalCost // Trip - hotelBudget에 저장
-        } = req.body;
-        const {
-            TripId
-        } = req.params;
-        if (!TripId || !totalCost) {
-            const missParameters = Object.entries({
-                totalCost,
-                TripId
-            })
-            .filter(it => it[1] == undefined).map(it => it[0]).join(',');
-        res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
-        return;
-        }
-        TripService.hotelUpdate({
-                TripId,
-                totalCost
-            })
-            .then(({
-                    json
-                }) =>
-                res.send(json)
-            ).catch(err => {
-                console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
-            })
-    },
-    foodUpdate: async (req, res) => {
-        const {
-            totalCost // Trip - foodBudget에 저장
-        } = req.body;
-        const {
-            TripId
-        } = req.params;
-        if (!CityId) {
-            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
-            return;
-        }
-        TripService.foodUpdate({
-                TripId,
-                totalCost
-            })
-            .then(({
-                    json
-                }) =>
-                res.send(json)
-            ).catch(err => {
-                console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
-            })
-    },
-    activityUpdate: async (req, res) => {
-        const {
-            CityId
-        } = req.params;
-        if (!CityId) {
-            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
-            return;
-        }
-        TripService.read({
-                CityId
-            })
-            .then(({
-                    json
-                }) =>
-                res.send(json)
-            ).catch(err => {
-                console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
-            })
-    },
-    transportUpdate: async (req, res) => {
-        const {
-            CityId
-        } = req.params;
-        if (!CityId) {
-            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
-            return;
-        }
-        TripService.read({
-                CityId
-            })
-            .then(({
-                    json
-                }) =>
-                res.send(json)
-            ).catch(err => {
-                console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
-            })
-    },
-    shoppingUpdate: async (req, res) => {
-        const {
-            CityId
-        } = req.params;
-        if (!CityId) {
-            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
-            return;
-        }
-        TripService.read({
-                CityId
-            })
-            .then(({
-                    json
-                }) =>
-                res.send(json)
-            ).catch(err => {
-                console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
-            })
-    },
-    snackUpdate: async (req, res) => {
-        const {
-            CityId
-        } = req.params;
-        if (!CityId) {
-            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
-            return;
-        }
-        TripService.read({
+                activityBudget,
+                hotelBudget,
+                foodBudget,
+                shoppingBudget,
+                snackBudget,
+                transportBudget,
                 CityId
             })
             .then(({
