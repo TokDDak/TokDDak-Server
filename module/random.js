@@ -8,22 +8,29 @@ module.exports = {
         return new Promise(async(resolve, reject)=>{
             const data = [];
             try{
-                grade1 = await Food.findAll({
+                foodbyGrade = await Food.findAll({
                     where : {
                         grade : grade,
                         CityId : CityId
                     }
                 });
-                console.log(grade1.length);
+                console.log(foodbyGrade.length);
                 var arrId = new Array();
-                for(var i=0; i<grade1.length; i++) {
-                    arrId[i] = grade1[i].id;
+                for(var i=0; i<foodbyGrade.length; i++) {
+                    arrId[i] = foodbyGrade[i].id;
                 }
               
                 for(var i=0; i<3 ; i++)
                 {
-                    random = Math.floor(Math.random()*(grade1.length - 0));
-                    data[i] = grade1[random];
+                    random = Math.floor(Math.random()*(foodbyGrade.length - 0));
+                    //data[i] = grade1[random];
+                    for(var j =0;j<foodbyGrade.length; j++)
+                    {
+                        if(foodbyGrade[j].id == arrId[random])
+                        {
+                            data[i] = foodbyGrade[j];
+                        }
+                    }
                 }
                 resolve({
                     json : utils.successTrue(data)
