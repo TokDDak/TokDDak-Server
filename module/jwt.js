@@ -11,12 +11,12 @@ const options = {
 module.exports = {
     sign: (user) => {
         const payload = { 
-            id : user.id,
-            pwd : user.pwd
+            email : user.email,
+            password : user.password
         };
         const result = {
-            token: jwt.sign(payload, secretOrPrivateKey, options),
-            refreshToken: randToken.uid(256)
+            token: jwt.sign(payload, secretOrPrivateKey),
+          //  refreshToken: randToken.uid(256)
         };
         return result;
     },
@@ -24,7 +24,9 @@ module.exports = {
         let decoded;
         try {
             decoded = jwt.verify(token, secretOrPrivateKey);
+            console.log("de : ", decoded)
         } catch (err) {
+            console.log("err : ", err.message)
             if (err.message === 'jwt expired') {
                 console.log('expired token');
                 return -3;
@@ -36,7 +38,9 @@ module.exports = {
                 return -2;
             }
         }
+        console.log("dkdk: ",decoded)
         return decoded;
+        
     },
     refresh: (user) => {
         const payload = {

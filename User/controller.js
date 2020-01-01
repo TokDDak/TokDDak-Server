@@ -76,6 +76,7 @@ module.exports = {
             password
         } = req.body;
         const img = req.file.location;
+        console.log("값받아왔다");
         if(!email || !nickname || !password || !img){
             const missParameters = Object.entries({
                 email,
@@ -87,6 +88,19 @@ module.exports = {
         res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
         return;
         }
+        UserService.update({
+            email,
+            nickname,
+            password,
+            img
+        })
+        .then(({
+            json
+        })=> res.send(json))
+        .catch(err=>{
+            console.log("err:",err)
+            res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, "update실패"))
+        })
     }
 
 
