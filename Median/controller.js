@@ -12,7 +12,7 @@ module.exports = {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
-        ShopService.hotelRead({CityId})
+        ShopService.read({CityId})
         .then(({
             json
         }) => 

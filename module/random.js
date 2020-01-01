@@ -1,32 +1,25 @@
-const {Food} = require('../models');
-const {Hotel} = require('../models');
+const { Food, Hotel } = require('../models');
 
 module.exports = {
-   
-    
-    randomFood : async(grade,CityId)=> { //grade 1,2,3은 내가 넣는대로 
+    randomFood : async ({grade,CityId})=> { //grade 1,2,3은 내가 넣는대로 
         return new Promise(async(resolve, reject)=>{
             const data = [];
             try{
-                grade1 = await Food.findAll({
+                foodbyGrade = await Food.findAll({
                     where : {
                         grade : grade,
                         CityId : CityId
-                    }
+                    },
+                    attributes: ['id', 'name', 'grade', 'cost'],
                 });
-                console.log(grade1.length);
-                var arrId = new Array();
-                for(var i=0; i<grade1.length; i++) {
-                    arrId[i] = grade1[i].id;
-                }
-              
-                for(var i=0; i<3 ; i++)
+                const len = foodbyGrade.length;              
+                for(let i=0; i<3 ; i++)
                 {
-                    random = Math.floor(Math.random()*(grade1.length - 0));
-                    data[i] = grade1[random];
+                    random = Math.floor(Math.random()*(len - 0));
+                    data[i] = foodbyGrade[random].dataValues;
                 }
                 resolve({
-                    json : utils.successTrue(data)
+                    json : data
                 })
             }catch(err){
                 console.log(err);
@@ -35,7 +28,7 @@ module.exports = {
         })
     },
     
-    randomHotel : async(subCategory,CityId)=> { //subCategory
+    randomHotel : async({subCategory,CityId})=> { //subCategory
         return new Promise(async(resolve, reject)=>{
             const data = [];
             try{
@@ -43,21 +36,21 @@ module.exports = {
                     where : {
                         subCategory : subCategory,
                         CityId : CityId
-                    }
+                    },
+                    attributes: ['name', 'subCategory', 'cost'],
                 });
-                console.log(cate.length);
-                var arrId = new Array();
-                for(var i=0; i<cate.length; i++) {
+                let arrId = new Array();
+                for(let i=0; i<cate.length; i++) {
                     arrId[i] = cate[i].id;
                 }
               
-                for(var i=0; i<3 ; i++)
+                for(let i=0; i<3 ; i++)
                 {
                     random = Math.floor(Math.random()*(cate.length - 0));
-                    data[i] = cate[random];
+                    data[i] = cate[random].dataValues;;
                 }
                 resolve({
-                    json : utils.successTrue(data)
+                    json : data
                 })
             }catch(err){
                 console.log(err);

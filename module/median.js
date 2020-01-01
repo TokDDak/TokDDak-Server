@@ -4,14 +4,14 @@ const {
 
 module.exports = {
     read: async ({
-        CityId,
+        cityId,
         grade
     }) => {
         return new Promise(async (resolve, reject) => {
             try {
                 const median = await Median.findOne({
                     where: {
-                        id: CityId,
+                        cityId: cityId,
                         category: grade,
                     },
                 })
