@@ -86,11 +86,11 @@ module.exports = {
         ShopService.delete({id})
         .then(({
             json
-        }) => 
-            res.send(json)
+        }) => res.send(json)
         ).catch(err => {
             console.log(err);
-            res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+            res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR)); // 여기서 걸리는데,,,
+        
         })
     },
 }

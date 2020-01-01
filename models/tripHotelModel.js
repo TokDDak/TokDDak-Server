@@ -1,18 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define('TripHotel', {
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
+        grade: {
+            type: DataTypes.STRING(30),
+            allowNull : false,
         },
-        totalCost: { // 총 경비
+        cost : { // 비용
             type: DataTypes.INTEGER,
             allowNull : false,
         },
-        number : { // 횟수
-            type: DataTypes.INTEGER,
-            allowNull : false,
-        },
+
     }, {
         freezeTableName: true,
         timestamps: false,

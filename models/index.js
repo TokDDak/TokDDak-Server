@@ -19,12 +19,11 @@ db.Transport = require('./transportModel')(sequelize, Sequelize);
 db.Trip = require('./tripModel')(sequelize, Sequelize);
 db.TripActivity = require('./tripActivityModel')(sequelize, Sequelize);
 db.TripFood = require('./tripFoodModel')(sequelize, Sequelize);
-db.TripShopping = require('./tripShoppingModel')(sequelize, Sequelize);
 db.TripSnack = require('./tripSnackModel')(sequelize, Sequelize);
 db.TripHotel = require('./tripHotelModel')(sequelize, Sequelize);
-db.TripTransport = require('./tripTransportModel')(sequelize, Sequelize);
 db.Schedule = require('./scheduleModel')(sequelize, Sequelize);
 db.Plan = require('./planModel')(sequelize, Sequelize);
+db.Median = require('./medianModel')(sequelize,Sequelize);
 db.User = require('./userModel')(sequelize, Sequelize);
 /** 1:N City : Activity */
 db.City.hasMany(db.Activity);
@@ -50,41 +49,42 @@ db.Hotel.belongsTo(db.City);
 db.City.hasMany(db.Transport);
 db.Transport.belongsTo(db.City);
 
-/** N:M Trip : Activity */
-db.Trip.belongsToMany(db.Activity, {  through : db.TripActivity});
-db.Activity.belongsToMany(db.Trip, { through : db.TripActivity});
-
-/** N:M Trip : Hotel */
-db.Trip.belongsToMany(db.Hotel, {  through : db.TripHotel});
-db.Hotel.belongsToMany(db.Trip, {  through : db.TripHotel
+/** 1:N Trip : TripActivity */
+db.Trip.hasMany(db.TripActivity, {
+  onDelete: 'cascade'
 });
+db.TripActivity.belongsTo(db.Trip);
 
-/** N:M Trip : Food */
-db.Trip.belongsToMany(db.Food, { through : db.TripFood,
+/** 1:N Trip : TripHotel */
+db.Trip.hasMany(db.TripHotel, {
+  onDelete: 'cascade'
 });
-db.Food.belongsToMany(db.Trip, { through : db.TripFood,
-});
+db.TripHotel.belongsTo(db.Trip);
 
-/** N:M Trip : Shopping */
-db.Trip.belongsToMany(db.Shopping, { through : db.TripShopping,});
-db.Shopping.belongsToMany(db.Trip, { through : db.TripShopping,
+/** 1:N Trip : TripFood */
+db.Trip.hasMany(db.TripFood, {
+  onDelete: 'cascade'
 });
+db.TripFood.belongsTo(db.Trip);
 
-/** N:M Trip : Snack */
-db.Trip.belongsToMany(db.Snack, { through : db.TripSnack});
-db.Snack.belongsToMany(db.Trip, { through : db.TripSnack,
+/** 1:N Trip : TripSnack */
+db.Trip.hasMany(db.TripSnack, {
+  onDelete: 'cascade'
 });
+db.TripSnack.belongsTo(db.Trip);
 
-/** N:M Trip : Transport */
-db.Trip.belongsToMany(db.Transport, {  through : db.TripTransport});
-db.Transport.belongsToMany(db.Trip, {  through : db.TripTransport});
+// Shopping이랑 Transport는 사용자가 금액을 입력하므로 따로 1:N 테이블을 만들지 않는다.
 
 /** 1:N Trip : Schedule */
-db.Trip.hasMany(db.Schedule);
+db.Trip.hasMany(db.Schedule, {
+  onDelete: 'cascade'
+});
 db.Schedule.belongsTo(db.Trip);
 
 /** 1:N Trip : Plan */
-db.Trip.hasMany(db.Plan);
+db.Trip.hasMany(db.Plan, {
+  onDelete: 'cascade'
+});
 db.Plan.belongsTo(db.Trip);
 
 module.exports = db;

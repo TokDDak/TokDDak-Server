@@ -117,14 +117,29 @@ module.exports = {
     },
     delete: ({id}) => {
         return new Promise(async (resolve, reject) => {
-            try {
-                city = await City.destroy({
+            try{
+                city = await City.findAll({
                     where:{
                         id:id
                     }
+                })
+                if(city.length == 0)
+                {
+                    resolve({
+                        json : utils.successFalse(sc.NO_CONTENT, rm.CITY_EMPTY)
+                    });
+                    return;
+                }
+                console.log(city.length);
+                city = await City.destroy({
+                    where:{
+                        id : id
+                    }
                 });
+            }
                 
-            } catch (error) {
+                
+            catch (error) {
                 reject({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.CITY_DELETE_FAIL)
                 });

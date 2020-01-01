@@ -25,15 +25,20 @@ router.get('/ed', tripController.trippedRead);
 /**
  * 
  */
-router.post('', tripController.initCreate);
+router.post('/', tripController.initCreate);
 router.put('/hotel', tripController.hotelUpdate);
 router.put('/food', tripController.foodUpdate);
 router.put('/activity', tripController.activityUpdate);
 router.put('/transport', tripController.transportUpdate);
 router.put('/shopping', tripController.shoppingUpdate);
 router.put('/snack', tripController.snackUpdate);
+/**
+ * status 값 바꾸기
+ */
+router.put('/ing',tripController.trippingUpdate);
+router.put('/ed',tripController.trippedUpdate);
 
-router.delete('', tripController.allDelete);
+router.delete('/', tripController.allDelete);
 router.delete('/hotel', tripController.hotelDelete);
 router.delete('/food', tripController.foodDelete);
 router.delete('/activity', tripController.activityDelete);

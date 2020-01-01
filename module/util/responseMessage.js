@@ -39,7 +39,7 @@ module.exports = {
   ACTIVITY_UPDATE_SUCCESS : "ACTIVITY UPDATE 성공",
   ACTIVITY_DELETE_FAIL : "ACTIVITY DELETE 실패",
   ACTIVITY_DELETE_SUCCESS : "ACTIVITY DELETE 성공",
-  ACTIVITY_EMPTY : "존재하는 ACTIVITY가 없습니다",
+  ACTIVITY_EMPTY : "ACTIVITY가 없습니다",
 
 
   /* Food */
@@ -51,7 +51,7 @@ module.exports = {
   FOOD_UPDATE_SUCCESS : "FOOD UPDATE 성공",
   FOOD_DELETE_FAIL : "FOOD DELETE 실패",
   FOOD_DELETE_SUCCESS : "FOOD DELETE 성공",
-  FOOD_EMPTY : "존재하는 FOOD가 없습니다",
+  FOOD_EMPTY : "FOOD가 없습니다",
  
   /* Hotel */
   HOTEL_READ_CITYID_FAIL : "CityId에 해당하는 HOTEL 조회 실패",
@@ -62,7 +62,7 @@ module.exports = {
   HOTEL_UPDATE_SUCCESS : "HOTEL UPDATE 성공",
   HOTEL_DELETE_FAIL : "HOTEL DELETE 실패",
   HOTEL_DELETE_SUCCESS : "HOTEL DELETE 성공",
-  HOTEL_EMPTY : "존재하는 HOTEL가 없습니다",
+  HOTEL_EMPTY : "HOTEL가 없습니다",
 
   /* Shopping */
   SHOPPING_READ_CITYID_FAIL : "CityId에 해당하는 SHOPPING 조회 실패",
@@ -73,8 +73,8 @@ module.exports = {
   SHOPPING_UPDATE_SUCCESS : "SHOPPING UPDATE 성공",
   SHOPPING_DELETE_FAIL : "SHOPPING DELETE 실패",
   SHOPPING_DELETE_SUCCESS : "SHOPPING DELETE 성공",
-  SHOPPING_EMPTY : "존재하는 SHOPPING가 없습니다",
-
+  SHOPPING_EMPTY : "SHOPPING가 없습니다",
+  
   /* Snack */
   SNACK_READ_CITYID_FAIL : "CityId에 해당하는 SNACK 조회 실패",
   SNACK_READ_CITYID_SUCCESS : "CityId 해당하는 SNACK 조회 성공",
@@ -84,7 +84,7 @@ module.exports = {
   SNACK_UPDATE_SUCCESS : "SNACK UPDATE 성공",
   SNACK_DELETE_FAIL : "SNACK DELETE 실패",
   SNACK_DELETE_SUCCESS : "SNACK DELETE 성공",
-  SNACK_EMPTY : "존재하는 SNACK가 없습니다",
+  SNACK_EMPTY : "SNACK가 없습니다",
 
   /* Snack */
   TRANSPORT_READ_CITYID_FAIL : "CityId에 해당하는 TRANSPORT 조회 실패",
@@ -95,7 +95,7 @@ module.exports = {
   TRANSPORT_UPDATE_SUCCESS : "TRANSPORT UPDATE 성공",
   TRANSPORT_DELETE_FAIL : "TRANSPORT DELETE 실패",
   TRANSPORT_DELETE_SUCCESS : "TRANSPORT DELETE 성공",
-  TRANSPORT_EMPTY : "존재하는 TRANSPORT가 없습니다",
+  TRANSPORT_EMPTY : "TRANSPORT가 없습니다",
 
   /* Blog */
   ALREADY_HOST: "존재하는 HOST 이름입니다.",

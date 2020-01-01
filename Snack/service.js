@@ -85,14 +85,25 @@ module.exports = {
         id
     }) => {
         return new Promise(async (resolve, reject) => {
-            let snack;
-            try {
+            try{
+                snack = await Snack.findAll({
+                    where:{
+                        id:id
+                    }
+                })
+                if(snack.length == 0)
+                {
+                    resolve({
+                        json : utils.successFalse(sc.NO_CONTENT, rm.SNACK_EMPTY)
+                    });
+                    return;
+                }
+                console.log(snack.length);
                 snack = await Snack.destroy({
-                    where: {
-                        id: id
+                    where:{
+                        id : id
                     }
                 });
-
             } catch (error) {
                 reject({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.SNACK_DELETE_FAIL)

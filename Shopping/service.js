@@ -80,21 +80,34 @@ module.exports = {
     },
     delete: ({id}) => {
         return new Promise(async (resolve, reject) => {
-            let shopping;
-            try {
+            try{
+                shopping = await Shopping.findAll({
+                    where:{
+                        id:id
+                    }
+                })
+                if(shopping.length == 0)
+                {
+                    resolve({
+                        json : utils.successFalse(sc.NO_CONTENT, rm.SHOPPING_EMPTY)
+                    });
+                    return;
+                }
+                console.log(shopping.length);
                 shopping = await Shopping.destroy({
                     where:{
-                        id: id
+                        id : id
                     }
                 });
-                
-            } catch (error) {
-                reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.SHOPPING_DELETE_FAIL)
-                });
             }
+            catch(error)
+            {
+                reject({
+                    json : utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.SHOPPING_DELETE_FAIL)
+                });
+            }   
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.SHOPPING_DELETE_SUCCESS)
+                json: utils.successTrue(sc.SUCCESS, rm.CITY_DELETE_SUCCESS)
             });
         });
     },
