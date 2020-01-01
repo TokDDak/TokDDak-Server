@@ -9,7 +9,7 @@ module.exports = {
         const {
             CityId
         } = req.params; //*
-      
+
         if (!CityId) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
@@ -53,7 +53,7 @@ module.exports = {
             res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
             return;
         }
-        
+
         ActivityService.create({
                 name,
                 cost,
@@ -120,13 +120,13 @@ module.exports = {
         const {
             id
         } = req.body;
-       
+
         if (!id) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
         ActivityService.delete({
-            id
+                id
             })
             .then(({
                     json
