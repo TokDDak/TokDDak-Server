@@ -1,7 +1,7 @@
 const jwt = require('./jwt');
-const resMessage = require('../utils/responseMessage');
-const statusCode = require('../utils/statusCode');
-const util = require('../utils/utils');
+const resMessage = require('./util/responseMessage');
+const statusCode = require('./util/statusCode');
+const util = require('./util/utils');
 
 const middleware = {
     
