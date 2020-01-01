@@ -97,6 +97,12 @@ module.exports = {
   TRANSPORT_DELETE_SUCCESS : "TRANSPORT DELETE 성공",
   TRANSPORT_EMPTY : "TRANSPORT가 없습니다",
 
+  /* Exchange */
+  EXCHANGE_TOKRW_SUCCESS : "KRW로 변환 성공",
+  EXCHANGE_TOKRW_FAIL : "KRW로 변환 실패",
+  EXCHANGE_FROMKRW_SUCCESS : "KRW에서 변환 성공",
+  EXCHANGE_FROMKRW_FAIL : "KRW에서 변환 실패",
+
   /* Blog */
   ALREADY_HOST: "존재하는 HOST 이름입니다.",
   ALREADY_BLOG: "존재하는 블로그입니다.",
