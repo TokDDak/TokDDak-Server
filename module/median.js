@@ -172,7 +172,7 @@ module.exports = {
                     const obj = new Object();
                     obj.category = bmp.category;
                     console.log("bmp.cost ",bmp.cost);
-                    obj.cost = (ex*bmp.cost).toFixed(0)
+                    obj.cost = parseInt((ex*bmp.cost).toFixed(0));
                     obj.url = bmp.urlFood
                     result.push(obj);
                 }
@@ -221,8 +221,8 @@ module.exports = {
                     obj.category = bmp.category;
                     //  obj.cost = bmp.cost;
                     console.log("bmp.cost ", bmp.cost);
-                    obj.cost = (ex*bmp.cost).toFixed(0)
-                    obj.url = bmp.urlHotel
+                    obj.cost = parseInt((ex*bmp.cost).toFixed(0));
+                    obj.url = bmp.urlHotel;
                     obj.info = [];
                     result.push(obj);
                 }
@@ -287,7 +287,8 @@ module.exports = {
                 obj.category = bmp.category;
                 //  obj.cost = bmp.cost;
                 console.log("bmp.cost ", bmp.cost);
-                obj.cost = (ex*bmp.cost).toFixed(0)
+                obj.cost = parseInt((ex*bmp.cost).toFixed(0))
+                console.log(obj.cost);
                 obj.url = bmp.urlHotel
                 obj.info = [];
                 result.push(obj);
