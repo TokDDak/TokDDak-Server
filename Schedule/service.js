@@ -11,16 +11,19 @@ module.exports = {
         day, // 받은 파라미터
         cost,
         category,
-        content
+        content,
+        TripId
     }) => {
         return new Promise(async (resolve, reject) => {
             let schedule;
             try {
+                console.log("TripId: ", TripId);
                 schedule = await Schedule.create({
                     day: day, // 좌측 = 디비필드, 우측 = 위의 파라미터.
                     cost: cost, // 좌측의 디비에 파라미터 값을 넣는다.
                     category: category,
-                    content: content
+                    content: content,
+                    TripId: TripId
                 });
             } catch (error) {
                 reject({ // 실패시 json 반환.
@@ -58,6 +61,35 @@ module.exports = {
             });
         });
     },
+    readByDay: ({
+        inputParam
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            const TripId = inputParam.TripIdAndDay.TripId;
+            const day = inputParam.TripIdAndDay.day;
+            const scheduleByDay = await Schedule.findAll({
+                where: {
+                    TripId: TripId,
+                    day: day
+                }
+            });
+            if (scheduleByDay.length == 0) {
+                resolve({
+                    json: utils.successFalse(sc.NO_CONTENT, rm.SCHEDULE_EMPTY)
+                });
+                return;
+            }
+            if (!scheduleByDay) {
+                resolve({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.SCHEDULE_READ_DAY_FAIL)
+                });
+                return;
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, rm.SCHEDULE_READ_DAY_SUCCESS, scheduleByDay)
+            });
+        });
+    },
     // update: ({
     //     id,
     //     cost,
@@ -83,36 +115,36 @@ module.exports = {
     //         });
     //     });
     // },
-    delete: ({
-        id
-    }) => {
-        return new Promise(async (resolve, reject) => {
-            try {
-                schedule = await Schedule.findAll({
-                    where: {
-                        id: id
-                    }
-                })
-                if (schedule.length == 0) {
-                    resolve({
-                        json: utils.successFalse(sc.NO_CONTENT, rm.SCHEDULE_EMPTY)
-                    });
-                    return;
-                }
-                console.log(schedule.length);
-                schedule = await Schedule.destroy({
-                    where: {
-                        id: id
-                    }
-                });
-            } catch (error) {
-                reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.SCHEDULE_DELETE_FAIL)
-                });
-            }
-            resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.SCHEDULE_DELETE_SUCCESS)
-            });
-        });
-    },
+    // delete: ({
+    //     id
+    // }) => {
+    //     return new Promise(async (resolve, reject) => {
+    //         try {
+    //             schedule = await Schedule.findAll({
+    //                 where: {
+    //                     id: id
+    //                 }
+    //             })
+    //             if (schedule.length == 0) {
+    //                 resolve({
+    //                     json: utils.successFalse(sc.NO_CONTENT, rm.SCHEDULE_EMPTY)
+    //                 });
+    //                 return;
+    //             }
+    //             console.log(schedule.length);
+    //             schedule = await Schedule.destroy({
+    //                 where: {
+    //                     id: id
+    //                 }
+    //             });
+    //         } catch (error) {
+    //             reject({
+    //                 json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.SCHEDULE_DELETE_FAIL)
+    //             });
+    //         }
+    //         resolve({
+    //             json: utils.successTrue(sc.SUCCESS, rm.SCHEDULE_DELETE_SUCCESS)
+    //         });
+    //     });
+    // },
 };

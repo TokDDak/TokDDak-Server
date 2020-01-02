@@ -1,5 +1,7 @@
 const express = require('express');
-const router = express.Router({mergeParams: true});
+const router = express.Router({
+    mergeParams: true
+});
 
 router.use('/citys', require('./citys'));
 router.use('/users', require('./users'));
@@ -10,4 +12,6 @@ router.use('/users', require('./users'));
 // router.use('/tripFood',require('./tripFood'));
 // router.use('/tripSnack',require('./tripSnack'));
 
-module.exports = router;    
+router.use('/schedules', require('./schedules'));
+
+module.exports = router;

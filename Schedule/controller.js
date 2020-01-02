@@ -9,12 +9,10 @@ module.exports = {
             day, // 받은 파라미터
             cost,
             category,
-            content
-        } = req.body;
-        const {
+            content,
             TripId
-        } = req.params;
-        if (!day || !cost || !category || !content) {
+        } = req.body;
+        if (!day || !cost || !category || !content || !TripId) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
@@ -37,12 +35,36 @@ module.exports = {
         const {
             TripId
         } = req.params;
+        console.log(TripId);
         if (!TripId) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
         ScheduleService.read({
                 TripId
+            })
+            .then(({
+                    json
+                }) =>
+                res.send(json)
+            ).catch(err => {
+                console.log(err);
+                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+            })
+    },
+    readByDay: async (req, res) => {
+        const inputParam = {
+            "TripIdAndDay": {
+                "TripId": req.params.TripId,
+                "day": req.params.day
+            }
+        }
+        if (!inputParam.TripIdAndDay.TripId || !inputParam.TripIdAndDay.day) {
+            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
+            return;
+        }
+        ScheduleService.readByDay({
+                inputParam
             })
             .then(({
                     json
@@ -81,23 +103,23 @@ module.exports = {
     //         res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
     //     })
     // },
-    delete: async (req, res) => {
-        const {
-            id
-        } = req.body;
-        if (!id) {
-            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
-            return;
-        }
-        ScheduleService.delete({
-                id
-            })
-            .then(({
-                json
-            }) => res.send(json)).catch(err => {
-                console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR)); // 여기서 걸리는데,,,(?)
+    // delete: async (req, res) => {
+    //     const {
+    //         id
+    //     } = req.body;
+    //     if (!id) {
+    //         res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
+    //         return;
+    //     }
+    //     ScheduleService.delete({
+    //             id
+    //         })
+    //         .then(({
+    //             json
+    //         }) => res.send(json)).catch(err => {
+    //             console.log(err);
+    //             res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR)); // 여기서 걸리는데,,,(?)
 
-            })
-    },
+    //         })
+    // },
 }
