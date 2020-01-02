@@ -25,7 +25,7 @@ module.exports = {
         subCategory
     }) => {
         return new Promise(async (resolve, reject) => {
-            const median = await md.hotelReadiOSex({CityId, subCategory});
+            const median = await md.hotelReadiOS({CityId, subCategory});
             if (!median) {
                 resolve({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.MEDIAN_READ_FAIL)
