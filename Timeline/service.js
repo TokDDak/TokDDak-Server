@@ -100,7 +100,7 @@ module.exports = {
                 if(timeline.length == 0)
                 {
                     resolve({
-                        json : utils.successFalse(sc.NO_CONTENT, rm.TRANSPORT_EMPTY)
+                        json : utils.successFalse(sc.NO_CONTENT, rm.TIMELINE_EMPTY)
                     });
                     return;
                 }
