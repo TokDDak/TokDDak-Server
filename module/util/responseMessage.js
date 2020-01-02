@@ -124,6 +124,17 @@ module.exports = {
   ALREADY_TRIP: "이미 있는 여행 이름입니다",
   ALREADY_TRIPPING: "이미 여행 중입니다",
 
+  /* TripActivity */
+  TRIPACTIVITY_READ_SUCCESS: "여행 중 즐길 액티비티들을 조회했습니다.",
+  TRIPACTIVITY_READ_FAIL: "액티비티 조회에 실패했습니다.",
+  TRIPACTIVITY_CREATE_SUCCESS: "여행 중 즐길 액티비티들을 저장했습니다.",
+  TRIPACTIVITY_CREATE_FAIL: "액티비티 저장에 실패했습니다.",
+  TRIPACTIVITY_UPDATE_SUCCESS: "여행 중 즐길 액티비티들을 변경했습니다.",
+  TRIPACTIVITY_UPDATE_FAIL: "액티비티 변경에 실패했습니다.",
+  TRIPACTIVITY_DELETE_SUCCESS: "여행 중 즐길 액티비티를 삭제했습니다.",
+  TRIPACTIVITY_DELETE_FAIL: "액티비티 삭제에 실패했습니다.", 
+  TRIPACTIVITY_EMPTY: "정보가 없습니다.",
+
   /* TripHotel */
   TRIPHOTEL_READ_SUCCESS: "여행 중 묵을 숙박들을 조회했습니다.",
   TRIPHOTEL_READ_FAIL: "숙박 조회에 실패했습니다.",

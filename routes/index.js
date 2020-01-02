@@ -8,5 +8,6 @@ router.use('/median', require('./median'))
 router.use('/tripHotel',require('./tripHotel'));
 router.use('/tripFood',require('./tripFood'));
 router.use('/tripSnack',require('./tripSnack'));
+router.use('/tripActivity',require('./tripActivity'));
 
 module.exports = router;    

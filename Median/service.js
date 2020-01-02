@@ -16,7 +16,7 @@ module.exports = {
                 return;
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.MEDIAN_READ_SUCCESS, median)
+                json: median
             });
         });
     },

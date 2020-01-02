@@ -38,23 +38,21 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             let TH;
             try {
-                for(let [key, value] of Object.entries(array)) {
-                    for(let [key2, value2] of Object.entries(value)){
-                        console.log(key2, value2);
+                for(var n in array){
                     TH = await TripHotel.create({
-                        grade: key2,
-                        cost: value2, // 미디엄에서 가져오자.
+                        grade: array[n].grade,
+                        cost: array[n].cost, // 미디엄에서 가져오자.
+                        count: array[n].count,
                         TripId: TripId
                     });
-                }
-            };
+                }    
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, "rm.TRIPHOTEL_CREATE_FAIL")
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIPHOTEL_CREATE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, "rm.TRIPHOTEL_CREATE_SUCCESS", TH)
+                json: utils.successTrue(sc.SUCCESS, rm.TRIPHOTEL_CREATE_SUCCESS)
             });
         });
     },
