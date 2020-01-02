@@ -60,15 +60,14 @@ module.exports = {
     },
     hotelReadiOS: async (req, res) => {
         const {
+            CityId,
             subCategory
-        } = req.body;
-        const {
-            CityId
         } = req.params;
-        if(!CityId || !subCategory) {
+        if (!CityId || !subCategory) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
+        console.log("CityId : ",CityId, subCategory);
         MedianService.hotelReadiOS({CityId, subCategory})
         .then(({
             json
