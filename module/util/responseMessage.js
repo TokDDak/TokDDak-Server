@@ -8,6 +8,10 @@ module.exports = {
   NEED_LOGIN: "로그인 필요",
   CANT_ACCESS: "접근할 수 없습니다",
 
+  /* Median */
+  MEDIAN_READ_FAIL :"평균값 조회 실패",
+  MEDIAN_READ_SUCCESS :"평균값 조회 성공",
+
   /* City */
   CITY_EMPTY: "도시가 없습니다",
   CITY_READ_ALL_SUCCESS: "도시 전체 조회 성공",
