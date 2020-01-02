@@ -89,7 +89,7 @@ module.exports = {
                 ) => {
                     cate = await Hotel.findAll({
                         where: {
-                            subCategory: subCategory,
+                            subCategory: 7 - subCategory,
                             CityId: CityId
                         },
                         attributes: ['name', 'cost'],

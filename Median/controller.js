@@ -16,7 +16,7 @@ module.exports = {
         .then(({
             json
         }) => 
-            res.send(json)
+            res.status(200).send(json)
         ).catch(err => {
             console.log(err);
             res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));

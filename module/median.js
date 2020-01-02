@@ -53,7 +53,11 @@ module.exports = {
                             [Op.like]: "%호텔%"
                         },
                         cityId: CityId,
+                        
                     },
+                    order: [
+                        ['id', 'DESC'],
+                    ],
                     attributes: ['cityId', 'category', 'cost', 'urlHotel'],
                 });
                 for (let i = 0; i < 4; i++) {
@@ -70,7 +74,6 @@ module.exports = {
                         json
                     }) => {
                         Promise.all([promise(json, 0, result), promise(json, 3, result), promise(json, 6, result), promise(json, 9, result)]).then(function () {
-                            console.log("result[0] : " , result[0].info);
                             resolve({
                                 result
                             })
