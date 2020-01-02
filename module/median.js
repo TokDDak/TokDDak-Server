@@ -291,7 +291,7 @@ module.exports = {
                 obj.url = bmp.urlHotel
                 obj.info = [];
                 result.push(obj);
-                await Random.randomHoteliOS({
+                await Random.randomHoteliOSex({
                         CityId,
                         subCategory
                     })
