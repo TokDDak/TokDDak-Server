@@ -111,7 +111,8 @@ module.exports = {
   SCHEDULE_DELETE_SUCCESS: "일정 삭제 성공",
   SCHEDULE_DELETE_FAIL: "일정 삭제 실패",
   ALREADY_SCHEDULE: "일정이 존재합니다.",
-  SCHEDULE_EMPTY: "일정이 비어있습니다",
+  TRIP_EMPTY: "TripId에 해당하는 여행이 없습니다",
+  TRIP_AND_DAY_EMPTY: "TripId이나 day에 해당하는 여행이 없습니다",
 
   /* Trip */
   TRIP_READ_SUCCESS: "TRIP ID로 조회 성공",
