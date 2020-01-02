@@ -27,20 +27,20 @@ module.exports = {
     },
     create: async (req, res) => {
         const {
-           name,
-           cost
+            name,
+            cost
         } = req.body;
         const {
-            CityId 
-        }=req.params;
+            CityId
+        } = req.params;
         if (!name || !cost) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
         SnackService.create({
-               name,
-               cost,
-               CityId
+                name,
+                cost,
+                CityId
             })
             .then(({
                     json
@@ -57,7 +57,7 @@ module.exports = {
         } = req.body;
         const {
             CityId
-        }= req.params;
+        } = req.params;
         if (!id || !cost) {
             const missParameters = Object.entries({
                     id,

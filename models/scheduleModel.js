@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define('Schedule', {
-        day: { 
+        day: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
@@ -8,12 +8,12 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        category: { // 숙박, 식사 ... 6개
-            type: DataTypes.STRING(100),
+        category: { // 숙박, 식사, 스낵 앤 주류, 액티비티, 쇼핑, 교통 ... 6개
+            type: DataTypes.STRING(20),
             allowNull: false,
         },
-        content : {
-            type: DataTypes.STRING(200),
+        content: {
+            type: DataTypes.STRING(100),
             allowNull: false,
         }
     }, {
