@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('Schedule', {
-        day: {
+    return sequelize.define('Timeline', {
+        day: { 
             type: DataTypes.INTEGER,
             allowNull: false,
         },
@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        category: { // 숙박, 식사, 스낵 앤 주류, 액티비티, 쇼핑, 교통 ... 6개
-            type: DataTypes.STRING(20),
+        category: { // 카테고리 int로 준대 
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         content: {
@@ -18,9 +18,9 @@ module.exports = (sequelize, DataTypes) => {
         }
     }, {
         freezeTableName: true,
-        timestamps: true,
+        timestamps: false,
     });
 };
-
+/* 지출내역 */
 // id day cost category content tripId
 // trip table에 총일수 필드 추가 : Error 방지
