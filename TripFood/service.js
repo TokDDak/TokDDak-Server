@@ -33,7 +33,7 @@ module.exports = {
         });
     },
     create: ({
-        array,
+        array, // ["일반음식점","간편식","간편식"]
         TripId
     }) => {
         return new Promise(async (resolve, reject) => {

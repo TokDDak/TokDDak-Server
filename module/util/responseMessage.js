@@ -1,13 +1,5 @@
 module.exports = {
 
-  /* Group */
-  MEMBER_READ_ALL_SUCCESS: "멤버 조회 성공",
-  MEMBER_READ_ALL_FAIL: "멤버 조회 실패",
-  GROUP_READ_SUCCESS: "그룹 조회 성공",
-  GROUP_READ_FAIL: "그룹 조회 실패",
-  MEMBER_MIX_SUCCESS: "그룹 섞기 성공",
-  MEMBER_MIX_FAIL: "그룹 섞기 실패",
-
   /* ETC */
   OK: "성공",
   NULL_VALUE: "필요한 값이 없습니다",
@@ -111,6 +103,51 @@ module.exports = {
   ALREADY_SCHEDULE: "일정이 존재합니다.",
   SCHEDULE_EMPTY: "일정이 비어있습니다",
 
+  /* Trip */
+  TRIP_READ_SUCCESS: "TRIP ID로 조회 성공",
+  TRIP_READ_FAIL: "TRIP ID로 조회 실패",
+  TRIP_LIST_READ_SUCCESS: "TRIP 후보 조회 성공",
+  TRIP_LIST_READ_FAIL: "TRIP 후보 조회 실패",
+  TRIPPING_READ_SUCCESS: "여행 중인 TRIP 조회 성공",
+  TRIPPING_READ_FAIL: "여행 중인 TRIP 조회 실패",
+  TRIPPED_READ_SUCCESS: "지난 여행 조회 성공",
+  TRIPPED_READ_FAIL: "지난 여행 조회 실패",
+  TRIP_CREATE_SUCCESS: "여행 예산 짜기 성공",
+  TRIP_CREATE_FAIL: "여행 예산 짜기 실패",
+  TRIPPING_UPDATE_FAIL: "여행 시작이 실패했습니다",
+  TRIPPING_UPDATE_SUCCESS: "여행이 시작되었습니다",
+  TRIPPED_UPDATE_FAIL: "여행 종료가 실패했습니다",
+  TRIPPED_UPDATE_SUCCESS: "여행이 종료되었습니다",
+  TRIP_DELETE_FAIL: "여행 삭제가 실패하였습니다",
+  TRIP_DELETE_SUCCESS: "여행이 삭제되었습니다",
+  TRIP_EMPTY: "여행에 대한 정보가 없습니다",
+  ALREADY_TRIP: "이미 있는 여행 이름입니다",
+  ALREADY_TRIPPING: "이미 여행 중입니다",
+
+  /* TripHotel */
+  TRIPHOTEL_CREATE_SUCCESS: "여행 중 묵을 숙박들을 저장했습니다.",
+  TRIPHOTEL_CREATE_FAIL: "숙박 저장에 실패했습니다.",
+  TRIPHOTEL_UPDATE_SUCCESS: "여행 중 묵을 숙박들을 변경했습니다.",
+  TRIPHOTEL_UPDATE_FAIL: "숙박 변경에 실패했습니다.",
+  TRIPHOTEL_DELETE_SUCCESS: "여행 중 묵을 숙박을 삭제했습니다.",
+  TRIPHOTEL_DELETE_FAIL: "숙박 삭제에 실패했습니다.", 
+
+  /* TripFood */
+  TRIPFOOD_CREATE_SUCCESS: "여행 중 먹을 식사들을 저장했습니다.",
+  TRIPFOOD_CREATE_FAIL: "식사 저장에 실패했습니다.",
+  TRIPFOOD_UPDATE_SUCCESS: "여행 중 먹을 식사들을 변경했습니다.",
+  TRIPFOOD_UPDATE_FAIL: "식사 변경에 실패했습니다.",
+  TRIPFOOD_DELETE_SUCCESS: "여행 중 먹을 식사들을 삭제했습니다.",
+  TRIPFOOD_DELETE_FAIL: "식사 삭제에 실패했습니다.",
+
+  /* TripSnack */
+  TRIPFOOD_CREATE_SUCCESS: "여행 중 먹을 간식들을 저장했습니다.",
+  TRIPFOOD_CREATE_FAIL: "간식 저장에 실패했습니다.",
+  TRIPFOOD_UPDATE_SUCCESS: "여행 중 먹을 간식들을 변경했습니다.",
+  TRIPFOOD_UPDATE_FAIL: "간식 변경에 실패했습니다.",
+  TRIPFOOD_DELETE_SUCCESS: "여행 중 먹을 간식들을 삭제했습니다.",
+  TRIPFOOD_DELETE_FAIL: "간식 삭제에 실패했습니다.",
+  
   /* User */
   ALREADY_EMAIL: "이미 있는 이메일입니다",
   JOIN_SUCCESS: "회원가입 성공",

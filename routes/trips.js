@@ -11,7 +11,7 @@ router.get('/id',tripController.read);
  * 여행 후보인 trip
  * status가 1이면 여행 후보
  * */
-router.get('/', tripController.scheduleRead);
+router.get('/', tripController.preTripRead);
 /**
  * 여행 중인 trip
  * status가 2이면 여행 중
