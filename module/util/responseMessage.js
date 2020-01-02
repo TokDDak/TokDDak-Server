@@ -125,29 +125,38 @@ module.exports = {
   ALREADY_TRIPPING: "이미 여행 중입니다",
 
   /* TripHotel */
+  TRIPHOTEL_READ_SUCCESS: "여행 중 묵을 숙박들을 조회했습니다.",
+  TRIPHOTEL_READ_FAIL: "숙박 조회에 실패했습니다.",
   TRIPHOTEL_CREATE_SUCCESS: "여행 중 묵을 숙박들을 저장했습니다.",
   TRIPHOTEL_CREATE_FAIL: "숙박 저장에 실패했습니다.",
   TRIPHOTEL_UPDATE_SUCCESS: "여행 중 묵을 숙박들을 변경했습니다.",
   TRIPHOTEL_UPDATE_FAIL: "숙박 변경에 실패했습니다.",
   TRIPHOTEL_DELETE_SUCCESS: "여행 중 묵을 숙박을 삭제했습니다.",
   TRIPHOTEL_DELETE_FAIL: "숙박 삭제에 실패했습니다.", 
-
+  TRIPHOTEL_EMPTY: "정보가 없습니다.",
+  
   /* TripFood */
+  TRIPFOOD_READ_SUCCESS: "여행 중 먹을 식사들을 조회했습니다.",
+  TRIPFOOD_READ_FAIL: "식사 조회에 실패했습니다.",
   TRIPFOOD_CREATE_SUCCESS: "여행 중 먹을 식사들을 저장했습니다.",
   TRIPFOOD_CREATE_FAIL: "식사 저장에 실패했습니다.",
   TRIPFOOD_UPDATE_SUCCESS: "여행 중 먹을 식사들을 변경했습니다.",
   TRIPFOOD_UPDATE_FAIL: "식사 변경에 실패했습니다.",
   TRIPFOOD_DELETE_SUCCESS: "여행 중 먹을 식사들을 삭제했습니다.",
   TRIPFOOD_DELETE_FAIL: "식사 삭제에 실패했습니다.",
-
-  /* TripSnack */
-  TRIPFOOD_CREATE_SUCCESS: "여행 중 먹을 간식들을 저장했습니다.",
-  TRIPFOOD_CREATE_FAIL: "간식 저장에 실패했습니다.",
-  TRIPFOOD_UPDATE_SUCCESS: "여행 중 먹을 간식들을 변경했습니다.",
-  TRIPFOOD_UPDATE_FAIL: "간식 변경에 실패했습니다.",
-  TRIPFOOD_DELETE_SUCCESS: "여행 중 먹을 간식들을 삭제했습니다.",
-  TRIPFOOD_DELETE_FAIL: "간식 삭제에 실패했습니다.",
+  TRIPFOOD_EMPTY: "정보가 없습니다.",
   
+  /* TripSnack */
+  TRIPSNACK_READ_SUCCESS: "여행 중 먹을 간식들을 조회했습니다.",
+  TRIPSNACK_READ_FAIL: "간식 조회에 실패했습니다.",
+  TRIPSNACK_CREATE_SUCCESS: "여행 중 먹을 간식들을 저장했습니다.",
+  TRIPSNACK_CREATE_FAIL: "간식 저장에 실패했습니다.",
+  TRIPSNACK_UPDATE_SUCCESS: "여행 중 먹을 간식들을 변경했습니다.",
+  TRIPSNACK_UPDATE_FAIL: "간식 변경에 실패했습니다.",
+  TRIPSNACK_DELETE_SUCCESS: "여행 중 먹을 간식들을 삭제했습니다.",
+  TRIPSNACK_DELETE_FAIL: "간식 삭제에 실패했습니다.",
+  TRIPSNACK_EMPTY: "정보가 없습니다.",
+
   /* User */
   ALREADY_EMAIL: "이미 있는 이메일입니다",
   JOIN_SUCCESS: "회원가입 성공",
