@@ -108,24 +108,25 @@ module.exports = {
     },
     create: ({
         title,
-        start,
-        end,
+        momentStart,
+        momentEnd,
         activityBudget,
         hotelBudget,
         foodBudget,
         shoppingBudget,
         snackBudget,
         transportBudget,
-        CityId
+        totalDay,
+        CityId,
+        UserId
     }) => {
         return new Promise(async (resolve, reject) => {
             let trip;
-            console.log(typeof moment(start));
             try {
                 trip = await Trip.create({
                     title : title,
-                    start : moment(start),
-                    end : moment(end),
+                    start : momentStart,
+                    end : momentEnd,
                     destination: CityId,
                     activityBudget: activityBudget,
                     hotelBudget: hotelBudget,
@@ -133,7 +134,8 @@ module.exports = {
                     shoppingBudget: shoppingBudget,
                     snackBudget: snackBudget,
                     transportBudget: transportBudget,
-                    totalDay: moment(end).diff(moment(start), 'days'),
+                    totalDay: totalDay,
+                    UserId: UserId
                 });
                 
             } catch (error) {

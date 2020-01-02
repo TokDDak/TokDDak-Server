@@ -2,7 +2,7 @@ const TripService = require('./service');
 const rm = require('../module/util/responseMessage');
 const utils = require('../module/util/utils');
 const sc = require('../module/util/statusCode');
-
+const moment = require('moment');
 module.exports = {
     read: async (req, res) => {
         const {
@@ -68,33 +68,40 @@ module.exports = {
             shoppingBudget,
             snackBudget,
             transportBudget,
+            UserId,
         } = req.body;
         const {
-            CityId
+            CityId,
         } = req.params;
         console.log(CityId, title, start, end);
-        if (!CityId || !title || !start || !end) {
+        if (!CityId || !title || !start || !end || !UserId) {
             const missParameters = Object.entries({
                     title,
                     start,
                     end,
                     CityId,
+                    UserId
                 })
                 .filter(it => it[1] == undefined).map(it => it[0]).join(',');
             res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
             return;
         }
+        momentStart = moment(start);
+        momentEnd = moment(end);
+        totalDay = momentEnd.diff(momentStart, 'days'),
         TripService.create({
                 title,
-                start,
-                end,
+                momentStart,
+                momentEnd,
                 activityBudget,
                 hotelBudget,
                 foodBudget,
                 shoppingBudget,
                 snackBudget,
                 transportBudget,
-                CityId
+                totalDay,
+                CityId,
+                UserId
             })
             .then(({
                     json
