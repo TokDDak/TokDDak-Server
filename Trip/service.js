@@ -121,6 +121,17 @@ module.exports = {
         UserId
     }) => {
         return new Promise(async (resolve, reject) => {
+            const tripChk = await Trip.findOne({
+                where: {
+                    title: title
+                }
+            });
+            if(trip.length != 0) {
+                resolve({
+                    json: utils.successFalse(sc.BAD_REQUEST, rm.ALREADY_TRIP)
+                });
+                return;
+            }
             let trip;
             try {
                 trip = await Trip.create({
