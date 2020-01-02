@@ -24,8 +24,8 @@ module.exports = {
                 res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
     },
-    scheduleRead: async (req, res) => {
-        TripService.scheduleRead()
+    preTripRead: async (req, res) => {
+        TripService.preTripRead()
             .then(({
                     json
                 }) =>
@@ -115,20 +115,17 @@ module.exports = {
     trippingUpdate: async (req, res) => {
         const {
             id,
-            flag
         } = req.body;
-        if (!id || !flag) {
+        if (!id) {
             const missParameters = Object.entries({
-                id,
-                flag
+                id
             })
             .filter(it => it[1] == undefined).map(it => it[0]).join(',');
         res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
         return;
     }
         TripService.trippingUpdate({
-                id,
-                flag
+                id
             })
             .then(({
                     json

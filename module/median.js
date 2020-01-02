@@ -10,18 +10,17 @@ const promise = async (json, start, result) => {
 
 module.exports = {
     foodRead: async ({
-        cityId,
+        CityId,
     }) => {
         return new Promise(async (resolve, reject) => {
             const result = [];
-            const CityId = cityId;
             try {
                 const test = await Median.findAll({
                     where: {
                         category: {
                             [Op.notLike]: "%호텔%"
                         },
-                        cityId: cityId,
+                        cityId: CityId,
                     },
                     attributes: ['cityId', 'category', 'cost', 'urlFood'],
                 });
@@ -43,18 +42,17 @@ module.exports = {
         })
     },
     hotelRead: async ({
-        cityId,
+        CityId,
     }) => {
         return new Promise(async (resolve, reject) => {
             const result = [];
-            const CityId = cityId;
             try {
                 const test = await Median.findAll({
                     where: {
                         category: {
                             [Op.like]: "%호텔%"
                         },
-                        cityId: cityId,
+                        cityId: CityId,
                     },
                     attributes: ['cityId', 'category', 'cost', 'urlHotel'],
                 });

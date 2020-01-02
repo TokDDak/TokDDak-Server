@@ -5,7 +5,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(40),
             allowNull: false,
         },
-        destination: {
+        city: {
+            type: DataTypes.STRING(40),
+            allowNull: false,
+        },
+        country: {
             type: DataTypes.STRING(40),
             allowNull: false,
         },
