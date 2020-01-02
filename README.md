@@ -24,7 +24,7 @@
 
 # Server Architecture  
 
-![Server Architecture](./image/server-architecture.jpeg)
+![Server Architecture](./image/server-architecture2.jpeg)
 
 ### Auth
 * 인증 서버
