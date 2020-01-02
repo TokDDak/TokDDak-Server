@@ -6,7 +6,33 @@ const sc = require('../module/util/statusCode');
 const {Transport} = require('../models');
 
 module.exports = {
-
+    readimg: ({
+        CityId
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            const transport = await Transport.findAll({
+                where: {
+                    CityId : CityId
+                },
+                attributes: ['img']
+            });
+            if(transport.length == 0) {
+                resolve({
+                    json: utils.successFalse(sc.NO_CONTENT, rm.TRANSPORT_EMPTY)
+                });
+                return;
+            }
+            if (!transport) {
+                resolve({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRANSPORT_READ_BLOGIDX_FAIL)
+                });
+                return;
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, rm.TRANSPORT_READ_BLOGIDX_SUCCESS, transport)
+            });
+        });
+    },
     read: ({
         CityId
     }) => {

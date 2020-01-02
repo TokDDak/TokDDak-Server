@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define('TripActivity', {
         name: { // 액티비티 이름
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING(30),
             allowNull : false,
         },
         cost : { 

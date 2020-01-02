@@ -5,6 +5,33 @@ const sc = require('../module/util/statusCode');
 const {Shopping} = require('../models');
 
 module.exports = {
+     readimg: ({
+        CityId
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            const shopping = await Shopping.findAll({
+                where: {
+                    CityId : CityId
+                },
+                attributes: ['img']
+            });
+            if(shopping.length == 0) {
+                resolve({
+                    json: utils.successFalse(sc.NO_CONTENT, rm.SHOPPING_EMPTY)
+                });
+                return;
+            }
+            if (!shopping) {
+                resolve({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.SHOPPING_READ_BLOGIDX_FAIL)
+                });
+                return;
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, rm.SHOPPING_READ_BLOGIDX_SUCCESS, shopping)
+            });
+        });
+    },
     read: ({
         CityId
     }) => {
