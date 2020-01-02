@@ -58,4 +58,25 @@ module.exports = {
             res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
         })
     },
+    hotelReadiOS: async (req, res) => {
+        const {
+            subCategory
+        } = req.body;
+        const {
+            CityId
+        } = req.params;
+        if(!CityId || !subCategory) {
+            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
+            return;
+        }
+        MedianService.hotelReadiOS({CityId, subCategory})
+        .then(({
+            json
+        }) => 
+            res.send(json)
+        ).catch(err => {
+            console.log(err);
+            res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+        })
+    },
 }

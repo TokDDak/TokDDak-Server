@@ -20,6 +20,23 @@ module.exports = {
             });
         });
     },
+    hotelReadiOS: ({
+        CityId,
+        subCategory
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            const median = await md.hotelReadiOS({CityId, subCategory});
+            if (!median) {
+                resolve({
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.MEDIAN_READ_FAIL)
+                });
+                return;
+            }
+            resolve({
+                json: utils.successTrue(sc.SUCCESS, rm.MEDIAN_READ_SUCCESS, median)
+            });
+        });
+    },
     foodRead: ({
         CityId
     }) => {

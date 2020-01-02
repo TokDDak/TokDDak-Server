@@ -84,4 +84,56 @@ module.exports = {
             }
         })
     },
+    hotelReadiOS: async ({
+        CityId,
+        subCategory
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            const result = [];
+            let cate;
+            try {
+                if(subCategory == 5) {
+                    cate = "최고급호텔";
+                }
+                else if(subCategory == 4) {
+                    cate = "고급호텔";
+                }
+                else if(subCategory == 3) {
+                    cate = "일반호텔";
+                }
+                else{
+                    cate = "저가호텔";
+                }
+                const test = await Median.findAll({
+                    where: {
+                        category: cate,
+                        cityId: CityId,
+                    },
+                    attributes: ['cityId', 'category', 'cost', 'urlHotel'],
+                });
+                    const bmp = test[0].dataValues;
+                    const obj = new Object();
+                    obj.category = bmp.category;
+                    obj.cost = bmp.cost;
+                    obj.url = bmp.urlHotel
+                    obj.info = [];
+                    result.push(obj);
+                await Random.randomHoteliOS({CityId, subCategory})
+                    .then(async ({
+                        json
+                    }) => {
+                        Promise.all([promise(json, 0, result)]).then(function () {
+                            resolve({
+                                result
+                            })
+                        })
+
+                    }).catch(err =>
+                        console.log(err))
+            } catch (err) {
+                console.log(err);
+                reject(err);
+            }
+        })
+    },
 }

@@ -1,8 +1,10 @@
 const Median = require('../module/median');
 
-const cityId = 1;
-Median.foodRead({
-    cityId,
+const CityId = 1;
+const subCategory = 4;
+Median.hotelReadiOS({
+    CityId,
+    subCategory
     })
     .then(({
             result
