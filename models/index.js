@@ -87,4 +87,8 @@ db.Trip.hasMany(db.Plan, {
 });
 db.Plan.belongsTo(db.Trip);
 
+/** 1:N User : Trip */
+db.User.hasMany(db.Trip);
+db.Trip.belongsTo(db.User);
+
 module.exports = db;

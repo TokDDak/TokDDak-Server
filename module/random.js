@@ -40,7 +40,42 @@ module.exports = {
             }
         })
     },
+    randomHoteliOS: async ({
+        CityId,
+        subCategory
+    }) => { //subCategory
+        return new Promise(async (resolve, reject) => {
+            const data = [];
+            let i = 0;
+            try {
+                const promise = async ({
+                    subCategory,
+                    CityId
+                }) => {
+                    cate = await Hotel.findAll({
+                        where: {
+                            subCategory: subCategory,
+                            CityId: CityId
+                        },
+                        attributes: ['name', 'cost'],
+                    });
+                    for (let i = 0; i < 3; i++) {
+                        random = Math.floor(Math.random() * (cate.length - 0));
+                        data[i] = cate[random].dataValues;;
+                    }
+                }
+                Promise.all([promise({subCategory, CityId})]).then(function () {
+                    resolve({
+                        json: data
+                    })
+                })
 
+            } catch (err) {
+                console.log(err);
+                reject(err);
+            }
+        })
+    },
     randomHotel: async ({
         CityId
     }) => { //subCategory

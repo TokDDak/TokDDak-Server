@@ -33,7 +33,7 @@ module.exports = {
         });
     },
     create: ({
-        array,
+        array, // ["일반음식점","간편식","간편식"]
         TripId
     }) => {
         return new Promise(async (resolve, reject) => {
@@ -51,11 +51,11 @@ module.exports = {
             };
             } catch (error) {
                 reject({
-                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, "rm.TRIPFOOD_CREATE_FAIL")
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIPFOOD_CREATE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, "rm.TRIPFOOD_CREATE_SUCCESS", TF)
+                json: utils.successTrue(sc.SUCCESS, rm.TRIPFOOD_CREATE_SUCCESS, TF)
             });
         });
     },

@@ -1,20 +1,32 @@
+const moment = require('moment');
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define('Trip', {
         title: {
             type: DataTypes.STRING(40),
             allowNull: false,
         },
-        destination: {
+        city: {
+            type: DataTypes.STRING(40),
+            allowNull: false,
+        },
+        country: {
             type: DataTypes.STRING(40),
             allowNull: false,
         },
         start: {
-            type: DataTypes.STRING(20),
+            type: DataTypes.DATEONLY,
+            get: function () {
+                return moment.utc(this.getDataValue('type')).format('YYYY.MM.DD');
+            },
             allowNull: false,
         },
         end : {
-            type: DataTypes.STRING(20),
+            type: DataTypes.DATEONLY,
+            get: function () {
+                return moment.utc(this.getDataValue('type')).format('YYYY.MM.DD');
+            },
             allowNull: false,
+
         },
         useCost : {
             type: DataTypes.INTEGER,

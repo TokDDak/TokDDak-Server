@@ -22,7 +22,7 @@
 
 
 
-# Server Architecture //뭔지 모르겠읍 
+# Server Architecture  
 
 ![Server Architecture](./image/server-architecture.jpeg)
 
