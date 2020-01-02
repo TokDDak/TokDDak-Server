@@ -5,7 +5,14 @@ const sc = require('../module/util/statusCode');
 
 module.exports = {
     read: async (req, res) => {
-        TimelineService.read()
+        const {
+            TripId
+        } = req.params;
+        if (!TripId) {
+            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
+            return;
+        }
+        TimelineService.read({TripId})
             .then(({
                     json
                 }) =>
@@ -22,11 +29,19 @@ module.exports = {
             category,
             content
         } = req.body;
+        const {
+            TripId
+        } = req.params;
+        if (!TripId||!day||!category||!content) {
+            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
+            return;
+        }
         TimelineService.create({
                 day,
                 cost,
                 category,
-                content
+                content,
+                TripId
             })
             .then(({
                     json
@@ -44,6 +59,10 @@ module.exports = {
             category,
             content
         } = req.body;
+        const {
+            TityId
+        } = req.params;
+       
         if (!id || !day || !cost || !category || !content) {
             const missParameters = Object.entries({
                     id,
@@ -61,7 +80,8 @@ module.exports = {
             day,
             cost,
             category,
-            content
+            content,
+            TripId
         })
         .then(({
             json

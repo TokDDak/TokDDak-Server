@@ -10,9 +10,15 @@ const sc = require('../module/util/statusCode');
 const {Timeline} = require('../models');
 
 module.exports = {
-    read: () => {
+    read: ({
+        TripId
+    }) => {
         return new Promise(async (resolve, reject) => {
-            const timeline = await Timeline.findAll({});
+            const timeline = await Timeline.findAll({
+                where:{
+                    TripId : TripId
+                }
+            });
             if(timeline.length == 0) {
                 resolve({
                     json: utils.successFalse(sc.NO_CONTENT, rm.TIMELINE_EMPTY)
@@ -34,7 +40,8 @@ module.exports = {
         day,
         cost,
         category,
-        content
+        content,
+        TripId
     })=>{
         return new Promise(async(resolve, reject)=>{
             let timeline;
@@ -44,7 +51,8 @@ module.exports = {
                     day : day,
                     cost : cost,
                     category : category,
-                    content : content
+                    content : content,
+                    TripId : TripId
                 });
             }catch(error)
             {
@@ -64,7 +72,8 @@ module.exports = {
         day,
         cost,
         category,
-        content
+        content,
+        TripId
     })=>{
         return new Promise(async(resolve, reject)=>{
             let timeline;
@@ -72,7 +81,8 @@ module.exports = {
                 day : day,
                 cost : cost,
                 category : category,
-                content : content
+                content : content,
+                TripId : TripId
             },{
                 where: {
                     id : id
