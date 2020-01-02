@@ -31,21 +31,11 @@ module.exports = {
                     obj.category = bmp.category;
                     obj.cost = bmp.cost;
                     obj.url = bmp.urlFood
-                    obj.info = [];
                     result.push(obj);
                 }
-                await Random.randomFood({CityId})
-                    .then(async ({
-                        json
-                    }) => {
-                        Promise.all([promise(json, 0, result), promise(json, 3, result), promise(json, 6, result)]).then(function () {
-                            resolve({
-                                result
-                            })
-                        })
-
-                    }).catch(err =>
-                        console.log(err))
+                resolve({
+                    result
+                })
             } catch (err) {
                 console.log(err);
                 reject(err);
@@ -82,7 +72,7 @@ module.exports = {
                         json
                     }) => {
                         Promise.all([promise(json, 0, result), promise(json, 3, result), promise(json, 6, result), promise(json, 9, result)]).then(function () {
-                            console.log(result[1].info);
+                            console.log("result[0] : " , result[0].info);
                             resolve({
                                 result
                             })
