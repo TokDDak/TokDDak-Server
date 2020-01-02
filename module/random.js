@@ -1,69 +1,109 @@
-const {Food} = require('../models');
-const {Hotel} = require('../models');
+const {
+    Food,
+    Hotel
+} = require('../models');
+const Exchange = require('../module/exchange');
 
 module.exports = {
-   
-    
-    randomFood : async(grade,CityId)=> { //grade 1,2,3은 내가 넣는대로 
-        return new Promise(async(resolve, reject)=>{
+    randomFood: async ({
+        CityId
+    }) => { //subCategory
+        return new Promise(async (resolve, reject) => {
             const data = [];
-            try{
-                grade1 = await Food.findAll({
-                    where : {
-                        grade : grade,
-                        CityId : CityId
+            let i = 0;
+            try {
+                const promise = async (
+                    grade,
+                    CityId
+                ) => {
+                    cate = await Food.findAll({
+                        where: {
+                            grade: grade,
+                            CityId: CityId
+                        },
+                        attributes: ['name', 'cost'],
+                    });
+                    const start = (grade - 1) * 3;
+                    for (i = start; i < start + 3; i++) {
+                        random = Math.floor(Math.random() * (cate.length - 0));
+                        data[i] = cate[random].dataValues;
+
+                        Exchange.exchange({
+                            base: "USD",
+                            cost: cate[random].cost,
+                            to: "KRW"
+                        }).then(({
+                            result
+                        }) => {
+                            data[i].cost  = result
+                            console.log(obj.cost)
+                        }).catch(err => {
+                            console.log(err)
+                        })
+                        
                     }
-                });
-                console.log(grade1.length);
-                var arrId = new Array();
-                for(var i=0; i<grade1.length; i++) {
-                    arrId[i] = grade1[i].id;
                 }
-              
-                for(var i=0; i<3 ; i++)
-                {
-                    random = Math.floor(Math.random()*(grade1.length - 0));
-                    data[i] = grade1[random];
-                }
-                resolve({
-                    json : utils.successTrue(data)
+                Promise.all([promise(1, CityId), promise(2, CityId), promise(3, CityId)]).then(function () {
+                    resolve({
+                        json: data
+                    })
                 })
-            }catch(err){
+
+            } catch (err) {
                 console.log(err);
                 reject(err);
             }
         })
     },
-    // Hotel을 어떻게할까..? subcategory 선기준 ?
-    randomHotel : async(subCategory,CityId)=> { //grade 1,2,3은 내가 넣는대로 
-        return new Promise(async(resolve, reject)=>{
+
+    randomHotel: async ({
+        CityId
+    }) => { //subCategory
+        return new Promise(async (resolve, reject) => {
             const data = [];
-            try{
-                cate = await Food.findAll({
-                    where : {
-                        subCategory : subCategory,
-                        CityId : CityId
+            let i = 0;
+            try {
+                const promise = async (
+                    subCategory,
+                    CityId
+                ) => {
+                    cate = await Hotel.findAll({
+                        where: {
+                            subCategory: subCategory,
+                            CityId: CityId
+                        },
+                        attributes: ['name', 'cost'],
+                    });
+                    const start = (subCategory - 2) * 3;
+                    for (i = start; i < start + 3; i++) {
+                        random = Math.floor(Math.random() * (cate.length - 0));
+                        data[i] = cate[random].dataValues;
+                        
+                        Exchange.exchange({
+                            base: "USD",
+                            cost: cate[random].cost,
+                            to: "KRW"
+                        }).then(({
+                            result
+                        }) => {
+                            data[i].cost  = result
+                            console.log(obj.cost)
+                        }).catch(err => {
+                            console.log(err)
+                        })
+                        
                     }
-                });
-                console.log(cate.length);
-                var arrId = new Array();
-                for(var i=0; i<cate.length; i++) {
-                    arrId[i] = cate[i].id;
                 }
-              
-                for(var i=0; i<3 ; i++)
-                {
-                    random = Math.floor(Math.random()*(cate.length - 0));
-                    data[i] = cate[random];
-                }
-                resolve({
-                    json : utils.successTrue(data)
+                Promise.all([promise(2, CityId), promise(3, CityId), promise(4, CityId), promise(5, CityId)]).then(function () {
+                    resolve({
+                        json: data
+                    })
                 })
-            }catch(err){
+
+            } catch (err) {
                 console.log(err);
                 reject(err);
             }
         })
     },
-   
 }
