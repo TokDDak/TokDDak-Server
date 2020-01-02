@@ -23,6 +23,7 @@ router.delete('/:CityId/Activity', activityController.delete); //@@
 
 /* Shopping */
 router.get('/:CityId/Shopping', shoppingController.read);
+router.get('/:CityId/Shoppingimg', shoppingController.readimg);
 router.post('/:CityId/Shopping', shoppingController.create);
 router.put('/:CityId/Shopping', shoppingController.update);
 router.delete('/:CityId/Shopping', shoppingController.delete);
@@ -35,6 +36,7 @@ router.delete('/:CityId/Snack', snackController.delete);
 
 /* Transport */
 router.get('/:CityId/Transport', transportController.read);
+router.get('/:CityId/Transportimg', transportController.readimg);
 router.post('/:CityId/Transport', transportController.create);
 router.put('/:CityId/Transport', transportController.update);
 router.delete('/:CityId/Transport', transportController.delete);

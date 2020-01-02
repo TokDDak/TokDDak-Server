@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(100),
             allowNull: true,
         },
+        img: {
+            type: DataTypes.STRING(200),
+            allowNull: false
+        }
     }, {
         freezeTableName: true,
         timestamps: false,
