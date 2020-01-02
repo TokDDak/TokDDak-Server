@@ -209,6 +209,10 @@ module.exports = {
                         },
                         cityId: CityId,
                     },
+                    order: [
+                        ['id', 'DESC'],
+                    ],
+
                     attributes: ['cityId', 'category', 'cost', 'urlHotel'],
                 });
                 for (let i = 0; i < 4; i++) {
@@ -222,7 +226,7 @@ module.exports = {
                     obj.info = [];
                     result.push(obj);
                 }
-                await Random.randomHotel({
+                await Random.randomHotelex({
                         CityId
                     })
                     .then(async ({
