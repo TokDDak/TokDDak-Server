@@ -8,14 +8,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        category: { // 숙박, 식사, 스낵 앤 주류, 액티비티, 쇼핑, 교통 ... 6개
+        category: { // 고급호텔, 최고급호텔, 간편식, 펍&바 등등...
             type: DataTypes.STRING(20),
             allowNull: false,
         },
-        content: {
-            type: DataTypes.STRING(100),
-            allowNull: false,
-        }
     }, {
         freezeTableName: true,
         timestamps: true,

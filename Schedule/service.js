@@ -8,23 +8,20 @@ const {
 
 module.exports = {
     create: ({
-        day, // 받은 파라미터
-        cost,
-        category,
-        content,
+        array,
         TripId
     }) => {
         return new Promise(async (resolve, reject) => {
-            let schedule;
             try {
-                console.log("TripId: ", TripId);
-                schedule = await Schedule.create({
-                    day: day, // 좌측 = 디비필드, 우측 = 위의 파라미터.
-                    cost: cost, // 좌측의 디비에 파라미터 값을 넣는다.
-                    category: category,
-                    content: content,
-                    TripId: TripId
-                });
+                console.log(array);
+                for(var n in array){
+                    await Schedule.create({
+                        day: array[n].day, // 좌측 = 디비필드, 우측 = 위의 파라미터.
+                        cost: array[n].cost, // 좌측의 디비에 파라미터 값을 넣는다.
+                        category: array[n].category,
+                        TripId: TripId
+                        });
+                }
             } catch (error) {
                 reject({ // 실패시 json 반환.
                     code: sc.INTERNAL_SERVER_ERROR,
@@ -33,7 +30,7 @@ module.exports = {
             }
             resolve({ // 성공시 json 반환.
                 code: sc.SUCCESS,
-                json: utils.successTrue(sc.SUCCESS, rm.SCHEDULE_CREATE_SUCCESS, schedule)
+                json: utils.successTrue(sc.SUCCESS, rm.SCHEDULE_CREATE_SUCCESS)
             });
         });
     },

@@ -6,21 +6,15 @@ const sc = require('../module/util/statusCode');
 module.exports = {
     create: async (req, res) => {
         const {
-            day, // 받은 파라미터
-            cost,
-            category,
-            content,
+            array,
             TripId
         } = req.body;
-        if (!day || !cost || !category || !content || !TripId) {
-            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
+        if (!TripId) {
+            res.status(sc.BAD_REQUEST).send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
         ScheduleService.create({
-                day, // 받은 파라미터
-                cost,
-                category,
-                content,
+                array,
                 TripId
             })
             .then(({
@@ -29,7 +23,7 @@ module.exports = {
                 }) =>
                 res.status(code).send(json)
             ).catch(err => {
-                res.send(err);
+                res.status(sc.INTERNAL_SERVER_ERROR).send(err);
             })
     },
     read: async (req, res) => {

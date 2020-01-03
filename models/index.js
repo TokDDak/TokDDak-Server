@@ -21,7 +21,6 @@ db.TripActivity = require('./tripActivityModel')(sequelize, Sequelize);
 db.TripFood = require('./tripFoodModel')(sequelize, Sequelize);
 db.TripSnack = require('./tripSnackModel')(sequelize, Sequelize);
 db.TripHotel = require('./tripHotelModel')(sequelize, Sequelize);
-db.Plan = require('./planModel')(sequelize, Sequelize);
 db.Median = require('./medianModel')(sequelize,Sequelize);
 db.Schedule = require('./scheduleModel')(sequelize, Sequelize);
 db.User = require('./userModel')(sequelize, Sequelize);
@@ -90,12 +89,6 @@ db.Trip.hasMany(db.Schedule, {
   onDelete: 'cascade'
 });
 db.Schedule.belongsTo(db.Trip);
-
-/** 1:N Trip : Plan */
-db.Trip.hasMany(db.Plan, {
-  onDelete: 'cascade'
-});
-db.Plan.belongsTo(db.Trip);
 
 /** 1:N User : Trip */
 db.User.hasMany(db.Trip);
