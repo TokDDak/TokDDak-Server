@@ -13,8 +13,10 @@
 
 # Workflow
 
-* [workflow](https://sopt-toney.s3.ap-northeast-2.amazonaws.com/A1+%E1%84%90%E1%85%A9%E1%86%A8%E1%84%84%E1%85%A1%E1%86%A8+workflow+%E1%84%8E%E1%85%AC%E1%84%8C%E1%85%A9%E1%86%BC.pdf
-) 
+
+<div align="center" style="display:flex;">
+	<img src="https://sopt-toney.s3.ap-northeast-2.amazonaws.com/A1+%E1%84%90%E1%85%A9%E1%86%A8%E1%84%84%E1%85%A1%E1%86%A8+workflow+%E1%84%8E%E1%85%AC%E1%84%8C%E1%85%A9%E1%86%BC.pdf">
+</div>
 
 ---
 
