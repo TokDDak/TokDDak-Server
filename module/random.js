@@ -27,7 +27,8 @@ module.exports = {
                     
                     for (i = start; i < start + 3; i++) {
                         random = Math.floor(Math.random() * (cate.length - 0));
-                        data[i] = cate[random].dataValues;;
+                        data[i] = cate[random].dataValues;
+                        data[i].cost = parseInt((1164.63*data[i].cost).toFixed(0));
                     }
                 }
                 Promise.all([promise(1, CityId), promise(2, CityId), promise(3, CityId)]).then(function () {
@@ -63,7 +64,8 @@ module.exports = {
                     });
                     for (let i = 0; i < 3; i++) {
                         random = Math.floor(Math.random() * (cate.length - 0));
-                        data[i] = cate[random].dataValues;;
+                        data[i] = cate[random].dataValues;
+                        data[i].cost = parseInt((1164.63*data[i].cost).toFixed(0));
                     }
                 }
                 Promise.all([promise({subCategory, CityId})]).then(function () {
@@ -91,7 +93,7 @@ module.exports = {
                 ) => {
                     cate = await Hotel.findAll({
                         where: {
-                            subCategory: subCategory,
+                            subCategory: 7 - subCategory,
                             CityId: CityId
                         },
                         attributes: ['name', 'cost'],
@@ -99,7 +101,8 @@ module.exports = {
                     const start = (subCategory - 2) * 3;
                     for (i = start; i < start + 3; i++) {
                         random = Math.floor(Math.random() * (cate.length - 0));
-                        data[i] = cate[random].dataValues;;
+                        data[i] = cate[random].dataValues;
+                        data[i].cost = parseInt((1164.63*data[i].cost).toFixed(0));
                     }
                 }
                 Promise.all([promise(2, CityId), promise(3, CityId), promise(4, CityId), promise(5, CityId)]).then(function () {
@@ -151,6 +154,7 @@ module.exports = {
                         random = Math.floor(Math.random() * (cate.length - 0));
                         data[i] = cate[random].dataValues;
                         data[i].cost = (result2*data[i].cost).toFixed(0);
+                        
                     }
                 }
                 Promise.all([promise(1, CityId), promise(2, CityId), promise(3, CityId)]).then(function () {
@@ -198,7 +202,8 @@ module.exports = {
                     for (let i = 0; i < 3; i++) {
                         random = Math.floor(Math.random() * (cate.length - 0));
                         data[i] = cate[random].dataValues;
-                        data[i].cost = (result2*data[i].cost).toFixed(0);
+                        data[i].cost = parseInt((result2*data[i].cost).toFixed(0));
+                        console.log(typeof(data[i].cost))
                     }
                 }
                 Promise.all([promise({subCategory, CityId})]).then(function () {
@@ -237,7 +242,7 @@ module.exports = {
                     })
                     cate = await Hotel.findAll({
                         where: {
-                            subCategory: subCategory,
+                            subCategory: 7 - subCategory,
                             CityId: CityId
                         },
                         attributes: ['name', 'cost'],
@@ -246,7 +251,7 @@ module.exports = {
                     for (i = start; i < start + 3; i++) {
                         random = Math.floor(Math.random() * (cate.length - 0));
                         data[i] = cate[random].dataValues;
-                        data[i].cost = (result2*data[i].cost).toFixed(0);
+                        data[i].cost = parseInt((result2*data[i].cost).toFixed(0));
                     }
                 }
                 Promise.all([promise(2, CityId), promise(3, CityId), promise(4, CityId), promise(5, CityId)]).then(function () {
