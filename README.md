@@ -8,7 +8,6 @@
 <br>
 서버파트 리포지토리
 </div>
-<div align="center">
 
 # 1. API DOC LINK (WIKI) 
 
