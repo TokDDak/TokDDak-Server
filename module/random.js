@@ -62,9 +62,13 @@ module.exports = {
                         },
                         attributes: ['name', 'cost'],
                     });
-                    for (let i = 0; i < 3; i++) {
-                        random = Math.floor(Math.random() * (cate.length - 0));
-                        data[i] = cate[random].dataValues;
+                    cate.sort(function(){
+                        return Math.random() - Math.random();
+                    });
+                    console.log("ho : ", cate[1].dataValues);
+                    for(i = 0; i<3;i++)
+                    {
+                        data[i] = cate[i].dataValues;
                         data[i].cost = parseInt((1164.63*data[i].cost).toFixed(0));
                     }
                 }
@@ -98,12 +102,21 @@ module.exports = {
                         },
                         attributes: ['name', 'cost'],
                     });
-                    const start = (subCategory - 2) * 3;
-                    for (i = start; i < start + 3; i++) {
-                        random = Math.floor(Math.random() * (cate.length - 0));
-                        data[i] = cate[random].dataValues;
+                  
+                    
+                    //cate.sort((a,b)=>0.5+Math.random()*cate.length);
+                    cate.sort(function(){
+                        return Math.random() - Math.random();
+                    });
+                    console.log("cate0: ", cate[0].dataValues);
+                   // console.log("cate1: ", cate[1].dataValues);
+                    const start = (subCategory-2) * 3;
+                    for(i = start; i<start+3 ;i++)
+                    {
+                        data[i] = cate[i].dataValues;
                         data[i].cost = parseInt((1164.63*data[i].cost).toFixed(0));
                     }
+                    
                 }
                 Promise.all([promise(2, CityId), promise(3, CityId), promise(4, CityId), promise(5, CityId)]).then(function () {
                     resolve({
