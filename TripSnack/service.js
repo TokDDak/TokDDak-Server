@@ -15,8 +15,6 @@ module.exports = {
                 where: {
                     TripId: TripId
                 },
-                attributes: ['grade', [fn('sum',col('count')), 'count'], 'cost'],
-                group: 'grade'
             });
             console.log(TS.dataValues);
             if(TS.length == 0) {
@@ -63,16 +61,22 @@ module.exports = {
     },
     update: ({
         grade,
-        cost,
-        id
+        TripId
     }) => {
         return new Promise(async (resolve, reject) => {
+            const count = await TripSnack.findOne({
+                where: {
+                    TripId: TripId,
+                    grade: grade,
+                },
+                attribute : ['count'],
+            })
             const TS = await TripSnack.update({
-                grade,
-                cost
+                count: count.dataValues.count-1,
             }, {
                 where: {
-                    id : id
+                    TripId: TripId,
+                    grade: grade,
                 },
             });
             if (!TS) {

@@ -54,24 +54,21 @@ module.exports = {
     },
     update: async (req, res) => {
         const {
-            id, // Trip Id를 가지는 모든 정보 가져온다.
             grade,
-            cost
+            TripId
         } = req.body;
-        if (!id || !grade || !cost) {
+        if (!TripId || !grade) {
             const missParameters = Object.entries({
                     grade,
-                    cost,
-                    id
+                    TripId
                 })
                 .filter(it => it[1] == undefined).map(it => it[0]).join(',');
             res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
             return;
         }
         THService.update({
-            id, 
             grade,
-            cost
+            TripId
             })
             .then(({
                     json

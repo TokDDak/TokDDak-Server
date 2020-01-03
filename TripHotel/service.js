@@ -15,8 +15,7 @@ module.exports = {
                 where: {
                     TripId: TripId
                 },
-                attributes: ['grade', [fn('sum',col('count')), 'count'], 'cost'],
-                group: 'grade'
+
             });
             if(TH.length == 0) {
                 resolve({
@@ -62,16 +61,22 @@ module.exports = {
     },
     update: ({
         grade,
-        cost,
-        id
+        TripId
     }) => {
         return new Promise(async (resolve, reject) => {
+            const count = await TripHotel.findOne({
+                where: {
+                    TripId: TripId,
+                    grade: grade,
+                },
+                attribute : ['count'],
+            })
             const TH = await TripHotel.update({
-                grade,
-                cost
+                count: count.dataValues.count-1,
             }, {
                 where: {
-                    id : id
+                    TripId: TripId,
+                    grade: grade,
                 },
             });
             if (!TH) {
