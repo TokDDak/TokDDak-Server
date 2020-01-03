@@ -58,7 +58,7 @@
 
 # 3. ERD Diagram  
 
-* 추가 
+![ERD Diagram](./image/tokddak_erd.png)
 
 ---
 
@@ -103,5 +103,7 @@
 * [AWS S3](https://aws.amazon.com/ko/s3/) - 클라우드 스토리지
 * [Python 3](https://www.python.org/)
 * [Jupyter Notebook](https://jupyter.org/) - 편집기
+
+* [TripAdvisor API](https://developer-tripadvisor.com/content-api/) - 트립어드바이져 API
 
 ---
