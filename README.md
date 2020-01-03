@@ -84,14 +84,14 @@
 
 
 # 6. Team Role  
-:beer: 남궁권 ([kkoon9](https://github.com/kkoon9))  
+#### :beer: 남궁권 ([kkoon9](https://github.com/kkoon9))  
   * 기능 구현  
-:cocktail: 박승완 ([toneyparky](https://github.com/toneyparky))  
+#### :cocktail: 박승완 ([toneyparky](https://github.com/toneyparky))  
   * TripAdvisor API 활용 및 데이터 수집 [관련 레포지토리](https://github.com/TokDDak/TokDDak-DB-Crawler)  
-:tropical_drink: 현주희 ([Hyun-juhee](https://github.com/Hyun-juhee))  
+#### :tropical_drink: 현주희 ([Hyun-juhee](https://github.com/Hyun-juhee))  
   * 환율 API 활용 및 CRUD 구현   
   
-:wine_glass: 칸반보드 노션링크[(참고)](https://www.notion.so/toneyparky/8fe9b76a98ba45f19e15eed43731b887?v=2d845e1c03b94399baad67c270ac2069)
+#### :wine_glass: 칸반보드 노션링크[(참고)](https://www.notion.so/toneyparky/8fe9b76a98ba45f19e15eed43731b887?v=2d845e1c03b94399baad67c270ac2069)
 ---
 
 # 7. Develop Framework & Environment
