@@ -118,7 +118,7 @@ module.exports = {
                     const bmp = test[0].dataValues;
                     const obj = new Object();
                     obj.category = bmp.category;
-                    obj.cost = bmp.cost;
+                    obj.cost = (bmp.cost * 1,164.63).toFixed(0);
                     obj.url = bmp.urlHotel
                     obj.info = [];
                     result.push(obj);

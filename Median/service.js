@@ -8,7 +8,7 @@ module.exports = {
         CityId
     }) => {
         return new Promise(async (resolve, reject) => {
-            const median = await md.hotelReadex({CityId});
+            const median = await md.hotelRead({CityId});
             if (!median) {
                 resolve({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.MEDIAN_READ_FAIL)
@@ -25,7 +25,7 @@ module.exports = {
         subCategory
     }) => {
         return new Promise(async (resolve, reject) => {
-            const median = await md.hotelReadiOSex({CityId, subCategory});
+            const median = await md.hotelReadiOS({CityId, subCategory});
             if (!median) {
                 resolve({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.MEDIAN_READ_FAIL)
@@ -41,7 +41,7 @@ module.exports = {
         CityId
     }) => {
         return new Promise(async (resolve, reject) => {
-            const median = await md.foodReadex({CityId});
+            const median = await md.foodRead({CityId});
             if (!median) {
                 resolve({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.MEDIAN_READ_FAIL)

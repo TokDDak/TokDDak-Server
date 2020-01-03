@@ -26,7 +26,8 @@ module.exports = {
                     const start = (grade - 1) * 3;
                     for (i = start; i < start + 3; i++) {
                         random = Math.floor(Math.random() * (cate.length - 0));
-                        data[i] = cate[random].dataValues;;
+                        data[i] = cate[random].dataValues;
+                        data[i].cost = (1,164.63*data[i].cost).toFixed(0);
                     }
                 }
                 Promise.all([promise(1, CityId), promise(2, CityId), promise(3, CityId)]).then(function () {
@@ -62,7 +63,8 @@ module.exports = {
                     });
                     for (let i = 0; i < 3; i++) {
                         random = Math.floor(Math.random() * (cate.length - 0));
-                        data[i] = cate[random].dataValues;;
+                        data[i] = cate[random].dataValues;
+                        data[i].cost = (1,164.63*data[i].cost).toFixed(0);
                     }
                 }
                 Promise.all([promise({subCategory, CityId})]).then(function () {
@@ -98,7 +100,8 @@ module.exports = {
                     const start = (subCategory - 2) * 3;
                     for (i = start; i < start + 3; i++) {
                         random = Math.floor(Math.random() * (cate.length - 0));
-                        data[i] = cate[random].dataValues;;
+                        data[i] = cate[random].dataValues;
+                        data[i].cost = (1,164.63*data[i].cost).toFixed(0);
                     }
                 }
                 Promise.all([promise(2, CityId), promise(3, CityId), promise(4, CityId), promise(5, CityId)]).then(function () {
@@ -150,6 +153,7 @@ module.exports = {
                         random = Math.floor(Math.random() * (cate.length - 0));
                         data[i] = cate[random].dataValues;
                         data[i].cost = (result2*data[i].cost).toFixed(0);
+                        
                     }
                 }
                 Promise.all([promise(1, CityId), promise(2, CityId), promise(3, CityId)]).then(function () {
