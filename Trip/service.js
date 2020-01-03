@@ -137,6 +137,7 @@ module.exports = {
         UserId
     }) => {
         return new Promise(async (resolve, reject) => {
+            const obj = new Object();
             const tripChk = await Trip.findAll({
                 where: {
                     title: title,
@@ -173,7 +174,9 @@ module.exports = {
                     totalDay: totalDay,
                     UserId: UserId
                 });
-
+                obj.totalDay = trip.dataValues.totalDay;
+                obj.tripId = trip.dataValues.id;
+                console.log(obj);
             } catch (error) {
                 reject({
                     code: sc.INTERNAL_SERVER_ERROR,
@@ -182,7 +185,7 @@ module.exports = {
             }
             resolve({
                 code: sc.SUCCESS,
-                json: utils.successTrue(sc.SUCCESS, rm.TRIP_CREATE_SUCCESS, trip)
+                json: utils.successTrue(sc.SUCCESS, rm.TRIP_CREATE_SUCCESS, obj)
             });
         });
     },
@@ -254,7 +257,7 @@ module.exports = {
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIPPED_UPDATE_SUCCESS, trip)
+                json: utils.successTrue(sc.SUCCESS, rm.TRIPPED_UPDATE_SUCCESS)
             });
         });
     },

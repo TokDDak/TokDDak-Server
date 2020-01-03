@@ -145,13 +145,11 @@ module.exports = {
     },
     trippedUpdate: async (req, res) => {
         const {
-            id,
-            flag
+            id
         } = req.body;
-        if (!id || !flag) {
+        if (!id) {
             const missParameters = Object.entries({
                     id,
-                    flag
                 })
                 .filter(it => it[1] == undefined).map(it => it[0]).join(',');
             res.status(sc.BAD_REQUEST).send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
@@ -159,7 +157,6 @@ module.exports = {
         }
         TripService.trippedUpdate({
                 id,
-                flag
             })
             .then(({
                 code,
