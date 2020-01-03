@@ -46,7 +46,7 @@
 
 # 6. Team Role  
 * 남궁권 ([kkoon9](https://github.com/kkoon9))  
-  * 리더, 기능 구현
+  * 기능 구현
 * 박승완 ([toneyparky](https://github.com/toneyparky))  
   * TripAdvisor API 활용 및 데이터 수집 [관련 레포지토리](https://github.com/TokDDak/TokDDak-DB-Crawler)
 * 현주희 ([Hyun-juhee](https://github.com/Hyun-juhee))  
