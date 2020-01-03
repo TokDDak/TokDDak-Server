@@ -4,8 +4,12 @@
 	<img src="./image/tokddak_logo.png" width="250">
 </div>
 <div align="center">
+맞춤형 여행경비 계산/관리 서비스 톡딱 
+<br>
+서버파트 리포지토리
+</div>
+<div align="center">
 
-맞춤형 여행경비 계산/관리 서비스 톡딱 서버파트 리포지토리{: .text-center }
 # 1. API DOC LINK (WIKI) 
 
 * [관련 링크](https://github.com/TokDDak/TokDDak-Server/wiki) 
