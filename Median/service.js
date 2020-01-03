@@ -11,11 +11,13 @@ module.exports = {
             const median = await md.hotelRead({CityId});
             if (!median) {
                 resolve({
+                    code: sc.INTERNAL_SERVER_ERROR,
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.MEDIAN_READ_FAIL)
                 });
                 return;
             }
             resolve({
+                code : sc.SUCCESS,
                 json: utils.successTrue(sc.SUCCESS, rm.MEDIAN_READ_SUCCESS, median)
             });
         });
@@ -28,11 +30,13 @@ module.exports = {
             const median = await md.hotelReadiOS({CityId, subCategory});
             if (!median) {
                 resolve({
+                    code:sc.INTERNAL_SERVER_ERROR,
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.MEDIAN_READ_FAIL)
                 });
                 return;
             }
             resolve({
+                code: sc.SUCCESS,
                 json: utils.successTrue(sc.SUCCESS, rm.MEDIAN_READ_SUCCESS, median)
             });
         });
@@ -44,11 +48,13 @@ module.exports = {
             const median = await md.foodRead({CityId});
             if (!median) {
                 resolve({
+                    code: sc.INTERNAL_SERVER_ERROR,
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.MEDIAN_READ_FAIL)
                 });
                 return;
             }
             resolve({
+                code: sc.SUCCESS,
                 json: utils.successTrue(sc.SUCCESS, rm.MEDIAN_READ_SUCCESS, median)
             });
         });
@@ -60,11 +66,13 @@ module.exports = {
             const median = await md.hotelRead({CityId});
             if (!median) {
                 resolve({
+                    code: sc.INTERNAL_SERVER_ERROR,
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.MEDIAN_READ_FAIL)
                 });
                 return;
             }
             resolve({
+                code : sc.SUCCESS,
                 json: utils.successTrue(sc.SUCCESS, rm.MEDIAN_READ_SUCCESS, median)
             });
         });

@@ -24,6 +24,7 @@ module.exports = {
                         attributes: ['name', 'cost'],
                     });
                     const start = (grade - 1) * 3;
+                    
                     for (i = start; i < start + 3; i++) {
                         random = Math.floor(Math.random() * (cate.length - 0));
                         data[i] = cate[random].dataValues;;

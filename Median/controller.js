@@ -14,9 +14,10 @@ module.exports = {
         }
         MedianService.hotelRead({CityId})
         .then(({
+            code,
             json
         }) => 
-            res.send(json)
+            res.status(code).send(json)
         ).catch(err => {
             console.log(err);
             res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
@@ -32,9 +33,10 @@ module.exports = {
         }
         MedianService.foodRead({CityId})
         .then(({
+            code,
             json
         }) => 
-            res.send(json)
+            res.status(code).send(json)
         ).catch(err => {
             console.log(err);
             res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
@@ -50,9 +52,10 @@ module.exports = {
         }
         MedianService.snackRead({CityId})
         .then(({
+            code,
             json
         }) => 
-            res.send(json)
+            res.status(code).send(json)
         ).catch(err => {
             console.log(err);
             res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
@@ -70,9 +73,10 @@ module.exports = {
         console.log("CityId : ",CityId, subCategory);
         MedianService.hotelReadiOS({CityId, subCategory})
         .then(({
+            code,
             json
         }) => 
-            res.send(json)
+            res.status(code).send(json)
         ).catch(err => {
             console.log(err);
             res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));

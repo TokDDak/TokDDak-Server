@@ -18,17 +18,20 @@ module.exports = {
             });
             if (activity.length == 0) {
                 resolve({
+                    code: sc.NO_CONTENT,
                     json: utils.successFalse(sc.NO_CONTENT, rm.ACTIVITY_EMPTY)
                 });
                 return;
             }
             if (!activity) {
                 resolve({
+                    code : sc.INTERNAL_SERVER_ERROR,
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.ACTIVITY_READ_CITYID_FAIL)
                 });
                 return;
             }
             resolve({
+                code: sc.SUCCESS,
                 json: utils.successTrue(sc.SUCCESS, rm.ACTIVITY_READ_CITYID_SUCCESS, activity)
             });
         });
