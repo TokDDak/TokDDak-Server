@@ -2,7 +2,7 @@
 
 ![tokddak_logo](./image/tokddak_logo.png)
 맞춤형 여행경비 계산/관리 서비스 톡딱 서버파트 리포지토리
-
+{: .text-center }
 # 1. API DOC LINK (WIKI) 
 
 * [관련 링크](https://github.com/TokDDak/TokDDak-Server/wiki) 
@@ -10,7 +10,7 @@
 ---
 
 # 2-1. Dependency Module  
-'''
+```
 "dependencies": {
     "aws-sdk": "^2.591.0",
     "cookie-parser": "~1.4.4",
@@ -33,7 +33,7 @@
     "sequelize": "^5.21.2",
     "token": "^0.1.0"
   }
-  '''
+  ```
 
 * [Async & Await](https://www.npmjs.com/package/async)
 
