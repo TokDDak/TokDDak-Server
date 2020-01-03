@@ -7,6 +7,7 @@ const tripController = require('../Trip/controller');
  * 특정 id Trip 정보를 가져온다.
  * */
 router.get('/id',tripController.read);
+router.get('/maxId',tripController.maxIdRead);
 
 /**
  * 여행 후보인 trip

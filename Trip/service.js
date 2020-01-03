@@ -40,6 +40,35 @@ module.exports = {
             });
         });
     },
+    maxIdRead: () => {
+        return new Promise(async (resolve, reject) => {
+            const trip = await Trip.findOne({
+                order: [
+                    ['id', 'DESC'],
+                ],
+                attributes: ['id']
+            });
+            console.log(trip.dataValues.id);
+            if (!trip) {
+                resolve({
+                    code: sc.INTERNAL_SERVER_ERROR,
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_READ_FAIL)
+                });
+                return;
+            }
+            if (trip.length == 0) {
+                resolve({
+                    code: sc.NO_CONTENT,
+                    json: utils.successFalse(sc.NO_CONTENT, rm.TRIP_EMPTY)
+                });
+                return;
+            }
+            resolve({
+                code: sc.SUCCESS,
+                json: utils.successTrue(sc.SUCCESS, "최근 TripId를 전송했습니다.", trip)
+            });
+        });
+    },
     // 여행 후보 read
     preTripRead: () => {
         return new Promise(async (resolve, reject) => {
@@ -175,7 +204,6 @@ module.exports = {
                     UserId: UserId
                 });
                 obj.totalDay = trip.dataValues.totalDay;
-                obj.tripId = trip.dataValues.id;
                 console.log(obj);
             } catch (error) {
                 reject({

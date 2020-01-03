@@ -26,6 +26,19 @@ module.exports = {
                 res.stastus(sc.INTERNAL_SERVER_ERROR).send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
     },
+    maxIdRead: async (req, res) => {
+        TripService.maxIdRead()
+            .then(({
+                    code,
+                    json
+                }) =>
+
+                res.status(code).send(json)
+            ).catch(err => {
+                console.log(err);
+                res.stastus(sc.INTERNAL_SERVER_ERROR).send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+            })
+    },
     preTripRead: async (req, res) => {
         TripService.preTripRead()
             .then(({
