@@ -1,4 +1,4 @@
-# TokDDak-Server  
+# :airplane: TokDDak-Server  
 
 <div align="center" style="display:flex;">
 	<img src="./image/tokddak_logo.png" width="250">
