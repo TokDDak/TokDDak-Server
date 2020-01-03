@@ -17,11 +17,13 @@ module.exports = {
                     code,
                     json
                 }) =>
-                res.status(code).send(json)
+                res.send(json).status(code)
+                
             ).catch(err => {
                 console.log(err);
                 res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR))
             });
+    
     },
     create: async (req, res) => {
         const {
@@ -30,7 +32,7 @@ module.exports = {
             category,
             content,
             TripId
-                } = req.body;
+        } = req.body;
         if (!TripId||!day||!category||!content) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
@@ -46,7 +48,7 @@ module.exports = {
                     json,
                     code
                 }) =>
-                res.status(code).send(json)
+                res.send(json).status(code)
             ).catch(error => {
                 res.send(error);
             })
@@ -60,7 +62,7 @@ module.exports = {
             content
         } = req.body;
         const {
-            TityId
+            TripId
         } = req.params;
        
         if (!id || !day || !cost || !category || !content) {
@@ -87,7 +89,7 @@ module.exports = {
             json,
             code
         })=>
-        res.status(code).send(json)
+        res.send(json).status(code)
         ).catch(err=> {
             console.log(err);
             res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR))
@@ -108,7 +110,7 @@ module.exports = {
             code,
             json
         })=>
-        res.status(code).send(json)
+        res.send(json).status(code)
         ).catch(err=>{
             console.log(err);
             res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR))

@@ -17,7 +17,7 @@ module.exports = {
             code,
             json
         }) => 
-            res.status(code).send(json)
+            res.send(json).status(code)
         ).catch(err => {
             console.log(err);
             res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
@@ -36,7 +36,7 @@ module.exports = {
             code,
             json
         }) => 
-            res.status(code).send(json)
+            res.send(json).status(code)
         ).catch(err => {
             console.log(err);
             res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
@@ -55,7 +55,7 @@ module.exports = {
             code,
             json
         }) => 
-            res.status(code).send(json)
+            res.send(json).status(code)
         ).catch(err => {
             console.log(err);
             res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
@@ -76,7 +76,7 @@ module.exports = {
             code,
             json
         }) => 
-            res.status(code).send(json)
+            res.send(json).status(code)
         ).catch(err => {
             console.log(err);
             res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
