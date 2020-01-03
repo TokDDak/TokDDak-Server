@@ -4,7 +4,7 @@
 	<img src="./image/tokddak_logo.png" width="250">
 </div>
 <div align="center">
-맞춤형 여행경비 계산/관리 서비스 톡딱 
+:sunny: 맞춤형 여행경비 계산/관리 서비스 톡딱 :cloud:  
 <br>
 서버파트 리포지토리
 </div>
@@ -84,11 +84,11 @@
 
 
 # 6. Team Role  
-* 남궁권 ([kkoon9](https://github.com/kkoon9))  
+* :beer: 남궁권 ([kkoon9](https://github.com/kkoon9))  
   * 기능 구현
-* 박승완 ([toneyparky](https://github.com/toneyparky))  
+* :cocktail: 박승완 ([toneyparky](https://github.com/toneyparky))  
   * TripAdvisor API 활용 및 데이터 수집 [관련 레포지토리](https://github.com/TokDDak/TokDDak-DB-Crawler)
-* 현주희 ([Hyun-juhee](https://github.com/Hyun-juhee))  
+* :tropical_drink: 현주희 ([Hyun-juhee](https://github.com/Hyun-juhee))  
   * 환율 API 활용 및 CRUD 구현 
   
 * 칸반보드 노션링크[(참고)](https://www.notion.so/toneyparky/8fe9b76a98ba45f19e15eed43731b887?v=2d845e1c03b94399baad67c270ac2069)
