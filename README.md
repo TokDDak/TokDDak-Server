@@ -1,7 +1,10 @@
 # TokDDak-Server  
 
+<div align="center" style="display:flex;">
+	<img src="./image/tokddak_logo.png" width="250">
+</div>
+<div align="center">
 
-<img src="./image/tokddak_logo.png" width="250">
 맞춤형 여행경비 계산/관리 서비스 톡딱 서버파트 리포지토리{: .text-center }
 # 1. API DOC LINK (WIKI) 
 
