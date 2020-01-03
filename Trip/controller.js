@@ -9,52 +9,57 @@ module.exports = {
             id // Trip Id 하나만 가져온다.
         } = req.body;
         if (!id) {
-            res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
+            res.status(sc.BAD_REQUEST).send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
         }
         TripService.read({
                 id
             })
             .then(({
+                    code,
                     json
                 }) =>
-                res.send(json)
+
+                res.status(code).send(json)
             ).catch(err => {
                 console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+                res.stastus(sc.INTERNAL_SERVER_ERROR).send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
     },
     preTripRead: async (req, res) => {
         TripService.preTripRead()
             .then(({
+                    code,
                     json
                 }) =>
-                res.send(json)
+                res.status(code).send(json)
             ).catch(err => {
                 console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+                res.status(sc.INTERNAL_SERVER_ERROR).send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
     },
     trippingRead: async (req, res) => {
         TripService.trippingRead()
             .then(({
+                    code,
                     json
                 }) =>
-                res.send(json)
+                res.status(code).send(json)
             ).catch(err => {
                 console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+                res.status(sc.INTERNAL_SERVER_ERROR).send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
     },
     trippedRead: async (req, res) => {
         TripService.trippedRead()
             .then(({
+                    code,
                     json
                 }) =>
-                res.send(json)
+                res.status(code).send(json)
             ).catch(err => {
                 console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+                res.status(sc.INTERNAL_SERVER_ERROR).send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
     },
     create: async (req, res) => {
@@ -83,13 +88,13 @@ module.exports = {
                     UserId
                 })
                 .filter(it => it[1] == undefined).map(it => it[0]).join(',');
-            res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
+            res.status(sc.BAD_REQUEST).send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
             return;
         }
         momentStart = moment(start);
         momentEnd = moment(end);
         totalDay = momentEnd.diff(momentStart, 'days'),
-        TripService.create({
+            TripService.create({
                 title,
                 momentStart,
                 momentEnd,
@@ -104,12 +109,13 @@ module.exports = {
                 UserId
             })
             .then(({
+                code,
                     json
-                }) =>
-                res.send(json)
-            ).catch(err => {
+                }) => {
+                res.status(code).send(json)
+            }).catch(err => {
                 console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+                res.status(sc.INTERNAL_SERVER_ERROR).send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
     },
     trippingUpdate: async (req, res) => {
@@ -118,22 +124,23 @@ module.exports = {
         } = req.body;
         if (!id) {
             const missParameters = Object.entries({
-                id
-            })
-            .filter(it => it[1] == undefined).map(it => it[0]).join(',');
-        res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
-        return;
-    }
+                    id
+                })
+                .filter(it => it[1] == undefined).map(it => it[0]).join(',');
+            res.status(sc.BAD_REQUEST).send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
+            return;
+        }
         TripService.trippingUpdate({
                 id
             })
             .then(({
+                code,
                     json
                 }) =>
-                res.send(json)
+                res.status(code).send(json)
             ).catch(err => {
                 console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+                res.status(sc.INTERNAL_SERVER_ERROR).send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
     },
     trippedUpdate: async (req, res) => {
@@ -143,24 +150,25 @@ module.exports = {
         } = req.body;
         if (!id || !flag) {
             const missParameters = Object.entries({
-                id,
-                flag
-            })
-            .filter(it => it[1] == undefined).map(it => it[0]).join(',');
-        res.send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
-        return;
-    }
+                    id,
+                    flag
+                })
+                .filter(it => it[1] == undefined).map(it => it[0]).join(',');
+            res.status(sc.BAD_REQUEST).send(utils.successFalse(sc.BAD_REQUEST, `${rm.NULL_VALUE}, ${missParameters}`));
+            return;
+        }
         TripService.trippedUpdate({
                 id,
                 flag
             })
             .then(({
+                code,
                     json
                 }) =>
-                res.send(json)
+                res.status(code).send(json)
             ).catch(err => {
                 console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+                res.status(sc.INTERNAL_SERVER_ERROR).send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
     },
     delete: async (req, res) => {
@@ -175,12 +183,13 @@ module.exports = {
                 id
             })
             .then(({
+                code,
                     json
                 }) =>
-                res.send(json)
+                res.status(code).send(json)
             ).catch(err => {
                 console.log(err);
-                res.send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+                res.status(sc.INTERNAL_SERVER_ERROR).send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
     },
 }

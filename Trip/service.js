@@ -20,19 +20,22 @@ module.exports = {
                 },
                 attributes: ['id', 'start', 'end', 'title', 'city', 'country', 'activityBudget', 'hotelBudget', 'foodBudget', 'shoppingBudget', 'snackBudget', 'transportBudget']
             });
-            if (trip.length == 0) {
-                resolve({
-                    json: utils.successFalse(sc.NO_CONTENT, rm.TRIP_EMPTY)
-                });
-                return;
-            }
             if (!trip) {
                 resolve({
+                    code: sc.INTERNAL_SERVER_ERROR,
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_READ_FAIL)
                 });
                 return;
             }
+            if (trip.length == 0) {
+                resolve({
+                    code: sc.NO_CONTENT,
+                    json: utils.successFalse(sc.NO_CONTENT, rm.TRIP_EMPTY)
+                });
+                return;
+            }
             resolve({
+                code: sc.SUCCESS,
                 json: utils.successTrue(sc.SUCCESS, rm.TRIP_READ_SUCCESS, trip)
             });
         });
@@ -47,17 +50,20 @@ module.exports = {
             });
             if (trip.length == 0) {
                 resolve({
+                    code: sc.NO_CONTENT,
                     json: utils.successFalse(sc.NO_CONTENT, rm.TRIP_EMPTY)
                 });
                 return;
             }
             if (!trip) {
                 resolve({
+                    code: sc.INTERNAL_SERVER_ERROR,
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_LIST_READ_FAIL)
                 });
                 return;
             }
             resolve({
+                code: sc.SUCCESS,
                 json: utils.successTrue(sc.SUCCESS, rm.TRIP_LIST_READ_SUCCESS, trip)
             });
         });
@@ -71,17 +77,20 @@ module.exports = {
             });
             if (trip.length == 0) {
                 resolve({
+                    code: sc.NO_CONTENT,
                     json: utils.successFalse(sc.NO_CONTENT, rm.TRIP_EMPTY)
                 });
                 return;
             }
             if (!trip) {
                 resolve({
+                    code: sc.INTERNAL_SERVER_ERROR,
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIPPING_READ_FAIL)
                 });
                 return;
             }
             resolve({
+                code: sc.SUCCESS,
                 json: utils.successTrue(sc.SUCCESS, rm.TRIPPING_READ_SUCCESS, trip)
             });
         });
@@ -95,17 +104,20 @@ module.exports = {
             });
             if (trip.length == 0) {
                 resolve({
+                    code: sc.NO_CONTENT,
                     json: utils.successFalse(sc.NO_CONTENT, rm.TRIP_EMPTY)
                 });
                 return;
             }
             if (!trip) {
                 resolve({
+                    code: sc.INTERNAL_SERVER_ERROR,
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIPPING_READ_FAIL)
                 });
                 return;
             }
             resolve({
+                code: sc.SUCCESS,
                 json: utils.successTrue(sc.SUCCESS, rm.TRIPPED_READ_SUCCESS, trip)
             });
         });
@@ -133,6 +145,7 @@ module.exports = {
             });
             if (tripChk.length != 0) {
                 resolve({
+                    code: sc.BAD_REQUEST,
                     json: utils.successFalse(sc.BAD_REQUEST, rm.ALREADY_TRIP)
                 });
                 return;
@@ -163,10 +176,12 @@ module.exports = {
 
             } catch (error) {
                 reject({
+                    code: sc.INTERNAL_SERVER_ERROR,
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_CREATE_FAIL)
                 });
             }
             resolve({
+                code: sc.SUCCESS,
                 json: utils.successTrue(sc.SUCCESS, rm.TRIP_CREATE_SUCCESS, trip)
             });
         });
@@ -179,6 +194,7 @@ module.exports = {
             console.log(tripRead);
             if(tripRead.length == 0){
                 resolve({
+                    code: sc.NO_CONTENT,
                     json: utils.successFalse(sc.NO_CONTENT, rm.TRIP_EMPTY)
                 });
                 return;
@@ -190,6 +206,7 @@ module.exports = {
             });
             if(trip.length != 0){
                 resolve({
+                    code: sc.BAD_REQUEST,
                     json: utils.successFalse(sc.BAD_REQUEST, rm.ALREADY_TRIPPING)
                 });
                 return;
@@ -206,10 +223,12 @@ module.exports = {
 
             } catch (error) {
                 reject({
+                    code: sc.INTERNAL_SERVER_ERROR,
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIPPING_UPDATE_FAIL)
                 });
             }
             resolve({
+                code: sc.SUCCESS,
                 json: utils.successTrue(sc.SUCCESS, rm.TRIPPING_UPDATE_SUCCESS)
             });
         });
@@ -230,6 +249,7 @@ module.exports = {
 
             } catch (error) {
                 reject({
+                    code: sc.INTERNAL_SERVER_ERROR,
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIPPED_UPDATE_FAIL)
                 });
             }
@@ -251,10 +271,12 @@ module.exports = {
 
             } catch (error) {
                 reject({
+                    code: sc.INTERNAL_SERVER_ERROR,
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_DELETE_FAIL)
                 });
             }
             resolve({
+                code: sc.SUCCESS,
                 json: utils.successTrue(sc.SUCCESS, rm.TRIP_DELETE_SUCCESS)
             });
         });
