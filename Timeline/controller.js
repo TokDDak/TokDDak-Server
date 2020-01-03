@@ -28,11 +28,9 @@ module.exports = {
             day,
             cost,
             category,
-            content
-        } = req.body;
-        const {
+            content,
             TripId
-        } = req.params;
+                } = req.body;
         if (!TripId||!day||!category||!content) {
             res.send(utils.successFalse(sc.BAD_REQUEST, rm.NULL_VALUE));
             return;
