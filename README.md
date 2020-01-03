@@ -15,7 +15,7 @@
 
 ---
 
-# 2-1. Dependency Module  
+# 2. Dependency Module  
 ```
 "dependencies": {
     "aws-sdk": "^2.591.0",
