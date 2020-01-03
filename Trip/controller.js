@@ -26,6 +26,22 @@ module.exports = {
                 res.stastus(sc.INTERNAL_SERVER_ERROR).send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
             })
     },
+    totalDayRead: async (req, res) => {
+        const {
+            TripId // Trip Id 하나만 가져온다.
+        } = req.params;
+        TripService.totalDayRead({TripId})
+            .then(({
+                    code,
+                    json
+                }) =>
+
+                res.status(code).send(json)
+            ).catch(err => {
+                console.log(err);
+                res.stastus(sc.INTERNAL_SERVER_ERROR).send(utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.INTERNAL_SERVER_ERROR));
+            })
+    },
     maxIdRead: async (req, res) => {
         TripService.maxIdRead()
             .then(({

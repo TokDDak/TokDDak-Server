@@ -40,6 +40,38 @@ module.exports = {
             });
         });
     },
+    totalDayRead : ({
+        TripId
+    }) => {
+        return new Promise(async (resolve, reject) => {
+            const trip = await Trip.findOne({
+                where: {
+                    id: TripId,
+                },
+                attributes: ['totalDay']
+            });
+            console.log(trip);
+            console.log(typeof trip);
+            if (!trip) {
+                resolve({
+                    code: sc.INTERNAL_SERVER_ERROR,
+                    json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIP_READ_FAIL)
+                });
+                return;
+            }
+            if (trip.length == 0) {
+                resolve({
+                    code: sc.NO_CONTENT,
+                    json: utils.successFalse(sc.NO_CONTENT, rm.TRIP_EMPTY)
+                });
+                return;
+            }
+            resolve({
+                code: sc.SUCCESS,
+                json: utils.successTrue(sc.SUCCESS, "여행 일수를 조회합니다.", trip)
+            });
+        });
+    },
     maxIdRead: () => {
         return new Promise(async (resolve, reject) => {
             const trip = await Trip.findOne({

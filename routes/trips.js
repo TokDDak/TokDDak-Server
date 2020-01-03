@@ -8,7 +8,7 @@ const tripController = require('../Trip/controller');
  * */
 router.get('/id',tripController.read);
 router.get('/maxId',tripController.maxIdRead);
-
+router.get('/totalDay/:TripId',tripController.totalDayRead);
 /**
  * 여행 후보인 trip
  * status가 1이면 여행 후보
