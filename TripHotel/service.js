@@ -1,6 +1,8 @@
 const rm = require('../module/util/responseMessage');
 const utils = require('../module/util/utils');
 const sc = require('../module/util/statusCode');
+const fn = require('sequelize').fn;
+const col = require('sequelize').col;
 
 const {TripHotel} = require('../models');
 module.exports = {
@@ -12,7 +14,9 @@ module.exports = {
             const TH = await TripHotel.findAll({
                 where: {
                     TripId: TripId
-                }
+                },
+                attributes: ['grade', [fn('sum',col('count')), 'count'], 'cost'],
+                group: 'grade'
             });
             if(TH.length == 0) {
                 resolve({
