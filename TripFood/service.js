@@ -1,6 +1,8 @@
 const rm = require('../module/util/responseMessage');
 const utils = require('../module/util/utils');
 const sc = require('../module/util/statusCode');
+const fn = require('sequelize').fn;
+const col = require('sequelize').col;
 
 const {TripFood} = require('../models');
 
@@ -13,7 +15,9 @@ module.exports = {
             const TF = await TripFood.findAll({
                 where: {
                     TripId: TripId
-                }
+                },
+                attributes: ['grade', [fn('sum',col('count')), 'count'], 'cost'],
+                group: 'grade'
             });
             if(TF.length == 0) {
                 resolve({
@@ -33,7 +37,7 @@ module.exports = {
         });
     },
     create: ({
-        array, // ["일반음식점","간편식","간편식"]
+        array,
         TripId
     }) => {
         return new Promise(async (resolve, reject) => {

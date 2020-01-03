@@ -1,11 +1,12 @@
 const rm = require('../module/util/responseMessage');
 const utils = require('../module/util/utils');
 const sc = require('../module/util/statusCode');
+const fn = require('sequelize').fn;
+const col = require('sequelize').col;
 
 const {TripSnack} = require('../models');
 
 module.exports = {
-
     read: ({
         TripId
     }) => {
@@ -13,9 +14,12 @@ module.exports = {
             const TS = await TripSnack.findAll({
                 where: {
                     TripId: TripId
-                }
+                },
+                attributes: ['grade', [fn('sum',col('count')), 'count'], 'cost'],
+                group: 'grade'
             });
-            if(TH.length == 0) {
+            console.log(TS.dataValues);
+            if(TS.length == 0) {
                 resolve({
                     json: utils.successFalse(sc.NO_CONTENT, rm.TRIPSNACK_EMPTY)
                 });
