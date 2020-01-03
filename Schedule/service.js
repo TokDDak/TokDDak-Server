@@ -27,10 +27,12 @@ module.exports = {
                 });
             } catch (error) {
                 reject({ // 실패시 json 반환.
+                    code: sc.INTERNAL_SERVER_ERROR,
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.SCHEDULE_CREATE_FAIL)
                 });
             }
             resolve({ // 성공시 json 반환.
+                code: sc.SUCCESS,
                 json: utils.successTrue(sc.SUCCESS, rm.SCHEDULE_CREATE_SUCCESS, schedule)
             });
         });
@@ -46,17 +48,20 @@ module.exports = {
             });
             if (schedule.length == 0) {
                 resolve({
+                    code: sc.NO_CONTENT,
                     json: utils.successFalse(sc.NO_CONTENT, rm.TRIP_EMPTY)
                 });
                 return;
             }
             if (!schedule) {
                 resolve({
+                    code: sc.INTERNAL_SERVER_ERROR,
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.SCHEDULE_READ_TRIPID_FAIL)
                 });
                 return;
             }
             resolve({
+                code: sc.SUCCESS,
                 json: utils.successTrue(sc.SUCCESS, rm.SCHEDULE_READ_TRIPID_SUCCESS, schedule)
             });
         });
@@ -75,17 +80,20 @@ module.exports = {
             });
             if (scheduleByDay.length == 0) {
                 resolve({
+                    code: sc.NO_CONTENT,
                     json: utils.successFalse(sc.NO_CONTENT, rm.TRIP_AND_DAY_EMPTY)
                 });
                 return;
             }
             if (!scheduleByDay) {
                 resolve({
+                    code: sc.INTERNAL_SERVER_ERROR,
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.SCHEDULE_READ_DAY_FAIL)
                 });
                 return;
             }
             resolve({
+                code: sc.SUCCESS,
                 json: utils.successTrue(sc.SUCCESS, rm.SCHEDULE_READ_DAY_SUCCESS, scheduleByDay)
             });
         });
