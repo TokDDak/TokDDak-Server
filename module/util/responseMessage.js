@@ -8,6 +8,10 @@ module.exports = {
   NEED_LOGIN: "로그인 필요",
   CANT_ACCESS: "접근할 수 없습니다",
 
+  /* Median */
+  MEDIAN_READ_FAIL :"평균값 조회 실패",
+  MEDIAN_READ_SUCCESS :"평균값 조회 성공",
+
   /* City */
   CITY_EMPTY: "도시가 없습니다",
   CITY_READ_ALL_SUCCESS: "도시 전체 조회 성공",
@@ -21,6 +25,16 @@ module.exports = {
   CITY_DELETE_FAIL: "CITY DELETE 실패",
   CITY_DELETE_SUCCESS: "CITY DELETE 성공",
 
+  /* Timeline */
+  TIMELINE_EMPTY : "지출내역이 없습니다.",
+  TIMELINE_READ_SUCCESS : "지출내역 조회 성공", 
+  TIMELINE_READ_FAIL : "지출내역 조회 실패", 
+  TIMELINE_CREATE_SUCCESS : "지출내역 추가 성공",
+  TIMELINE_CREATE_FAIL : "지출내역 추가 실패",
+  TIMELINE_UPDATE_SUCCESS : "지출내역 수정 성공",
+  TIMELINE_UPDATE_FAIL : "지출내역 수정 실패",
+  TIMELINE_DELETE_SUCCESS : "지출내역 삭제 성공",
+  TIMELINE_DELETE_FAIL : "지출내역 삭제 실패",
 
   /* Activity */
   ACTIVITY_READ_CITYID_FAIL: "CityId에 해당하는 Activity 조회 실패",
@@ -101,7 +115,8 @@ module.exports = {
   SCHEDULE_DELETE_SUCCESS: "일정 삭제 성공",
   SCHEDULE_DELETE_FAIL: "일정 삭제 실패",
   ALREADY_SCHEDULE: "일정이 존재합니다.",
-  SCHEDULE_EMPTY: "일정이 비어있습니다",
+  TRIP_EMPTY: "TripId에 해당하는 여행이 없습니다",
+  TRIP_AND_DAY_EMPTY: "TripId이나 day에 해당하는 여행이 없습니다",
 
   /* Trip */
   TRIP_READ_SUCCESS: "TRIP ID로 조회 성공",
@@ -123,6 +138,17 @@ module.exports = {
   TRIP_EMPTY: "여행에 대한 정보가 없습니다",
   ALREADY_TRIP: "이미 있는 여행 이름입니다",
   ALREADY_TRIPPING: "이미 여행 중입니다",
+
+  /* TripActivity */
+  TRIPACTIVITY_READ_SUCCESS: "여행 중 즐길 액티비티들을 조회했습니다.",
+  TRIPACTIVITY_READ_FAIL: "액티비티 조회에 실패했습니다.",
+  TRIPACTIVITY_CREATE_SUCCESS: "여행 중 즐길 액티비티들을 저장했습니다.",
+  TRIPACTIVITY_CREATE_FAIL: "액티비티 저장에 실패했습니다.",
+  TRIPACTIVITY_UPDATE_SUCCESS: "여행 중 즐길 액티비티들을 변경했습니다.",
+  TRIPACTIVITY_UPDATE_FAIL: "액티비티 변경에 실패했습니다.",
+  TRIPACTIVITY_DELETE_SUCCESS: "여행 중 즐길 액티비티를 삭제했습니다.",
+  TRIPACTIVITY_DELETE_FAIL: "액티비티 삭제에 실패했습니다.", 
+  TRIPACTIVITY_EMPTY: "정보가 없습니다.",
 
   /* TripHotel */
   TRIPHOTEL_READ_SUCCESS: "여행 중 묵을 숙박들을 조회했습니다.",

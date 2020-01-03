@@ -3,8 +3,8 @@ const router = express.Router({mergeParams: true});
 const TFController = require('../TripFood/controller');
 
 router.get('/:TripId', TFController.read);
-router.get('/:TripId', TFController.create);
-router.get('/', TFController.update);
-router.get('/', TFController.delete);
+router.post('/:TripId', TFController.create);
+router.put('/', TFController.update);
+router.delete('/', TFController.delete);
 
  module.exports = router;

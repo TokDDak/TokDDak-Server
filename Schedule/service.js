@@ -46,7 +46,7 @@ module.exports = {
             });
             if (schedule.length == 0) {
                 resolve({
-                    json: utils.successFalse(sc.NO_CONTENT, rm.SCHEDULE_EMPTY)
+                    json: utils.successFalse(sc.NO_CONTENT, rm.TRIP_EMPTY)
                 });
                 return;
             }
@@ -75,7 +75,7 @@ module.exports = {
             });
             if (scheduleByDay.length == 0) {
                 resolve({
-                    json: utils.successFalse(sc.NO_CONTENT, rm.SCHEDULE_EMPTY)
+                    json: utils.successFalse(sc.NO_CONTENT, rm.TRIP_AND_DAY_EMPTY)
                 });
                 return;
             }

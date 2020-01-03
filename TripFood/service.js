@@ -39,23 +39,22 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             let TF;
             try {
-                for(let [key, value] of Object.entries(array)) {
-                    for(let [key2, value2] of Object.entries(value)){
-                        console.log(key2, value2);
+                console.log(array);
+                for(var n in array){
                     TF = await TripFood.create({
-                        grade: key2,
-                        cost: value2, // 미디엄에서 가져오자.
+                        grade: array[n].grade,
+                        cost: array[n].cost, // 미디엄에서 가져오자.
+                        count: array[n].count,
                         TripId: TripId
                     });
                 }
-            };
             } catch (error) {
                 reject({
                     json: utils.successFalse(sc.INTERNAL_SERVER_ERROR, rm.TRIPFOOD_CREATE_FAIL)
                 });
             }
             resolve({
-                json: utils.successTrue(sc.SUCCESS, rm.TRIPFOOD_CREATE_SUCCESS, TF)
+                json: utils.successTrue(sc.SUCCESS, rm.TRIPFOOD_CREATE_SUCCESS)
             });
         });
     },

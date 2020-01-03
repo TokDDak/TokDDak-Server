@@ -43,7 +43,7 @@ module.exports = {
                 array,
                 TripId
             })
-            .TFen(({
+            .then(({
                     json
                 }) =>
                 res.send(json)
@@ -73,7 +73,7 @@ module.exports = {
             grade,
             cost
             })
-            .TFen(({
+            .then(({
                     json
                 }) =>
                 res.send(json)
@@ -93,7 +93,7 @@ module.exports = {
         TFService.delete({
                 id
             })
-            .TFen(({
+            .then(({
                     json
                 }) =>
                 res.send(json)

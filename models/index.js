@@ -21,10 +21,20 @@ db.TripActivity = require('./tripActivityModel')(sequelize, Sequelize);
 db.TripFood = require('./tripFoodModel')(sequelize, Sequelize);
 db.TripSnack = require('./tripSnackModel')(sequelize, Sequelize);
 db.TripHotel = require('./tripHotelModel')(sequelize, Sequelize);
-db.Schedule = require('./scheduleModel')(sequelize, Sequelize);
 db.Plan = require('./planModel')(sequelize, Sequelize);
 db.Median = require('./medianModel')(sequelize,Sequelize);
+db.Schedule = require('./scheduleModel')(sequelize, Sequelize);
 db.User = require('./userModel')(sequelize, Sequelize);
+db.Timeline = require('./timelineModel')(sequelize, Sequelize);
+
+/** 1:N T : Timeline */
+db.Trip.hasMany(db.Timeline);
+db.Timeline.belongsTo(db.Trip);
+
+/** 1:N T : Schedule */
+db.Trip.hasMany(db.Schedule);
+db.Schedule.belongsTo(db.Trip);
+
 /** 1:N City : Activity */
 db.City.hasMany(db.Activity);
 db.Activity.belongsTo(db.City);
