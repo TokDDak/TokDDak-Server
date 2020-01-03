@@ -58,13 +58,17 @@
 
 # 3. ERD Diagram  
 
-![ERD Diagram](./image/tokddak_erd.png)
+<div align="center" style="display:flex;">
+	<img src="./image/tokddak_erd.png">
+</div>
 
 ---
 
 # 4. Server Architecture  
 
-![Server Architecture](./image/server-architecture2.jpeg)
+<div align="center" style="display:flex;">
+	<img src="./image/server-architecture2.jpeg">
+</div>
 
 ---
 
