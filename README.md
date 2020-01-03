@@ -1,15 +1,23 @@
-# TokDDak-Server  
+# :airplane: TokDDak-Server  
 
-![tokddak_logo](./image/tokddak_logo.png)
-맞춤형 여행경비 계산/관리 서비스 톡딱 서버파트 리포지토리
-{: .text-center }
+<div align="center" style="display:flex;">
+	<img src="./image/tokddak_logo.png" width="250">
+</div>
+<div align="center">
+:sunny: 맞춤형 여행경비 계산/관리 서비스 톡딱 :cloud:  
+<br>
+서버파트 리포지토리
+</div>
+
+---
+
 # 1. API DOC LINK (WIKI) 
 
 * [관련 링크](https://github.com/TokDDak/TokDDak-Server/wiki) 
 
 ---
 
-# 2-1. Dependency Module  
+# 2. Dependency Module  
 ```
 "dependencies": {
     "aws-sdk": "^2.591.0",
@@ -52,13 +60,17 @@
 
 # 3. ERD Diagram  
 
-* 추가 
+<div align="center" style="display:flex;">
+	<img src="./image/tokddak_erd.png">
+</div>
 
 ---
 
 # 4. Server Architecture  
 
-![Server Architecture](./image/server-architecture2.jpeg)
+<div align="center" style="display:flex;">
+	<img src="./image/server-architecture2.jpeg">
+</div>
 
 ---
 
@@ -74,14 +86,14 @@
 
 
 # 6. Team Role  
-* 남궁권 ([kkoon9](https://github.com/kkoon9))  
-  * 기능 구현
-* 박승완 ([toneyparky](https://github.com/toneyparky))  
-  * TripAdvisor API 활용 및 데이터 수집 [관련 레포지토리](https://github.com/TokDDak/TokDDak-DB-Crawler)
-* 현주희 ([Hyun-juhee](https://github.com/Hyun-juhee))  
-  * 환율 API 활용 및 CRUD 구현 
+#### :beer: 남궁권 ([kkoon9](https://github.com/kkoon9))  
+  * 기능 구현  
+#### :cocktail: 박승완 ([toneyparky](https://github.com/toneyparky))  
+  * TripAdvisor API 활용 및 데이터 수집 [관련 레포지토리](https://github.com/TokDDak/TokDDak-DB-Crawler)  
+#### :tropical_drink: 현주희 ([Hyun-juhee](https://github.com/Hyun-juhee))  
+  * 환율 API 활용 및 CRUD 구현   
   
-* 칸반보드 노션링크[(참고)](https://www.notion.so/toneyparky/8fe9b76a98ba45f19e15eed43731b887?v=2d845e1c03b94399baad67c270ac2069)
+#### :wine_glass: 칸반보드 노션링크[(참고)](https://www.notion.so/toneyparky/8fe9b76a98ba45f19e15eed43731b887?v=2d845e1c03b94399baad67c270ac2069)
 ---
 
 # 7. Develop Framework & Environment
@@ -97,5 +109,7 @@
 * [AWS S3](https://aws.amazon.com/ko/s3/) - 클라우드 스토리지
 * [Python 3](https://www.python.org/)
 * [Jupyter Notebook](https://jupyter.org/) - 편집기
+
+* [TripAdvisor API](https://developer-tripadvisor.com/content-api/) - 트립어드바이져 API
 
 ---
